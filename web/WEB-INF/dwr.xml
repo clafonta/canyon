@@ -1,0 +1,19 @@
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+    "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+<dwr>
+    <allow>
+        <!--create creator="spring" javascript="UserManager">
+            <param name="beanName" value="userManager"/>
+            <include method="getUsers"/>
+        </create>
+        <convert converter="bean" match="org.tll.canyon.model.User"/-->
+        <convert converter="bean" match="org.tll.canyon.*"/>
+        <create creator="spring" javascript="assetRoleInfoDWRManager">
+            <param name="beanName" value="assetRoleInfoManager"></param>
+        </create>
+        <create creator="spring" javascript="assetDetailDWRManager">
+            <param name="beanName" value="assetDetailInfoManager"></param>
+        </create>        
+    </allow>
+</dwr>

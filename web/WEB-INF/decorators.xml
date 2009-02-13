@@ -1,0 +1,11 @@
+<decorators defaultdir="/decorators">
+    <excludes>
+        <pattern>/resources/*</pattern>
+    </excludes> 
+    <decorator name="medium_onecolumn" page="medium_onecolumn.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+    <decorator name="default" page="default.jsp">
+        <pattern>/someotherpattern</pattern>
+    </decorator>
+</decorators>

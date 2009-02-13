@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="EmployeeInfoSQL">
+    <typeAlias alias="employeeInfo" type="org.tll.canyon.model.EmployeeInfo"/>
+
+    <parameterMap id="addParam" class="employeeInfo">
+        <parameter property="employeeUserId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeDept" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeEmail" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeStatus" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeFirstName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeLastName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeMiddleName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="managerId" jdbcType="VARCHAR" javaType="java.lang.String"/>        
+    </parameterMap>
+
+    <parameterMap id="updateParam" class="employeeInfo">
+        <parameter property="employeeId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeUserId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeDept" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeEmail" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeStatus" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeFirstName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeLastName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="employeeMiddleName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <parameter property="managerId" jdbcType="VARCHAR" javaType="java.lang.String"/>        
+    </parameterMap>
+
+    <resultMap id="employeeInfoResult" class="employeeInfo">
+        <result property="employeeId" column="EMP_ID"/>
+        <result property="employeeUserId" column="EMP_USERID"/>
+        <result property="employeeDept" column="EMP_DEPT"/>
+        <result property="employeeEmail" column="EMP_EMAIL"/>
+        <result property="employeeStatus" column="EMP_STATUS"/>
+        <result property="employeeType" column="EMP_TYPE"/>
+        <result property="employeeFirstName" column="EMP_FIRST_NAME"/>
+        <result property="employeeLastName" column="EMP_LAST_NAME"/>
+        <result property="employeeMiddleName" column="EMP_MIDDLE_NAME"/>
+        <result property="managerId" column="MANAGER_EMP_ID"/>        
+    </resultMap>
+
+    <select id="getEmployeeInfos" resultMap="employeeInfoResult">
+    <![CDATA[
+        select * from hr_emp_manager_info
+    ]]>
+    </select>
+
+    <select id="getEmployeeInfo" resultMap="employeeInfoResult">
+    <![CDATA[
+        select * from hr_emp_manager_info
+         where EMP_ID = #value#
+    ]]>
+    </select>
+
+    <insert id="addEmployeeInfo" parameterMap="addParam">
+        <!--selectKey resultClass="java.lang.String" keyProperty="employeeId" >
+            SELECT SEQ_EMP_ID.NextVal AS employeeId FROM DUAL
+        </selectKey-->
+        <selectKey resultClass="java.lang.String" keyProperty="employeeId">
+            SELECT LAST_INSERT_ID() AS employeeId
+        </selectKey>
+        <![CDATA[
+            insert into hr_emp_manager_info (EMP_USERID,EMP_DEPT,EMP_EMAIL,EMP_STATUS,EMP_TYPE,EMP_FIRST_NAME,EMP_LAST_NAME,EMP_MIDDLE_NAME,MANAGER_EMP_ID,MANAGER_USERID,MANAGER_DEPT,MANAGER_EMAIL,MANAGER_STATUS,MANAGER_TYPE,MANAGER_FIRST_NAME,MANAGER_LAST_NAME,MANAGER_MIDDLE_NAME,MANAGER_MANAGER_USERID)
+            values ( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )
+        ]]>
+    </insert>
+
+    <update id="updateEmployeeInfo" parameterMap="updateParam">
+    <![CDATA[
+        update hr_emp_manager_info set
+                   EMP_USERID = ?,
+                   EMP_DEPT = ?,
+                   EMP_EMAIL = ?,
+                   EMP_STATUS = ?,
+                   EMP_TYPE = ?,
+                   EMP_FIRST_NAME = ?,
+                   EMP_LAST_NAME = ?,
+                   EMP_MIDDLE_NAME = ?,
+                   MANAGER_EMP_ID = ?,
+                   MANAGER_USERID = ?,
+                   MANAGER_DEPT = ?,
+                   MANAGER_EMAIL = ?,
+                   MANAGER_STATUS = ?,
+                   MANAGER_TYPE = ?,
+                   MANAGER_FIRST_NAME = ?,
+                   MANAGER_LAST_NAME = ?,
+                   MANAGER_MIDDLE_NAME = ?,
+                   MANAGER_MANAGER_USERID = ?
+        where EMP_ID = ?
+    ]]>
+    </update>
+
+    <delete id="deleteEmployeeInfo">
+    <![CDATA[
+        delete from hr_emp_manager_info
+         where EMP_ID = #value#
+    ]]>
+    </delete>
+</sqlMap>

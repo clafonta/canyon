@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- Hibernate SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mappingResources">
+            <list>
+                <value>org/tll/canyon/model/AssetAccessRequest.hbm.xml</value>
+                <value>org/tll/canyon/model/AssetAccessRequestStatus.hbm.xml</value>
+                <value>org/tll/canyon/model/AssetDetail.hbm.xml</value>
+                <value>org/tll/canyon/model/AssetHistoryNote.hbm.xml</value>
+                <value>org/tll/canyon/model/AssetHitStat.hbm.xml</value>
+                <value>org/tll/canyon/model/AssetRole.hbm.xml</value>
+                <value>org/tll/canyon/model/Role.hbm.xml</value>
+                <value>org/tll/canyon/model/User.hbm.xml</value>
+                <value>org/tll/canyon/model/EmployeeInfo.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">@HIBERNATE-DIALECT@</prop>
+                <prop key="hibernate.query.substitutions">true 'Y', false 'N'</prop>
+                <!-- Create/update the database tables automatically when the JVM starts up
+                <prop key="hibernate.hbm2ddl.auto">update</prop> -->
+                <!-- Turn batching off for better error messages under PostgreSQL 
+                <prop key="hibernate.jdbc.batch_size">0</prop> -->
+            </props>
+        </property>
+    </bean>
+
+    <!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- Generic Dao - can be used when doing standard CRUD -->
+    <bean id="dao" class="org.tll.canyon.dao.hibernate.BaseDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- LookupDao: Hibernate implementation -->
+    <bean id="lookupDao" class="org.tll.canyon.dao.hibernate.LookupDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- UserDao: Hibernate implementation -->
+    <bean id="userDao" class="org.tll.canyon.dao.hibernate.UserDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- RoleDao: Hibernate implementation -->
+    <bean id="roleDao" class="org.tll.canyon.dao.hibernate.RoleDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- Add new Daos here -->    
+	<bean id="assetDetailDao" class="org.tll.canyon.dao.hibernate.AssetDetailDaoHibernate" autowire="byName"/>
+	<bean id="assetHitStatDao" class="org.tll.canyon.dao.hibernate.AssetHitStatDaoHibernate" autowire="byName"/>
+    <bean id="assetRoleDao" class="org.tll.canyon.dao.hibernate.AssetRoleDaoHibernate" autowire="byName"/>
+    <bean id="assetAccessRequestDao" class="org.tll.canyon.dao.hibernate.AssetAccessRequestDaoHibernate" autowire="byName"/>        
+    <bean id="assetAccessRequestStatusDao" class="org.tll.canyon.dao.hibernate.AssetAccessRequestStatusDaoHibernate" autowire="byName"/>        
+    <bean id="employeeInfoDao" class="org.tll.canyon.dao.hibernate.EmployeeInfoDaoHibernate" autowire="byName"/>
+    <bean id="assetHistoryNoteDao" class="org.tll.canyon.dao.hibernate.AssetHistoryNoteDaoHibernate" autowire="byName"/>
+</beans>
+
+
+
+

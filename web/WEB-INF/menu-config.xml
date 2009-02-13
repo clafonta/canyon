@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MenuConfig>
+    <Displayers>
+        <Displayer name="Velocity" type="net.sf.navigator.displayer.VelocityMenuDisplayer"/>
+    </Displayers>
+    <Menus>
+        <Menu name="MainMenu" title="mainMenu.title" width="120" page="/mainMenu.html" roles="admin, user">
+            <Item name="UserMenu" title="menu.user" description="User Menu" page="/editProfile.html" roles="admin,user"/>
+            <Item name="FileUpload" title="menu.selectFile" description="File Upload" page="/selectFile.html" roles="admin,user"/>
+        </Menu>
+        <Menu name="AssetMenu" title="menu.assetAdmin" description="Asset Admin" roles="admin,user" width="120" page="/assetDetailList.html">
+            <Item name="AssetAccessRequestMenu" title="assetAccessRequestList.title" page="/assetAccessRequests.html"/>
+        </Menu>                
+        <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="admin" width="120" page="/users.html">
+            <Item name="ViewUsers" title="menu.admin.users" page="/users.html"/>
+            <Item name="ActiveUsers" title="mainMenu.activeUsers" page="/activeUsers.html"/>
+            <Item name="ReloadContext" title="menu.admin.reload" page="/reload.html"/>
+            <Item name="FlushCache" title="menu.flushCache" page="/flushCache.html"/>
+            <Item name="Clickstream" title="menu.clickstream" page="/clickstreams.jsp"/>
+        </Menu>
+        <Menu name="Logout" title="user.logout" page="/logout.jsp" roles="admin,user"/>       
+        
+        <!--AssetAccessRequestStatus-START-->
+        <Menu name="AssetAccessRequestStatusMenu" title="assetAccessRequestStatusList.title" page="/assetAccessRequestStatuss.html"/>
+        <!--AssetAccessRequestStatus-END-->
+        <!--EmployeeInfo-START-->
+        <Menu name="EmployeeInfoMenu" title="employeeInfoList.title" page="/employeeInfos.html"/>
+        <!--EmployeeInfo-END-->
+       
+    </Menus>
+
+
+
+
+
+
+
+</MenuConfig>

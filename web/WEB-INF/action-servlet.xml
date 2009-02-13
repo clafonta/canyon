@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.dao.DataAccessException">        
+                    dataAccessFailure
+                </prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="xmlViewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="order" value="1"/>
+    </bean>
+    
+    <bean id="userController" class="org.tll.canyon.webapp.action.UserController">
+        <property name="userManager" ref="userManager"/>
+    </bean>
+
+    <bean id="passwordHintController" class="org.tll.canyon.webapp.action.PasswordHintController">
+        <property name="userManager" ref="userManager"/>
+        <property name="messageSource" ref="messageSource"/>
+        <property name="mailEngine" ref="mailEngine"/>
+        <property name="message" ref="mailMessage"/>
+    </bean>
+
+    <bean id="reloadController" class="org.tll.canyon.webapp.action.ReloadController"/>
+
+    <bean id="userFormController" class="org.tll.canyon.webapp.action.UserFormController">
+        <property name="validator" ref="beanValidator"/>
+        <property name="formView" value="userForm"/>
+        <property name="successView" value="redirect:users.html"/>
+        <property name="cancelView" value="redirect:mainMenu.html"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="roleManager" ref="roleManager"/>
+        <property name="mailEngine" ref="mailEngine"/>
+        <property name="message" ref="mailMessage"/>
+        <property name="templateName" value="accountCreated.vm"/>
+    </bean>
+
+    <bean id="fileUploadController" class="org.tll.canyon.webapp.action.FileUploadController">
+        <property name="validator" ref="beanValidator"/>
+        <property name="cancelView" value="redirect:mainMenu.html"/>
+        <property name="formView" value="uploadForm"/>
+        <property name="successView" value="uploadDisplay"/>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="2097152"/>
+    </bean>
+    
+    <bean id="signupController" class="org.tll.canyon.webapp.action.SignupController">
+        <property name="validator" ref="beanValidator"/>
+        <property name="formView" value="signup"/>
+        <property name="successView" value="redirect:mainMenu.html"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="roleManager" ref="roleManager"/>
+        <property name="mailEngine" ref="mailEngine"/>
+        <property name="message" ref="mailMessage"/>
+        <property name="templateName" value="accountCreated.vm"/>
+    </bean>
+    
+    
+    <bean id="assetRoleController" class="org.tll.canyon.webapp.action.AssetRoleController" autowire="byName">
+        <property name="assetRoleManager"><ref bean="assetRoleManager"/></property>
+        <property name="assetDetailManager"><ref bean="assetDetailManager"/></property>
+    </bean>
+
+    <bean id="assetRoleFormController" class="org.tll.canyon.webapp.action.AssetRoleFormController" autowire="byName">
+        <property name="commandName"><value>assetRole</value></property>
+        <property name="commandClass"><value>org.tll.canyon.model.AssetRole</value></property>             
+        <property name="formView"><value>assetRoleForm</value></property>
+        <property name="successView"><value>assetRoles.html</value></property>
+        <property name="assetRoleManager"><ref bean="assetRoleManager"/></property>
+        <property name="assetDetailManager"><ref bean="assetDetailManager"/></property>
+    </bean>
+    
+    
+    <bean id="assetAccessRequestController" class="org.tll.canyon.webapp.action.AssetAccessRequestController" autowire="byName">
+        <property name="assetAccessRequestManager"><ref bean="assetAccessRequestManager"/></property>        
+        <property name="assetDetailManager"><ref bean="assetDetailManager"/></property>
+    </bean>
+
+    <bean id="assetAccessRequestFormController" class="org.tll.canyon.webapp.action.AssetAccessRequestFormController" autowire="byName">        
+        <property name="formView" value="assetAccessRequestForm"/>
+        <property name="successView" value="redirect:assetAccessRequests.html"/>
+        <property name="assetAccessRequestManager"><ref bean="assetAccessRequestManager"/></property>
+        <property name="assetDetailManager"><ref bean="assetDetailManager"/></property>        
+        <property name="mailEngine" ref="mailEngine"/>
+        <property name="message" ref="mailMessage"/>
+        <property name="assetAccessRequestStatusManager" ref="assetAccessRequestStatusManager"/>        
+        <property name="employeeInfoManager" ref="employeeInfoManager"/>
+    </bean>
+    
+    <bean id="assetAccessRequestApprovalFormController" class="org.tll.canyon.webapp.action.AssetAccessRequestApprovalFormController" autowire="byName">        
+        <property name="commandName"><value>assetAccessRequestStatus</value></property>
+        <property name="commandClass"><value>org.tll.canyon.model.AssetAccessRequestStatus</value></property>
+        <property name="formView" value="assetAccessRequestApprovalForm"/>
+        <property name="successView" value="redirect:mainMenu.html"/>      
+        <property name="assetAccessRequestStatusManager" ref="assetAccessRequestStatusManager"/>
+    </bean>
+    
+    <bean id="assetDetailFormController" class="org.tll.canyon.webapp.action.AssetDetailFormController">
+        <property name="commandName"><value>assetDetail</value></property>
+        <property name="commandClass"><value>org.tll.canyon.model.AssetDetail</value></property>
+        <property name="validator"><ref bean="beanValidator"/></property>
+        <property name="formView"><value>assetDetailForm</value></property>
+        <property name="successView"><value>assetDetailList.html</value></property>
+        <property name="assetDetailManager"><ref bean="assetDetailManager"/></property>
+        <property name="employeeInfoManager"><ref bean="employeeInfoManager"/></property>
+        
+    </bean>
+    <bean id="assetDetailController" class="org.tll.canyon.webapp.action.AssetDetailController" autowire="byName" />
+    <bean id="assetDetailListController" class="org.tll.canyon.webapp.action.AssetDetailListController" autowire="byName"/>
+          
+    
+    <bean id="assetHitStatFormController" class="org.tll.canyon.webapp.action.AssetHitStatFormController">
+        <property name="commandName"><value>assetHitStat</value></property>
+        <property name="commandClass"><value>org.tll.canyon.model.AssetHitStat</value></property>        
+        <property name="formView"><value>assetHitStatForm</value></property>
+        <property name="successView"><value>assetHitStatList.html</value></property>
+        <property name="assetHitStatManager"><ref bean="assetHitStatManager"/></property>        
+    </bean>
+    <bean id="assetHitStatController" class="org.tll.canyon.webapp.action.AssetHitStatController">
+        <property name="assetHitStatManager"><ref bean="assetHitStatManager"/></property>
+        <property name="assetDetailManager"><ref bean="assetDetailManager"/></property>
+    </bean>
+    
+    <bean id="assetAccessRequestStatusController" class="org.tll.canyon.webapp.action.AssetAccessRequestStatusController" autowire="byName"/>
+
+    <bean id="assetAccessRequestStatusFormController" class="org.tll.canyon.webapp.action.AssetAccessRequestStatusFormController" autowire="byName">
+        <property name="commandName"><value>assetAccessRequestStatus</value></property>
+        <property name="commandClass"><value>org.tll.canyon.model.AssetAccessRequestStatus</value></property>        
+        <property name="formView" value="assetAccessRequestStatusForm"/>
+        <property name="successView" value="redirect:assetAccessRequestStatusList.html"/>
+        <property name="assetAccessRequestStatusManager"><ref bean="assetAccessRequestStatusManager"/></property>        
+    </bean>
+    <bean id="employeeInfoController" class="org.tll.canyon.webapp.action.EmployeeInfoController" autowire="byName" />    
+    <bean id="assetHistoryNoteController" class="org.tll.canyon.webapp.action.AssetHistoryNoteController" autowire="byName" />
+    
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/editProfile.html">userFormController</prop>
+                <prop key="/mainMenu.html">filenameController</prop>
+                <prop key="/editUser.html">userFormController</prop> 
+                <prop key="/addUsers.html">userFormController</prop> 
+                <prop key="/selectFile.html">fileUploadController</prop>
+                <prop key="/uploadFile.html">fileUploadController</prop>
+                <prop key="/passwordHint.html">passwordHintController</prop>
+                <prop key="/signup.html">signupController</prop>
+                <prop key="/assetRoles.html">assetRoleController</prop>
+                <prop key="/editAssetRole.html">assetRoleFormController</prop>
+                <prop key="/viewAssetDetail.html">assetDetailController</prop>
+                <prop key="/editAssetDetail.html">assetDetailFormController</prop>
+                <prop key="/assetDetailList.html">assetDetailListController</prop>
+                <prop key="/editAssetHitStat.html">assetHitStatFormController</prop>
+                <prop key="/assetHitStatList.html">assetHitStatController</prop>
+                <prop key="/editAssetAccessRequest.html">assetAccessRequestFormController</prop>
+                <prop key="/assetAccessRequests.html">assetAccessRequestController</prop>
+                <prop key="/assetAccessRequestStatusList.html">assetAccessRequestStatusController</prop>
+                <prop key="/editAssetAccessRequestStatus.html">assetAccessRequestStatusFormController</prop>
+                <prop key="/employeeInfoList.html">employeeInfoController</prop>             
+                <prop key="/assetAccessRequestApproval.html">assetAccessRequestApprovalFormController</prop>
+                <prop key="/ajaxFront*.html">ajaxFrontController</prop>
+                <prop key="/assetdetail/note/add*">assetHistoryNoteController</prop>
+                <prop key="/test.html">testController</prop>
+            </props>
+        </property>
+    </bean>
+	<bean id="ajaxFrontController" class="org.tll.canyon.webapp.action.AjaxFrontController">
+	    <property name="assetDetailManager" ref="assetDetailManager"/>
+	</bean>
+	<bean id="actionResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+        <property name="paramName"><value>method</value></property>
+        <property name="defaultMethodName"><value>list</value></property>
+    </bean>
+
+    <bean id="adminUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="adminInterceptor"/>
+            </list>
+        </property>
+        <property name="mappings">
+            <props>
+                <prop key="/activeUsers.html">filenameController</prop>
+                <prop key="/users.html">userController</prop>
+                <prop key="/flushCache.html">filenameController</prop>                
+                <prop key="/reload.html">reloadController</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="testController" class="org.tll.canyon.webapp.action.TestController"/>
+    <bean id="adminInterceptor" class="org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor">
+        <property name="authorizedRoles" value="admin"/>
+    </bean>
+    
+    <bean id="filenameController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+
+    <!-- View Resolver for JSPs -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="requestContextAttribute" value="rc"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>
