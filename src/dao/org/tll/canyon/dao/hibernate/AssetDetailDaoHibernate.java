@@ -70,38 +70,42 @@ public class AssetDetailDaoHibernate extends BaseDaoHibernate implements AssetDe
 	            public Object doInHibernate(Session session) throws HibernateException, SQLException {
 	                Criteria criteria = session.createCriteria(AssetDetail.class);
 	                Disjunction disjunction = Expression.disjunction(); 
-	                if(assetDetail.getAssetAddress()!=null){
-	                	disjunction.add(Expression.ilike("assetAddress", assetDetail.getAssetAddress()));
+	                if(assetDetail.getAssetAddress()!=null && assetDetail.getAssetAddress().trim().length()>0){
+	                	disjunction.add(Expression.ilike("assetAddress", assetDetail.getAssetAddress().trim()));
 	                }
-	                if(assetDetail.getAssetName()!=null){
-	                	disjunction.add(Expression.ilike("assetName",assetDetail.getAssetName(), MatchMode.ANYWHERE));
+	                if(assetDetail.getAssetGroupName()!=null && assetDetail.getAssetGroupName().trim().length()>0){
+	                	disjunction.add(Expression.ilike("assetGroupName",assetDetail.getAssetGroupName().trim(), MatchMode.ANYWHERE));
+	                	log.debug("Added disjunction for 'assetGroupName'");
 	                }
-	                if(assetDetail.getAssetDescription()!=null){
-	                	disjunction.add(Expression.ilike("assetDescription",assetDetail.getAssetDescription(), MatchMode.ANYWHERE));
+	                if(assetDetail.getAssetName()!=null && assetDetail.getAssetName().trim().length()>0){
+	                	disjunction.add(Expression.ilike("assetName",assetDetail.getAssetName().trim(), MatchMode.ANYWHERE));
 	                }
-	                if(assetDetail.getAssetLocation()!=null){
-	                	disjunction.add(Expression.ilike("assetLocation",assetDetail.getAssetLocation(), MatchMode.ANYWHERE));
+	                if(assetDetail.getAssetDescription()!=null && assetDetail.getAssetDescription().trim().length()>0){
+	                	disjunction.add(Expression.ilike("assetDescription",assetDetail.getAssetDescription().trim(), MatchMode.ANYWHERE));
 	                }
-	                if(assetDetail.getAssetUsageType()!=null){
-	                	disjunction.add(Expression.ilike("assetUsageType",assetDetail.getAssetUsageType(), MatchMode.ANYWHERE));
+	                if(assetDetail.getAssetLocation()!=null && assetDetail.getAssetLocation().trim().length()>0){
+	                	disjunction.add(Expression.ilike("assetLocation",assetDetail.getAssetLocation().trim(), MatchMode.ANYWHERE));
 	                }
-	                if(assetDetail.getAssetAdminTeamEmail()!=null){
-	                	disjunction.add(Expression.ilike("assetAdminTeamEmail",assetDetail.getAssetAdminTeamEmail(), MatchMode.ANYWHERE));
+	                if(assetDetail.getAssetUsageType()!=null && assetDetail.getAssetUsageType().trim().length()>0){
+	                	disjunction.add(Expression.ilike("assetUsageType",assetDetail.getAssetUsageType().trim(), MatchMode.ANYWHERE));
 	                }
-	                if(assetDetail.getAssetAdminTeamName()!=null){
-	                	disjunction.add(Expression.ilike("assetAdminTeamName",assetDetail.getAssetAdminTeamName(), MatchMode.ANYWHERE));
+	                if(assetDetail.getAssetAdminTeamEmail()!=null && assetDetail.getAssetAdminTeamEmail().trim().length()>0){
+	                	disjunction.add(Expression.ilike("assetAdminTeamEmail",assetDetail.getAssetAdminTeamEmail().trim(), MatchMode.ANYWHERE));
 	                }
-	                if(assetDetail.getPrimaryAdminEmployeeId()!=null){
-	                	disjunction.add(Expression.ilike("primaryAdminEmployeeId",assetDetail.getPrimaryAdminEmployeeId(), MatchMode.ANYWHERE));
+	                if(assetDetail.getAssetAdminTeamName()!=null && assetDetail.getAssetAdminTeamName().trim().length()>0){
+	                	disjunction.add(Expression.ilike("assetAdminTeamName",assetDetail.getAssetAdminTeamName().trim(), MatchMode.ANYWHERE));
 	                }
-	                if(assetDetail.getSecondaryAdminEmployeeId()!=null){
-	                	disjunction.add(Expression.ilike("secondaryAdminEmployeeId",assetDetail.getSecondaryAdminEmployeeId(), MatchMode.ANYWHERE));
+	                if(assetDetail.getPrimaryAdminEmployeeId()!=null && assetDetail.getPrimaryAdminEmployeeId().trim().length()>0){
+	                	disjunction.add(Expression.ilike("primaryAdminEmployeeId",assetDetail.getPrimaryAdminEmployeeId().trim(), MatchMode.ANYWHERE));
 	                }
-	                if(assetDetail.getPrimaryOwnerEmployeeId()!=null){
-	                	disjunction.add(Expression.ilike("primaryOwnerEmployeeId",assetDetail.getPrimaryOwnerEmployeeId(), MatchMode.ANYWHERE));
+	                if(assetDetail.getSecondaryAdminEmployeeId()!=null && assetDetail.getSecondaryAdminEmployeeId().trim().length()>0){
+	                	disjunction.add(Expression.ilike("secondaryAdminEmployeeId",assetDetail.getSecondaryAdminEmployeeId().trim(), MatchMode.ANYWHERE));
 	                }
-	                if(assetDetail.getSecondaryOwnerEmployeeId()!=null){
-	                	disjunction.add(Expression.ilike("secondaryOwnerEmployeeId",assetDetail.getSecondaryOwnerEmployeeId(), MatchMode.ANYWHERE));
+	                if(assetDetail.getPrimaryOwnerEmployeeId()!=null && assetDetail.getPrimaryOwnerEmployeeId().trim().length()>0){
+	                	disjunction.add(Expression.ilike("primaryOwnerEmployeeId",assetDetail.getPrimaryOwnerEmployeeId().trim(), MatchMode.ANYWHERE));
+	                }
+	                if(assetDetail.getSecondaryOwnerEmployeeId()!=null && assetDetail.getSecondaryOwnerEmployeeId().trim().length()>0){
+	                	disjunction.add(Expression.ilike("secondaryOwnerEmployeeId",assetDetail.getSecondaryOwnerEmployeeId().trim(), MatchMode.ANYWHERE));
 	                }
 	                criteria.add(disjunction);
 	                log.debug("Retrieving Asset Details with query");
