@@ -139,7 +139,18 @@
         <li class="buttonBar bottom">
             <input type="submit" class="button" name="save"  onclick="bCancel=false" value="<fmt:message key="button.save"/>" />
             <input type="submit" class="button" name="delete" onclick="bCancel=true;return confirmDelete('AssetDetail')" value="<fmt:message key="button.delete"/>" />
-            <input type="submit" class="button" name="cancel" onclick="bCancel=true" value="<fmt:message key="button.cancel"/>" />
+						<c:choose>
+						  <c:when test="${not empty assetDetail.id}">
+              <c:url var="viewAssetDetailUrl" value="/viewAssetDetail.html">
+                <c:param name="id" value="${assetDetail.id}"/>
+              </c:url>
+							<a href="<c:out value="${viewAssetDetailUrl}"/>"><fmt:message key="button.cancel"/></a>
+							</c:when>
+							<c:otherwise>
+              		<input type="submit" class="button" name="cancel" onclick="bCancel=true" value="<fmt:message key="button.cancel"/>" />
+							</c:otherwise>
+						</c:choose>
+            
         </li>
     </ul>
     </form:form>

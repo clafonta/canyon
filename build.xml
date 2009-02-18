@@ -402,8 +402,9 @@
             <lib file="${sitemesh.jar}"/>
             <lib dir="${velocity.dir}" includes="*.jar"/>  
             <lib file="${urlrewrite.jar}"/>
-        	  <lib file="${quartz.jar}"/>
-        	  <lib file="${opencsv.jar}"/>
+            <lib file="${quartz.jar}"/>
+            <lib file="${opencsv.jar}"/>
+        	<lib file="${radeox.jar}"/>
         </war>
     </target>
 

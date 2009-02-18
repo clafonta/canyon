@@ -1,9 +1,3 @@
-/* A CSS Framework by Mike Stenhouse of Content with Style */
-
-/* FORM ELEMENTS */
-/* From http://www.wufoo.com/css/global/dynamic.css */
-
-/* ----- CLASSIC WUFOO FORM ----- */
 form { font-size: .9em; }
 form ul { position: relative;   list-style: none;   width: 100%;  padding: 0px;}
 form li {line-height: 1.3em;   margin: 0;   padding: 1px 1px 6px 5px; }
@@ -218,7 +212,7 @@ form textarea.large{
 }
 
 form textarea.extralarge{
-    height: 50em;
+    height: 20em;
 }
 
 /* ----- ERRORS ----- */

@@ -155,6 +155,7 @@
         <pathelement location="${servletapi.jar}"/>
     	<pathelement location="${ajaxtags.jar}"/>
     	<pathelement location="${opencsv.jar}"/>
+    	<pathelement location="${radeox.jar}"/>
     	<fileset dir="${jsp2.jstl.dir}/lib" includes="*.jar"/>
         <fileset dir="${javamail.dir}" includes="*.jar"/>
         <fileset dir="${spring.dir}" includes="*.jar"/>

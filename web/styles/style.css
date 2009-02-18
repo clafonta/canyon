@@ -1,7 +1,7 @@
 /* 
 Chad Lafontaine (chad.lafontaine@gmail.com)
 */
-body {line-height: 90%;font-family:Helvetica, Arial, sans-serif}
+body {line-height: 90%;font-family:Helvetica, Arial, sans-serif; }
 form div#left {position: relative; float: left;}
 img {border: 0;}
 div#doc2{background-color: #fffacd;	padding: 5px 25px 5px 25px;	border: 2px solid #e8eaea;	margin-top:5px;}
