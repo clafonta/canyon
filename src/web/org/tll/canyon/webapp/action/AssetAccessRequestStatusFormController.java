@@ -10,6 +10,7 @@ import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.tll.canyon.model.AssetAccessRequestStatus;
 import org.tll.canyon.service.AssetAccessRequestStatusManager;
+import org.tll.canyon.webapp.util.MessageUtil;
 
 
 public class AssetAccessRequestStatusFormController extends BaseFormController {
@@ -57,11 +58,11 @@ public class AssetAccessRequestStatusFormController extends BaseFormController {
 
         if (request.getParameter("delete") != null) {
             assetAccessRequestStatusManager.removeAssetAccessRequestStatus(assetAccessRequestStatus.getId().toString());
-            saveMessage(request, getText("assetAccessRequestStatus.deleted", locale));
+            MessageUtil.saveMessage(request, getText("assetAccessRequestStatus.deleted", locale));
         } else {
             assetAccessRequestStatusManager.saveAssetAccessRequestStatus(assetAccessRequestStatus);
             String key = (isNew) ? "assetAccessRequestStatus.added" : "assetAccessRequestStatus.updated";
-            saveMessage(request, getText(key, locale));            
+            MessageUtil.saveMessage(request, getText(key, locale));            
         }
         return new ModelAndView("redirect:editAssetAccessRequest.html?id=" + assetAccessRequestId.toString());
     }

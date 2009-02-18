@@ -22,6 +22,7 @@ import org.tll.canyon.service.RoleManager;
 import org.tll.canyon.service.UserExistsException;
 import org.tll.canyon.service.UserManager;
 import org.tll.canyon.util.StringUtil;
+import org.tll.canyon.webapp.util.MessageUtil;
 import org.tll.canyon.webapp.util.RequestUtil;
 
 /**
@@ -75,7 +76,7 @@ public class UserFormController extends BaseFormController {
 
 		if (request.getParameter("delete") != null) {
 			getUserManager().removeUser(user.getId().toString());
-			saveMessage(request, getText("user.deleted", user.getFullName(),
+			MessageUtil.saveMessage(request, getText("user.deleted", user.getFullName(),
 					locale));
 
 			return new ModelAndView(getSuccessView());
@@ -140,14 +141,14 @@ public class UserFormController extends BaseFormController {
 			}
 
 			if (!StringUtils.equals(request.getParameter("from"), "list")) {
-				saveMessage(request, getText("user.saved", user.getFullName(),
+				MessageUtil.saveMessage(request, getText("user.saved", user.getFullName(),
 						locale));
 
 				// return to main Menu
 				return new ModelAndView(new RedirectView("mainMenu.html"));
 			} else {
 				if (StringUtils.isBlank(request.getParameter("version"))) {
-					saveMessage(request, getText("user.added", user
+					MessageUtil.saveMessage(request, getText("user.added", user
 							.getFullName(), locale));
 
 					// Send an account information e-mail
@@ -158,7 +159,7 @@ public class UserFormController extends BaseFormController {
 
 					return showNewForm(request, response);
 				} else {
-					saveMessage(request, getText("user.updated.byAdmin", user
+					MessageUtil.saveMessage(request, getText("user.updated.byAdmin", user
 							.getFullName(), locale));
 				}
 			}
@@ -222,7 +223,7 @@ public class UserFormController extends BaseFormController {
 					request.getSession().setAttribute("cookieLogin", "true");
 
 					// add warning message
-					saveMessage(request, getText("userProfile.cookieLogin",
+					MessageUtil.saveMessage(request, getText("userProfile.cookieLogin",
 							request.getLocale()));
 				}
 			}

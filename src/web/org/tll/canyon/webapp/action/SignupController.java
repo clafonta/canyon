@@ -16,6 +16,7 @@ import org.tll.canyon.model.User;
 import org.tll.canyon.service.RoleManager;
 import org.tll.canyon.service.UserExistsException;
 import org.tll.canyon.util.StringUtil;
+import org.tll.canyon.webapp.util.MessageUtil;
 import org.tll.canyon.webapp.util.RequestUtil;
 
 import org.acegisecurity.context.SecurityContextHolder;
@@ -87,7 +88,7 @@ public class SignupController extends BaseFormController {
             return showForm(request, response, errors);
         }
 
-        saveMessage(request, getText("user.registered", user.getUsername(), locale));
+        MessageUtil.saveMessage(request, getText("user.registered", user.getUsername(), locale));
         request.getSession().setAttribute(Constants.REGISTERED, Boolean.TRUE);
 
         // log user in automatically

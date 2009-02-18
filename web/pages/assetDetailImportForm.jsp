@@ -3,11 +3,11 @@
 <div>
   <p style="margin-top:20px; margin-bottom:20px;"><fmt:message key="assetDetailImport.blurb"/></p>
   <form method="POST" action="<c:url value="/assetdetail/csv/import.html"/>">
-	      <input type="hidden" name="task" value="confirm"/>
-				<textarea name="csvinput" class="extralarge" ></textarea>
-     							<div class="buttons" style="align:right; padding-top:20px;">
-											   						<button type="submit" class="positive"><img src="<c:url value="/images/table_add.png"/>" alt="" styleClass="icon"/> Import</button>
- 		 							</div>
+	   <input type="hidden" name="task" value="confirm"/>
+		 <textarea name="csvinput" class="extralarge" ></textarea>
+     <div class="buttons" style="align:right; padding-top:20px;">
+		   <button type="submit" class="positive"><img src="<c:url value="/images/table_add.png"/>" alt="" styleClass="icon"/> <fmt:message key="assetDetailImport.import"/></button>
+ 		 </div>
   </form>
 </div>
 <div class="group" style="margin-top:20px;width:50%;">	

@@ -12,6 +12,11 @@ public interface AssetDetailManager  {
     public void saveAssetDetail(AssetDetail assetDetail);
     public void removeAssetDetail(String id);
     public List<AssetDetail> getAssetDetails(AssetDetail assetDetail);
+    /**
+     * 
+     * @param name
+     * @return AssetDetail with matching asset detail name, otherwise, returns null. 
+     */
     public AssetDetail getAssetDetailByName(String name);
     
 }

@@ -15,7 +15,7 @@ public interface EmployeeInfoManager extends Manager {
     /**
      * Gets employeeInfo's information based on employeeUserId.
      * @param employeeUserId the employeeInfo's employeeUserId
-     * @return employeeInfo populated employeeInfo object
+     * @return employeeInfo populated employeeInfo object; null otherwise if record not found.
      */
     public EmployeeInfo getEmployeeInfo(final String employeeUserId);
 

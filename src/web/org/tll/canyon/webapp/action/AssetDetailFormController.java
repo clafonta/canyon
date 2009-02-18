@@ -14,6 +14,7 @@ import org.tll.canyon.model.AssetDetail;
 import org.tll.canyon.model.EmployeeInfo;
 import org.tll.canyon.service.AssetDetailManager;
 import org.tll.canyon.service.EmployeeInfoManager;
+import org.tll.canyon.webapp.util.MessageUtil;
 
 public class AssetDetailFormController extends BaseFormController {
 	private AssetDetailManager assetDetailManager = null;
@@ -65,7 +66,7 @@ public class AssetDetailFormController extends BaseFormController {
 		if (request.getParameter("delete") != null) {
 			assetDetailManager
 					.removeAssetDetail(assetDetail.getId().toString());
-			saveMessage(request, getText("assetDetail.deleted", locale));
+			MessageUtil.saveMessage(request, getText("assetDetail.deleted", locale));
 		} else {
 
 			// 1. No AssetDetail can have duplicate asset name.
@@ -83,7 +84,7 @@ public class AssetDetailFormController extends BaseFormController {
 
 				ModelAndView mv = new ModelAndView("editAssetDetail.html");
 				mv.addObject(Constants.ASSETDETAIL_KEY, assetDetail);
-				saveError(request, getText("assetDetail.exists.assetName",
+				MessageUtil.saveError(request, getText("assetDetail.exists.assetName",
 						locale));
 				return mv;
 			}
@@ -150,14 +151,14 @@ public class AssetDetailFormController extends BaseFormController {
 				mv.addObject(Constants.ASSETDETAIL_KEY, assetDetail);
 				String msg = getText(
 						"assetDetail.invalidOrInactiveEmployeeInfo", locale);
-				saveError(request, msg);
+				MessageUtil.saveError(request, msg);
 				return mv;
 			} else {				
 
 				assetDetailManager.saveAssetDetail(assetDetail);
 				String key = (isNew) ? "assetDetail.added"
 						: "assetDetail.updated";
-				saveMessage(request, getText(key, locale));
+				MessageUtil.saveMessage(request, getText(key, locale));
 
 				if (!isNew) {
 					success = "editAssetDetail.html?view=true&id="

@@ -31,6 +31,11 @@ public class Constants {
     /** The name of the configuration hashmap stored in application scope. */
     public static final String CONFIG = "appConfig";
 
+    /** For messaging to end user*/    
+    public static final String MESSAGES_KEY = "successMessages";
+    
+    /** For messaging to end user*/ 
+    public static final String ERROR_MESSAGE_KEY = "errors";
     /** 
      * Session scope attribute that holds the locale set by the user. By setting this key
      * to the same one that Struts uses, we get synchronization in Struts w/o having

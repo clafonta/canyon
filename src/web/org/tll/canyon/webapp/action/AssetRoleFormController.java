@@ -13,6 +13,7 @@ import org.tll.canyon.model.AssetDetail;
 import org.tll.canyon.model.AssetRole;
 import org.tll.canyon.service.AssetDetailManager;
 import org.tll.canyon.service.AssetRoleManager;
+import org.tll.canyon.webapp.util.MessageUtil;
 
 
 public class AssetRoleFormController extends BaseFormController {
@@ -64,11 +65,11 @@ public class AssetRoleFormController extends BaseFormController {
             //assetRole.setAssetDetailId(null);
             //assetRoleManager.saveAssetRole(assetRole);
             assetRoleManager.removeAssetRole(assetRole.getId().toString());
-            saveMessage(request, getText("assetRole.deleted", locale));
+            MessageUtil.saveMessage(request, getText("assetRole.deleted", locale));
         } else {
             assetRoleManager.saveAssetRole(assetRole);
             String key = (isNew) ? "assetRole.added" : "assetRole.updated";
-            saveMessage(request, getText(key, locale)); 
+            MessageUtil.saveMessage(request, getText(key, locale)); 
         }
         
         return new ModelAndView(new RedirectView(successView));

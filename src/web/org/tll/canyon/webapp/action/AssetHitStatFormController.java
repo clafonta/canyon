@@ -10,6 +10,7 @@ import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.tll.canyon.model.AssetHitStat;
 import org.tll.canyon.service.AssetHitStatManager;
+import org.tll.canyon.webapp.util.MessageUtil;
 
 
 public class AssetHitStatFormController extends BaseFormController {
@@ -50,12 +51,12 @@ public class AssetHitStatFormController extends BaseFormController {
         if (request.getParameter("delete") != null) {
             assetHitStatManager.removeAssetHitStat(assetHitStat.getId().toString());
 
-            saveMessage(request, getText("assetHitStat.deleted", locale));
+            MessageUtil.saveMessage(request, getText("assetHitStat.deleted", locale));
         } else {
             assetHitStatManager.saveAssetHitStat(assetHitStat);
 
             String key = (isNew) ? "assetHitStat.added" : "assetHitStat.updated";
-            saveMessage(request, getText(key, locale));
+            MessageUtil.saveMessage(request, getText(key, locale));
 
             if (!isNew) {
                 return new ModelAndView("redirect:editAssetHitStat.html", "id", assetHitStat.getId());

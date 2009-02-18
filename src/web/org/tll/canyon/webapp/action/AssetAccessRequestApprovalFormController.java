@@ -9,6 +9,7 @@ import org.tll.canyon.Constants;
 import org.tll.canyon.model.AssetAccessRequest;
 import org.tll.canyon.model.AssetAccessRequestStatus;
 import org.tll.canyon.service.AssetAccessRequestStatusManager;
+import org.tll.canyon.webapp.util.MessageUtil;
 
 
 /**
@@ -42,7 +43,7 @@ public class AssetAccessRequestApprovalFormController extends BaseFormController
         AssetAccessRequestStatus assetAccessRequestStatus = assetAccessRequestStatusManager.getAssetAccessRequestStatusByTrackId(trackId);  
         if(assetAccessRequestStatus== null){
           assetAccessRequestStatus = new AssetAccessRequestStatus();
-          saveError(request, getText("assetAccessRequestStatus.invalid.request", request.getLocale()));
+          MessageUtil.saveError(request, getText("assetAccessRequestStatus.invalid.request", request.getLocale()));
         }
         return assetAccessRequestStatus;
     }
@@ -68,7 +69,7 @@ public class AssetAccessRequestApprovalFormController extends BaseFormController
         // *** END *****
         ModelAndView mv = new ModelAndView(getSuccessView());
         mv.addObject(Constants.ASSETACCESSREQUESTSTATUS_KEY, new AssetAccessRequestStatus());        
-        saveMessage(request, getText("assetAccessRequestStatus.updated", request.getLocale()));
+        MessageUtil.saveMessage(request, getText("assetAccessRequestStatus.updated", request.getLocale()));
         
         return mv;
     }

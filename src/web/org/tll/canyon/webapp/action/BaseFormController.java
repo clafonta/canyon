@@ -2,10 +2,7 @@ package org.tll.canyon.webapp.action;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -14,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.mail.SimpleMailMessage;
@@ -41,8 +36,7 @@ import org.tll.canyon.service.UserManager;
  */
 public class BaseFormController extends SimpleFormController {
     protected final transient Log log = LogFactory.getLog(getClass());
-    protected final String MESSAGES_KEY = "successMessages";
-    protected final String ERROR_MESSAGE_KEY = "errors";
+    
     private UserManager userManager = null;
     protected MailEngine mailEngine = null;
     protected SimpleMailMessage message = null;
@@ -55,28 +49,6 @@ public class BaseFormController extends SimpleFormController {
 
     public UserManager getUserManager() {
         return this.userManager;
-    }
-
-    @SuppressWarnings("unchecked")
-    public void saveError(HttpServletRequest request, String error) {
-        List errors = (List) request.getSession().getAttribute(ERROR_MESSAGE_KEY);
-        if (errors == null) {
-            errors = new ArrayList();
-        }
-        errors.add(error);
-        request.getSession().setAttribute(ERROR_MESSAGE_KEY, errors);
-    }
-    
-    @SuppressWarnings("unchecked")
-    public void saveMessage(HttpServletRequest request, String msg) {
-        List messages = (List) request.getSession().getAttribute(MESSAGES_KEY);
-
-        if (messages == null) {
-            messages = new ArrayList();
-        }
-
-        messages.add(msg);
-        request.getSession().setAttribute(MESSAGES_KEY, messages);
     }
 
     /**

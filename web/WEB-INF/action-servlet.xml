@@ -115,7 +115,7 @@
     </bean>
     <bean id="assetDetailCsvFormController" class="org.tll.canyon.webapp.action.AssetDetailCsvFormController">
         <property name="assetDetailManager"><ref bean="assetDetailManager"/></property>
-        <property name="employeeInfoManager"><ref bean="employeeInfoManager"/></property>
+        <property name="employeeInfoManager"><ref bean="employeeInfoManager" /></property>  
         <property name="methodNameResolver"><ref bean="actionResolver" /></property>        
     </bean>
     <bean id="actionResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">

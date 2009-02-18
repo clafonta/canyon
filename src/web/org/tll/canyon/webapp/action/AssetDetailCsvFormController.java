@@ -2,13 +2,14 @@ package org.tll.canyon.webapp.action;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +19,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import org.tll.canyon.model.AssetDetail;
+import org.tll.canyon.model.EmployeeInfo;
 import org.tll.canyon.service.AssetDetailManager;
 import org.tll.canyon.service.EmployeeInfoManager;
+import org.tll.canyon.webapp.util.MessageUtil;
 
 import au.com.bytecode.opencsv.bean.ColumnPositionMappingStrategy;
 import au.com.bytecode.opencsv.bean.CsvToBean;
@@ -64,14 +67,121 @@ public class AssetDetailCsvFormController extends MultiActionController {
 	 */
 	public ModelAndView confirm(HttpServletRequest request,
 			HttpServletResponse response) {
+		
 		if (log.isDebugEnabled()) {
 			log.debug("entering 'confirm' method...");
 		}
 
+		// ******************************************************
+		// BUILD ASSET DETAIL LIST FROM CSV INPUT
+		// ******************************************************		
 		String csvInput = request.getParameter("csvinput");
 		Reader inputReader = new BufferedReader(new InputStreamReader(
 				new ByteArrayInputStream(csvInput.getBytes())));
 		List<AssetDetail> assetDetailList = parseDelimitedInput(inputReader);
+		
+		
+		// TODO: 
+		// ******************************************************
+		// THERE HAS TO BE A BETTER WAY TO MANAGE THESE Employees It's not KISS. It's copy/paste/repeat. UGH!
+		// ******************************************************
+		// EMPLOYEE VERIFICATION
+		// ******************************************************
+		// Now, retrieve employee information per asset detail.
+		// Add any issues per AssetDetail encountered. 
+		// But let's be smart: let's not display invalid Employee X '20' or '30' times. Just once. 
+		Map<String, Boolean> invalidEmpIds = new HashMap<String, Boolean>();
+		for (Iterator<AssetDetail> iterator = assetDetailList.iterator(); iterator.hasNext();) {
+			AssetDetail assetDetail = (AssetDetail) iterator.next();
+			
+			// Primary
+			EmployeeInfo pAemp = this.employeeInfoManager.getEmployeeInfo(assetDetail.getPrimaryAdminEmployeeId() );
+			assetDetail.setPrimaryAdminEmployeeInfo(pAemp);
+			if(pAemp==null || !pAemp.isActive()){
+				invalidEmpIds.put(assetDetail.getPrimaryAdminEmployeeId(), new Boolean(false));
+			}
+			
+			// Secondary
+			EmployeeInfo sAemp = this.employeeInfoManager.getEmployeeInfo(assetDetail.getSecondaryAdminEmployeeId() );
+			assetDetail.setSecondaryAdminEmployeeInfo(sAemp);
+			if(sAemp==null || !sAemp.isActive()){
+				invalidEmpIds.put(assetDetail.getSecondaryAdminEmployeeId(), new Boolean(false));				
+			}
+			
+			// Primary
+			EmployeeInfo pOemp = this.employeeInfoManager.getEmployeeInfo(assetDetail.getPrimaryOwnerEmployeeId() );
+			assetDetail.setPrimaryOwnerEmployeeInfo(pOemp);
+			if(pOemp==null || !pOemp.isActive()){
+				invalidEmpIds.put(assetDetail.getPrimaryOwnerEmployeeId(), new Boolean(false));				
+			}
+			
+			// Secondary
+			EmployeeInfo sOemp = this.employeeInfoManager.getEmployeeInfo(assetDetail.getSecondaryOwnerEmployeeId() );
+			assetDetail.setSecondaryOwnerEmployeeInfo(sOemp);
+			if(sOemp==null || !sOemp.isActive()){
+				invalidEmpIds.put(assetDetail.getSecondaryOwnerEmployeeId(), new Boolean(false));				
+			}
+		}
+		;
+		if(!invalidEmpIds.keySet().isEmpty()){
+			String invalidEmployeeText = getText("assetDetailImport.invalid_employee", request.getLocale());
+			for (Iterator iterator = invalidEmpIds.keySet().iterator(); iterator.hasNext();) {
+				invalidEmployeeText = invalidEmployeeText + " " + (String) iterator.next();
+				if(iterator.hasNext()){
+					invalidEmployeeText = invalidEmployeeText + ",";
+				}
+				
+			}			
+			MessageUtil.saveError(request, invalidEmployeeText);
+		}
+		
+		// ******************************************************
+		// ASSET DETAIL VERIFICATION - does it exist already??
+		// ******************************************************
+		Map<String, Boolean> dupAssetNames = new HashMap<String, Boolean>();
+		for (Iterator<AssetDetail> iterator = assetDetailList.iterator(); iterator.hasNext();) {
+			AssetDetail assetDetail = (AssetDetail) iterator.next();
+			if(this.assetDetailManager.getAssetDetailByName(assetDetail.getAssetName())!=null){
+				dupAssetNames.put(assetDetail.getAssetName(), new Boolean(false));
+			}
+		}
+		if(!dupAssetNames.keySet().isEmpty()){
+			String duplicateAssetText = getText("assetDetailImport.exists", request.getLocale());
+			for (Iterator iterator = dupAssetNames.keySet().iterator(); iterator.hasNext();) {
+				duplicateAssetText = duplicateAssetText + " " + (String) iterator.next();
+				if(iterator.hasNext()){
+					duplicateAssetText = duplicateAssetText + ",";
+				}
+				
+			}			
+			MessageUtil.saveError(request, duplicateAssetText);
+		}
+		
+		// ******************************************************
+		// IMPORTING DUPLICATE ENTRIES?
+		// ******************************************************
+		Map<String, Boolean> dupEntries = new HashMap<String, Boolean>();
+		Map<String, Boolean> visited = new HashMap<String, Boolean>();
+		for (Iterator<AssetDetail> iterator = assetDetailList.iterator(); iterator.hasNext();) {
+			AssetDetail assetDetail = (AssetDetail) iterator.next();
+			if(visited.get(assetDetail.getAssetName())!=null){
+				dupEntries.put(assetDetail.getAssetName(), new Boolean(true));
+			}else {
+				visited.put(assetDetail.getAssetName(), new Boolean(true));
+			}
+		}
+		if(!dupEntries.keySet().isEmpty()){
+			String dupImportEntry = getText("assetDetailImport.duplicate", request.getLocale());
+			for (Iterator iterator = dupEntries.keySet().iterator(); iterator.hasNext();) {
+				dupImportEntry = dupImportEntry + " " + (String) iterator.next();
+				if(iterator.hasNext()){
+					dupImportEntry = dupImportEntry + ",";
+				}
+				
+			}			
+			MessageUtil.saveError(request, dupImportEntry);
+		}
+		
 		ModelAndView listPage = new ModelAndView("assetDetailImportList");
 		listPage.addObject("import", new Boolean(true));
 		listPage.addObject("assetDetailList", assetDetailList);
@@ -172,32 +282,45 @@ public class AssetDetailCsvFormController extends MultiActionController {
 		return list;
 
 	}
+	
+	/**
+     * Convenience method for getting a i18n key's value.  Calling
+     * getMessageSourceAccessor() is used because the RequestContext variable
+     * is not set in unit tests b/c there's no DispatchServlet Request.
+     *
+     * @param msgKey
+     * @param locale the current locale
+     * @return
+     */
+    public String getText(String msgKey, Locale locale) {
+        return getMessageSourceAccessor().getMessage(msgKey, locale);
+    }
 
-	public static void main(String[] args) throws Exception {
-		AssetDetailCsvFormController c = new AssetDetailCsvFormController();
-
-		// LOCATION
-		String parseFile = "C:\\sample.csv";
-
-		File file = new File(parseFile);
-		BufferedReader br = new BufferedReader(new FileReader(file));
-		String line = null;
-
-		StringBuffer cleanLine = new StringBuffer();
-
-		while ((line = br.readLine()) != null) {
-			cleanLine.append((line));
-		}
-		br.close();
-
-		List<AssetDetail> details = c.parseDelimitedInput(new FileReader(
-				parseFile));
-		for (Iterator<AssetDetail> iterator = details.iterator(); iterator
-				.hasNext();) {
-			AssetDetail assetDetail = (AssetDetail) iterator.next();
-			System.out.println(assetDetail.toString());
-		}
-
-	}
+//	public static void main(String[] args) throws Exception {
+//		AssetDetailCsvFormController c = new AssetDetailCsvFormController();
+//
+//		// LOCATION
+//		String parseFile = "C:\\sample.csv";
+//
+//		File file = new File(parseFile);
+//		BufferedReader br = new BufferedReader(new FileReader(file));
+//		String line = null;
+//
+//		StringBuffer cleanLine = new StringBuffer();
+//
+//		while ((line = br.readLine()) != null) {
+//			cleanLine.append((line));
+//		}
+//		br.close();
+//
+//		List<AssetDetail> details = c.parseDelimitedInput(new FileReader(
+//				parseFile));
+//		for (Iterator<AssetDetail> iterator = details.iterator(); iterator
+//				.hasNext();) {
+//			AssetDetail assetDetail = (AssetDetail) iterator.next();
+//			System.out.println(assetDetail.toString());
+//		}
+//
+//	}
 
 }

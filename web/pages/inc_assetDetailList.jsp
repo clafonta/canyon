@@ -17,8 +17,7 @@
 		 <strong><fmt:message key="assetDetail.primaryAdminEmployeeName"/>:</strong> <c:out value="${assetDetail.primaryAdminEmployeeInfo.employeeFullname}"/><br/>
 		 <strong><fmt:message key="assetDetail.secondaryAdminEmployeeName"/>:</strong> <c:out value="${assetDetail.secondaryAdminEmployeeInfo.employeeFullname}"/><br/>
 		 <strong><fmt:message key="assetDetail.primaryOwnerEmployeeName"/>:</strong> <c:out value="${assetDetail.primaryOwnerEmployeeInfo.employeeFullname}"/><br/>
-		 <strong><fmt:message key="assetDetail.secondaryOwnerEmployeeName"/>:</strong> <c:out value="${assetDetail.secondaryOwnerEmployeeInfo.employeeFullname}"/><br/>
-		    
+		 <strong><fmt:message key="assetDetail.secondaryOwnerEmployeeName"/>:</strong> <c:out value="${assetDetail.secondaryOwnerEmployeeInfo.employeeFullname}"/><br/>		    
 		 </span></a> 
 		</display:column>
 		<display:column escapeXml="true" sortable="true" titleKey="assetDetail.assetGroupName">

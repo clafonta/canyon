@@ -10,10 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.tll.canyon.dao.EmployeeInfoDao;
-import org.tll.canyon.model.AssetDetail;
 import org.tll.canyon.model.EmployeeInfo;
 
 
@@ -43,10 +41,6 @@ public class EmployeeInfoDaoHibernate extends BaseDaoHibernate implements Employ
      */
     public EmployeeInfo getEmployeeInfo(final String id) {
         EmployeeInfo employeeInfo = (EmployeeInfo) getHibernateTemplate().get(EmployeeInfo.class, id);
-        if (employeeInfo == null) {
-            log.warn("uh oh, employeeInfo with id '" + id + "' not found...");
-            throw new ObjectRetrievalFailureException(EmployeeInfo.class, id);
-        }
 
         return employeeInfo;
      

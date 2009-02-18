@@ -25,6 +25,7 @@ import org.tll.canyon.service.AssetAccessRequestStatusManager;
 import org.tll.canyon.service.AssetDetailManager;
 import org.tll.canyon.service.EmployeeInfoManager;
 import org.tll.canyon.service.MailEngine;
+import org.tll.canyon.webapp.util.MessageUtil;
 
 
 /**
@@ -131,7 +132,7 @@ public class AssetAccessRequestFormController extends BaseFormController {
         Locale locale = request.getLocale();
         if (!isNew && request.getParameter("delete") != null) {
             assetAccessRequestManager.removeAssetAccessRequest(assetAccessRequestId);
-            saveMessage(request, getText("assetAccessRequest.deleted", locale));
+            MessageUtil.saveMessage(request, getText("assetAccessRequest.deleted", locale));
             
         } else {
 
@@ -144,7 +145,7 @@ public class AssetAccessRequestFormController extends BaseFormController {
                 
             } catch (Exception exception) {
                 log.debug("No user information available for '"+employeeEmail+"'");
-                this.saveError(request, getText("assetAccessRequest.invalidUserId", employeeEmail, locale));
+                MessageUtil.saveError(request, getText("assetAccessRequest.invalidUserId", employeeEmail, locale));
                 ModelAndView mv = new ModelAndView(this.getFormView());
                 EmployeeInfo employeeInfoTemp = new EmployeeInfo();
                 employeeInfoTemp.setEmployeeEmail(employeeEmail);
@@ -170,7 +171,7 @@ public class AssetAccessRequestFormController extends BaseFormController {
 
             // 2) VALIDATE REQUIRED INFO
             if (assetRoleId == null || assetRoleId.trim().length() == 0) {
-                this.saveError(request, getText("assetAccessRequest.roleIsRequired", locale));
+            	MessageUtil.saveError(request, getText("assetAccessRequest.roleIsRequired", locale));
                 ModelAndView mv = new ModelAndView(this.getFormView());
                 mv.addObject(Constants.ASSETACCESSREQUEST_KEY, assetAccessRequestForm);
                 AssetDetail assetDetail = assetDetailManager.getAssetDetail(assetDetailId);
@@ -183,7 +184,7 @@ public class AssetAccessRequestFormController extends BaseFormController {
             // 3) ENSURE/INFORM USER THAT REQUEST CAN'T BE FLAGGED AS COMPLETE IF NOT ALL APPROVALS ARE APPROVED
             // OR NEW.
             if (isNew && flaggedAsComplete){
-                this.saveError(request, getText("assetAccessRequest.invalid.new.complete" , locale));
+            	MessageUtil.saveError(request, getText("assetAccessRequest.invalid.new.complete" , locale));
                 ModelAndView mv = new ModelAndView(this.getFormView());
                 mv.addObject(Constants.ASSETACCESSREQUEST_KEY, assetAccessRequestForm);
                 AssetDetail assetDetail = assetDetailManager.getAssetDetail(assetDetailId);
@@ -204,7 +205,7 @@ public class AssetAccessRequestFormController extends BaseFormController {
                     }
                 }
                 if(!allApproved){                    
-                    this.saveError(request, getText("assetAccessRequest.invalid.approvals.needed" , locale));
+                	MessageUtil.saveError(request, getText("assetAccessRequest.invalid.approvals.needed" , locale));
                     ModelAndView mv = new ModelAndView(this.getFormView());
                     mv.addObject(Constants.ASSETACCESSREQUEST_KEY, assetAccessRequestForm);
                     AssetDetail assetDetail = assetDetailManager.getAssetDetail(assetDetailId);
@@ -227,7 +228,7 @@ public class AssetAccessRequestFormController extends BaseFormController {
             this.assetAccessRequestStatusManager.processAssetAccessRequestState(new Long(assetAccessRequestForm.getId()).toString(), locale);
             // *** END ***
             String key = (isNew) ? "assetAccessRequest.added" : "assetAccessRequest.updated";
-            saveMessage(request, getText(key, locale));            
+            MessageUtil.saveMessage(request, getText(key, locale));            
         }
         return new ModelAndView(getSuccessView());
     }  
