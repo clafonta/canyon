@@ -113,6 +113,15 @@
         <property name="employeeInfoManager"><ref bean="employeeInfoManager"/></property>
         
     </bean>
+    <bean id="assetDetailCsvFormController" class="org.tll.canyon.webapp.action.AssetDetailCsvFormController">
+        <property name="assetDetailManager"><ref bean="assetDetailManager"/></property>
+        <property name="employeeInfoManager"><ref bean="employeeInfoManager"/></property>
+        <property name="methodNameResolver"><ref bean="actionResolver" /></property>        
+    </bean>
+    <bean id="actionResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+        <property name="paramName"><value>task</value></property>
+        <property name="defaultMethodName"><value>form</value></property>
+    </bean>
     <bean id="assetDetailController" class="org.tll.canyon.webapp.action.AssetDetailController" autowire="byName" />
     <bean id="assetDetailListController" class="org.tll.canyon.webapp.action.AssetDetailListController" autowire="byName"/>
           
@@ -156,6 +165,7 @@
                 <prop key="/editAssetRole.html">assetRoleFormController</prop>
                 <prop key="/viewAssetDetail.html">assetDetailController</prop>
                 <prop key="/editAssetDetail.html">assetDetailFormController</prop>
+                <prop key="/assetdetail/csv/import.html">assetDetailCsvFormController</prop>
                 <prop key="/assetDetailList.html">assetDetailListController</prop>
                 <prop key="/editAssetHitStat.html">assetHitStatFormController</prop>
                 <prop key="/assetHitStatList.html">assetHitStatController</prop>
@@ -174,10 +184,7 @@
 	<bean id="ajaxFrontController" class="org.tll.canyon.webapp.action.AjaxFrontController">
 	    <property name="assetDetailManager" ref="assetDetailManager"/>
 	</bean>
-	<bean id="actionResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
-        <property name="paramName"><value>method</value></property>
-        <property name="defaultMethodName"><value>list</value></property>
-    </bean>
+	
 
     <bean id="adminUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="interceptors">

@@ -197,6 +197,10 @@ form .large, form textarea.textarea{
     width: 349px;
 }
 
+form .extralarge, form textarea.textarea{
+    width: 849px;
+}
+
 form .tags{
     width: 320px;
 }
@@ -211,6 +215,10 @@ form textarea.medium{
 
 form textarea.large{
     height: 20em;
+}
+
+form textarea.extralarge{
+    height: 50em;
 }
 
 /* ----- ERRORS ----- */

@@ -123,7 +123,7 @@
     	<fileset dir="${quartz.dir}" includes="*.jar"/>
         <pathelement location="${dist.dir}/${webapp.name}-dao.jar"/>
         <fileset dir="${javamail.dir}" includes="*.jar"/>
-        <pathelement location="${commons-beanutils.jar}"/>
+        <pathelement location="${commons-beanutils.jar}"/>    	
         <pathelement location="${commons-collections.jar}"/>
         <fileset dir="${spring.dir}" includes="*.jar"/>
         <fileset dir="${velocity.dir}" includes="*.jar"/>
@@ -154,6 +154,7 @@
         <pathelement location="${commons-validator.jar}"/>
         <pathelement location="${servletapi.jar}"/>
     	<pathelement location="${ajaxtags.jar}"/>
+    	<pathelement location="${opencsv.jar}"/>
     	<fileset dir="${jsp2.jstl.dir}/lib" includes="*.jar"/>
         <fileset dir="${javamail.dir}" includes="*.jar"/>
         <fileset dir="${spring.dir}" includes="*.jar"/>
