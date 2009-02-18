@@ -63,7 +63,7 @@ public class AssetDetail extends BaseObject {
     }
 
     /**
-     * @hibernate.property column="asset_name" length="50" not-null="true" unique="true"
+     * @hibernate.property column="asset_name" length="100" not-null="true" unique="true"
      */
     public String getAssetName() {
         return assetName;
@@ -91,7 +91,7 @@ public class AssetDetail extends BaseObject {
     }
 
     /**
-     * @hibernate.property column="asset_group_name" length="50"
+     * @hibernate.property column="asset_group_name" length="100"
      */
     public String getAssetGroupName() {
         return assetGroupName;
@@ -105,7 +105,7 @@ public class AssetDetail extends BaseObject {
     }
 
     /**
-     * @hibernate.property column="asset_usagetype" length="50"
+     * @hibernate.property column="asset_usagetype" length="100"
      */
     public String getAssetUsageType() {
         return assetUsageType;
@@ -116,7 +116,7 @@ public class AssetDetail extends BaseObject {
     }
 
     /**
-     * @hibernate.property column="asset_location" length="50"
+     * @hibernate.property column="asset_location" length="100"
      */
     public String getAssetLocation() {
         return assetLocation;
@@ -129,7 +129,7 @@ public class AssetDetail extends BaseObject {
     /**
      * Address, e.g. IP address.
      * 
-     * @hibernate.property column="asset_address" length="50"
+     * @hibernate.property column="asset_address" length="100"
      */
     public String getAssetAddress() {
         return assetAddress;
@@ -250,7 +250,7 @@ public class AssetDetail extends BaseObject {
 	}
 
 	/**
-     * @hibernate.property column="primary_admin_emp_id" length="7"
+     * @hibernate.property column="primary_admin_emp_id" length="50"
      */
 	public String getPrimaryAdminEmployeeId() {
 		return primaryAdminEmployeeId;
@@ -261,7 +261,7 @@ public class AssetDetail extends BaseObject {
 	}
 
 	/**
-     * @hibernate.property column="secondary_admin_emp_id" length="7"
+     * @hibernate.property column="secondary_admin_emp_id" length="50"
      */
 	public String getSecondaryAdminEmployeeId() {
 		return secondaryAdminEmployeeId;
@@ -272,7 +272,7 @@ public class AssetDetail extends BaseObject {
 	}
 
 	/**
-     * @hibernate.property column="primary_owner_emp_id" length="7"
+     * @hibernate.property column="primary_owner_emp_id" length="50"
      */
 	public String getPrimaryOwnerEmployeeId() {
 		return primaryOwnerEmployeeId;
@@ -283,7 +283,7 @@ public class AssetDetail extends BaseObject {
 	}
 
 	/**
-     * @hibernate.property column="secondary_owner_emp_id" length="7"
+     * @hibernate.property column="secondary_owner_emp_id" length="50"
      */
 	public String getSecondaryOwnerEmployeeId() {
 		return secondaryOwnerEmployeeId;
@@ -406,16 +406,16 @@ public class AssetDetail extends BaseObject {
 		
 		this.issues = new ArrayList<Issue>();
 		
-		if(!this.primaryAdminEmployeeInfo.isActive()){
+		if(this.primaryAdminEmployeeInfo!=null && !this.primaryAdminEmployeeInfo.isActive()){
 			this.issues.add(new Issue("Inactive primary admin", Issue.INACTIVE_USER));
 		}
-		if(!this.secondaryAdminEmployeeInfo.isActive()){
+		if( this.secondaryAdminEmployeeInfo!=null && !this.secondaryAdminEmployeeInfo.isActive()){
 			this.issues.add(new Issue("Inactive secondary admin", Issue.INACTIVE_USER));
 		}
-		if(!this.primaryOwnerEmployeeInfo.isActive()){
+		if(this.primaryOwnerEmployeeInfo!=null && !this.primaryOwnerEmployeeInfo.isActive()){
 			this.issues.add(new Issue("Inactive primary owner", Issue.INACTIVE_USER));
 		}
-		if(!this.secondaryOwnerEmployeeInfo.isActive()){
+		if(this.secondaryOwnerEmployeeInfo!=null && !this.secondaryOwnerEmployeeInfo.isActive()){
 			this.issues.add(new Issue("Inactive secondary owner", Issue.INACTIVE_USER));
 		}
 		
