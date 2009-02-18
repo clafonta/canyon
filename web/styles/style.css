@@ -82,9 +82,9 @@ table.plain,td,th{border:0px;border-collapse:collapse;margin:0;padding:.2em .5em
 label.condense{margin: 2px 0 1px 0;border: 0;color: #444;font-size: 1em;line-height: 1.3em;display: block; font-weight: bold;}
 span.condense{margin: 2px 0 1px 0;border: 0;color: #444;font-size: 1em;line-height: 1.3em;display: block;}
 a.tooltip span {display:none; padding:2px 3px; margin-left:8px; width:230px;}
-a.tooltip:hover span{display: inline;position: absolute;	background: lightyellow; border: 1px solid #fbc520; color: black; padding: 5px 20px 5px 20px; margin: -225px 0px 0px 30px; width: 580px; }
-a.tooltip_small span {display:none; padding:2px 3px; margin-left:8px; width:230px;}
-a.tooltip_small:hover span{display: inline;position: absolute;	background: lightyellow; border: 1px solid #fbc520; color: black; padding: 5px 20px 5px 20px; margin: -100px 0px 0px -380px; width: 280px; }
+a.tooltip:hover span{ display:inline; position: absolute; font-size:0.9em; background: lightyellow; border: 1px solid #fbc520; color: black; padding: 5px 20px 5px 20px; margin: -20% 0px 0px 2px; width: 580px; }
+a.tooltip_small span {display: none;position: absolute;	width: 230px;	line-height: 0.9em;	font-size:0.9em;}
+a.tooltip_small:hover span{display: inline;position: absolute;	background: lightyellow; border: 1px solid #fbc520; color: black; padding: 5px 20px 5px 20px; margin: -4% 0px 0px -350px; width: 280px; }
 /* BUTTON STYLE */
 .buttons a, .buttons button, submit-post, submit-preview{
 	display: block;

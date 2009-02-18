@@ -9,6 +9,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.taglibs.standard.lang.support.ExpressionEvaluatorManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.web.servlet.support.RequestContext;
@@ -18,7 +19,7 @@ import org.springframework.web.servlet.support.RequestContext;
  * <p>Render text as a slug, putting a limit on text display.</p> 
  * 
  * <p>It is designed to be used as follows:
- * <pre>&lt;tag:slug key="someObject.username" maxLength="25" /&gt;</pre>
+ * <pre>&lt;tag:slug key="someObject.username" value="someObject.value" maxLength="25" /&gt;</pre>
  *
  * @jsp.tag name="slug" bodycontent="empty"
  */
@@ -28,6 +29,7 @@ public class SlugTag extends TagSupport {
 	protected RequestContext requestContext;
     protected transient final Log log = LogFactory.getLog(SlugTag.class);
     protected String key = null;
+    protected String value = null;
     protected int maxLength = 25;
 
     public int doStartTag() throws JspException {
@@ -52,12 +54,23 @@ public class SlugTag extends TagSupport {
             locale = Locale.getDefault();
         }
         
-        // Retrieve the message string we are looking for
+        
         String message = null;
+        
+        // Retrieve the message string we are looking for
+        if(key!=null){
         try {
         	message = getMessageSource().getMessage(key, null, locale);
         } catch (NoSuchMessageException nsm) {
             message = "???" + key + "???";
+        }
+        }else if (value!=null){
+        	message = (String) ExpressionEvaluatorManager.evaluate(
+                    "value", this.value, String.class,
+                    this, super.pageContext );
+
+        }else {
+        	message = "MISSING KEY or VALUE entries";
         }
        
         // SLUG it.  
@@ -87,10 +100,17 @@ public class SlugTag extends TagSupport {
     }
     
     /**
-     * @jsp.attribute required="true" rtexprvalue="true"
+     * @jsp.attribute required="false" rtexprvalue="true"
      */
     public void setKey(String key) {
         this.key = key;
+    }
+    
+    /**
+     * @jsp.attribute required="false" rtexprvalue="true"
+     */
+    public void setValue(String value) {
+        this.value = value;
     }
 
     /**
