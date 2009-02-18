@@ -1,21 +1,15 @@
 /* 
 Chad Lafontaine (chad.lafontaine@gmail.com)
 */
-body {line-height: 90%;font-family:arial,sans-serif;}
+body {line-height: 90%;font-family:Helvetica, Arial, sans-serif}
 form div#left {position: relative; float: left;}
 img {border: 0;}
-div#doc2{
-	background: #fffacd;
-	padding: 5px 25px 5px 25px;
-	border: 1px solid #e8eaea;
-	margin-top:5px;
-}
-
+div#doc2{background-color: #fffacd;	padding: 5px 25px 5px 25px;	border: 2px solid #e8eaea;	margin-top:5px;}
 #logo-right{float: right; margin: 3px 11px 3px 0px; padding: 0.5em;}
 #logo-right img{padding-left:8px;}
 #logo-left{	margin: 3px -11px 3px 0px;	}
 .logo-text {font-size: 1.3em; float:center; padding: .3em;}
-#ft{border-top: 1px solid #CCC; padding: 1em 0 0 .5em; margin: 3em 0 0 0;}
+#ft{	border-top: 1px solid #CCC;	padding: 1em 0 0 .5em;	margin: 3em 0 0 0;}
 a,a:link a:active {color: #1465b7;}
 a:visited {color: #1465b7;background-color: transparent;}
 a:hover {color: #cc0000;text-decoration: none;}
@@ -37,20 +31,10 @@ div #helpkey a,a:link a:active {	color: #006400; }
 div #actionkey {padding: 10px;margin: 6px 0 6px auto;	width: 180px;	background-color: red;	border: 1px solid #000000;		font-size: 16px;	text-align: center; }
 div #actionkey a,a:link a:active {color: #FFFFFF;}
 .largetable {width: 100%;}
-.greytable_lined {
-	border-bottom: 1px solid #c4c4c4;
-	border-top: 1px solid #c4c4c4;
-}
+.greytable_lined {	border-bottom: 1px solid #c4c4c4;	border-top: 1px solid #c4c4c4;}
 .greytable caption { padding: 0 0.6em 0.8em; font-size: 1.3em; font-weight: bold; text-align: left; color: #000; background: transparent; margin: 0 0 0 0;}
 .greytable td, .table th {padding: 0.2em; line-height: 1.3em;}
-.greytable thead th {
-	border: 1px solid #c4c4c4;
-	text-align: left;
-	font-size: 1em;
-	font-weight: bold;
-	background: #eee8aa;
-	line-height: 1.3em;
-}
+.greytable thead th {	border: 1px solid #c4c4c4;	text-align: left;	font-size: 1em;	font-weight: bold;	background: #eee8aa;	line-height: 1.3em;}
 .greytable tfoot th, tfoot td {border: 1px solid #996; text-align: left; font-size: 1em; background: #e8e8cf; }
 .greytable tbody th {background: #EEEEEE;}
 .greytable tbody td a { background: transparent;text-decoration: underline;}
@@ -70,25 +54,8 @@ div #actionkey a,a:link a:active {color: #FFFFFF;}
 /* footer style*/
 span.left {font-size: 0.9em; float: left;}
 span.right {font-size: 0.9em; float: right;}
-div.splitter {
-	background-color: #ffffff;
-	border: 1px solid #c4c4c4;
-	padding: 10px 10px 25px 10px;
-}
-h2.splitter{
-	display: block;
-	
-	background: #c4c4c4 no-repeat top right;
-	padding: 0px 10px 0 10px;
-	color: #000000;
-	font-weight: normal;
-	text-decoration: none;
-	outline: none;
-	cursor: pointer;
-	margin: 25px 0 0 0;
-	font-size: 1.4em;
-	line-height: 1.5em;
-}
+div.splitter {	background-color: #ffffff;	border: 1px solid #c4c4c4;	padding: 10px 10px 25px 10px;}
+h2.splitter{	display: block;	background: #c4c4c4 no-repeat top right;	padding: 0px 10px 0 10px;	color: #000000;	font-weight: normal;	text-decoration: none;	margin: 25px 0 0 0;	font-size: 1.4em;	line-height: 1.5em;}
 /* DisplayTable JSP TAG CSS BEGIN */
 div.exportlinks { margin: 5px 2px 10px 10px;  padding: 10px;  width: 100%;}
 div.exportlinks a {text-decoration: none; padding: 0px 8px 0px 0px;}
@@ -101,7 +68,6 @@ span.export {cursor: pointer; display: inline; display: inline-block; padding: 2
 span.pagebanner {display: block;margin: 10px 0px 10px 0px; padding: 2px 4px 2px 0px; }
 span.pagelinks {display: block; font-size: 1em; margin-bottom: 5px; margin-top: -18px; padding: 2px; text-align: right; width: 100%; }
 th.sorted a, th.sortable a {background-position: right; display: block; }
-
 /* DisplayTable JSP TAG END */
 .small{width: 70px;}
 .medium{width: 170px;}
