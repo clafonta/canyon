@@ -21,9 +21,11 @@ public class AssetDetail extends BaseObject {
     private String assetUsageType;
     private String assetLocation;
     private String assetAddress;
-    
+    private Long assetTypeId;
+    private AssetType assetType;
     private boolean enabled = true;
     private boolean managerApproval = true;
+    private List<AssetAttributeValue> assetAttributeValues;
     private List<AssetHitStat> assetHitStats;
     private List<AssetHistoryNote> assetHistoryNotes;
     private List<AssetRole> assetRoles;
@@ -155,8 +157,32 @@ public class AssetDetail extends BaseObject {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-
+    
+    
     /**
+	 * @hibernate.property column="asset_type_id"
+	 */
+    public Long getAssetTypeId() {
+		return assetTypeId;
+	}
+
+	public void setAssetTypeId(Long assetTypeId) {
+		this.assetTypeId = assetTypeId;
+	}
+
+	/**
+     * @hibernate.many-to-one insert="false" update="false" cascade="none"
+     *  column="asset_type_id" outer-join="true"
+     */
+	public AssetType getAssetType() {
+		return assetType;
+	}
+
+	public void setAssetType(AssetType assetType) {
+		this.assetType = assetType;
+	}
+
+	/**
      * @return Returns the asset hit stats.
      * 
      * @hibernate.bag name="assetHitStats" lazy="true" cascade="all"
@@ -173,6 +199,22 @@ public class AssetDetail extends BaseObject {
     
     
     /**
+     * @return Returns the asset attribute value
+     * 
+     * @hibernate.bag name="assetAttributeValues" lazy="true" cascade="all" 
+     * @hibernate.collection-key column="asset_detail_id"
+     * @hibernate.collection-one-to-many class="org.tll.canyon.model.AssetAttributeValue"
+     */
+    public List<AssetAttributeValue> getAssetAttributeValues() {
+		return assetAttributeValues;
+	}
+
+	public void setAssetAttributeValues(
+			List<AssetAttributeValue> assetAttributeValues) {
+		this.assetAttributeValues = assetAttributeValues;
+	}
+
+	/**
      * @return Returns the asset history notes.
      * 
      * @hibernate.bag name="assetHistoryNotes" lazy="true" cascade="all" order-by="create_timestamp"

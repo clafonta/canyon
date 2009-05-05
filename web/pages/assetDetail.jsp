@@ -80,6 +80,9 @@
 
 			</td>
 		</tr>
+    <c:forEach var="assetAttributeValue" items="${assetDetail.assetAttributeValues}">
+              <tr><th class="right" width="20%"><c:out value="${assetAttributeValue.assetAttribute.name}"/></th><td><c:out value="${assetAttributeValue.value}"/></td></tr>
+	  </c:forEach>
 		<authz:authorize ifAnyGranted="admin, user">
       <tr><th></th><td align="right">
       				<form method="get" action="<c:url value="/editAssetDetail.html?from=list"/>">

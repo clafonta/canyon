@@ -1,26 +1,88 @@
 package org.tll.canyon.model;
 
-public class AssetType {
+import java.util.List;
 
-	private String typeName;
-	private String typeDescription;
-	private AssetType(){};
-	private AssetType(String typeName, String typeDescription){
-		this.typeName = typeName;
-		this.typeDescription = typeDescription;
-	};
+/**
+ * 
+ * @author chad.lafontaine@gmail.com
+ * 
+ * @hibernate.class table="asset_type"
+ */
+public class AssetType extends BaseObject {
+
 	
-	public static final AssetType OTHER = new AssetType("other", "Other");
-	public static final AssetType APPSERVER = new AssetType("appserver", "Application Server");
-	public static final AssetType APPLICATION = new AssetType("application", "Application");
-	public static final AssetType WEBSERVER = new AssetType("webserver", "Web Server");
-	public static final AssetType DBSERVER = new AssetType("database", "Database");
-	public static final AssetType[] ASSETTYPES = new AssetType[]{AssetType.OTHER, AssetType.APPLICATION, AssetType.APPSERVER, AssetType.DBSERVER, AssetType.WEBSERVER};
-	public String getTypeName() {
-		return typeName;
-	}
-	public String getTypeDescription() {
-		return typeDescription;
-	}
+	private static final long serialVersionUID = 1554910737231404628L;
+	private Long id;
+	private String name;
+	private String description;
+	private List<AssetAttribute> assetAttributeList;
 	
+	
+	/**
+	 * @return Returns the id.
+	 * @hibernate.id column="id" generator-class="native" unsaved-value="null"
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}	
+	
+	/**
+     * @hibernate.property column="description" length="400"
+     */
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+     * @hibernate.property column="name" length="100" not-null="true" unique="true"
+     */
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+     * @return Returns the asset roles.
+     * 
+     * @hibernate.bag name="assetAttributeList" lazy="true" cascade="all"
+     * @hibernate.collection-key column="asset_type_id"
+     * @hibernate.collection-one-to-many class="org.tll.canyon.model.AssetAttribute"
+     */
+    public List<AssetAttribute> getAssetAttributeList() {
+        return assetAttributeList;
+    }
+
+    public void setAssetAttributeList(List<AssetAttribute> assetAttributes) {
+        this.assetAttributeList = assetAttributes;
+    }
+    
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

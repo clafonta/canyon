@@ -232,13 +232,33 @@
         <value></value>        
         <value>UID_7</value>        
     </row>
-  </table>  
+  </table> 
+  <table name='asset_type'>
+    <column>id</column>
+    <column>name</column>
+    <column>description</column>
+    <row>
+        <value>1</value>
+        <value>web application</value>                
+        <value>a web application</value>
+    </row>
+    <row>
+        <value>2</value>
+        <value>server-production</value>    
+        <value>a production web server</value>
+    </row>  
+    <row>
+        <value>3</value>
+        <value>database</value>    
+        <value>a database</value>
+    </row>  
+  </table> 
   <table name='asset_detail'>
     <column>id</column>
     <column>asset_name</column>
     <column>asset_description</column>
     <column>asset_enabled</column>
-    
+    <column>asset_type_id</column>
     <column>asset_usagetype</column>
     <column>asset_location</column>
     <column>asset_address</column>
@@ -256,7 +276,8 @@
       <value>CMD-UAT</value>
       <value>Customer Marketing Datamart (CMD) User Acceptance Testing (UAT). Used for Marketing purposes and Customer Relationship Management (CRM). Does not have real customer data. </value>
       <value>Y</value>
-    
+      <value>1</value>
+      
       <value>USER_AT</value>
       <value>EDC, TX</value>
       <value>10.000.000.01</value>
@@ -275,6 +296,8 @@
       <value>CMD-PROD</value>
       <value>Customer Marketing Datamart (CMD) User Acceptance Testing (UAT). Used for Marketing purposes and Customer Relationship Management (CRM). Contains real customer data. </value>
       <value>Y</value>
+      <value>1</value>
+      
       <value>PROD</value>
       <value>EDC, TX</value>
       <value>10.000.00.01</value>      
@@ -291,6 +314,8 @@
       <value>RTDB-UAT</value>
       <value>Real Time Database (RTDB) User Acceptance Testing (UAT). </value>
       <value>Y</value>
+      <value>1</value>
+      
       <value>USER_AT</value>
       <value>EDC, TX</value>
       <value>10.000.00.02</value>
@@ -308,6 +333,8 @@
       <value>RTDB-PROD</value>
       <value>Real Time Database</value>
       <value>Y</value>
+      <value>1</value>
+      
       <value>PROD</value>
       <value>EDC, TX</value>
       <value>10.000.00.03</value>
@@ -325,6 +352,8 @@
       <value>SNAP-UAT</value>
       <value>System for New Account Processing - User Acceptance Testing</value>
       <value>Y</value>
+      <value>1</value>
+      
       <value>USER_AT</value>
       <value>EDC, TX</value>
       <value>10.000.00.04</value>
@@ -342,6 +371,8 @@
       <value>SNAP-PROD</value>
       <value>System for New Account Processing - User Acceptance Testing</value>
       <value>Y</value>
+      <value>1</value>
+      
       <value>PROD</value>
       <value>EDC, TX</value>
       <value>10.000.00.05</value>
@@ -359,6 +390,8 @@
       <value>SNAP-SIT</value>
       <value>System for New Account Processing - System Integration Testing</value>
       <value>Y</value>
+      <value>1</value>
+      
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.00.06</value>
@@ -376,6 +409,8 @@
       <value>CAT-SIT</value>
       <value>Content acceptance testing (CAT). Used for testing Content (business rules) for Marketing Assisted Cross-sell (MAX). </value>
       <value>Y</value>
+      <value>1</value>
+      
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.00.07</value>
@@ -393,6 +428,8 @@
       <value>CAT-PROD</value>
       <value>Content acceptance testing (CAT). Used for testing Content (business rules) for Marketing Assisted Cross-sell (MAX). </value>
       <value>Y</value>
+      <value>1</value>
+      
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.00.00</value>
@@ -410,6 +447,8 @@
       <value>Name_10</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat diam ut nibh vehicula lacinia. In accumsan. Sed sagittis iaculis mauris. Integer placerat, urna ut tempus porttitor, augue libero venenatis purus, nec fermentum libero diam auctor ligula. Vestibulum mi. Donec nisi quam, vestibulum sit amet, consequat in, luctus non, risus. Donec euismod libero sit amet augue. Curabitur mattis. In hac habitasse platea dictumst. Cras pharetra. Mauris vehicula pede nec sapien.  </value>
       <value>Y</value>
+      <value>1</value>
+      
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.10.01</value>      
@@ -426,6 +465,7 @@
       <value>Name_11</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat diam ut nibh vehicula lacinia. In accumsan. Sed sagittis iaculis mauris. Integer placerat, urna ut tempus porttitor, augue libero venenatis purus, nec fermentum libero diam auctor ligula. Vestibulum mi. Donec nisi quam, vestibulum sit amet, consequat in, luctus non, risus. Donec euismod libero sit amet augue. Curabitur mattis. In hac habitasse platea dictumst. Cras pharetra. Mauris vehicula pede nec sapien.  </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.11.01</value>      
@@ -442,6 +482,7 @@
       <value>Name_12</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat diam ut nibh vehicula lacinia. In accumsan. Sed sagittis iaculis mauris. Integer placerat, urna ut tempus porttitor, augue libero venenatis purus, nec fermentum libero diam auctor ligula. Vestibulum mi. Donec nisi quam, vestibulum sit amet, consequat in, luctus non, risus. Donec euismod libero sit amet augue. Curabitur mattis. In hac habitasse platea dictumst. Cras pharetra. Mauris vehicula pede nec sapien.  </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.12.01</value>      
@@ -458,6 +499,7 @@
       <value>Name_13</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat diam ut nibh vehicula lacinia. In accumsan. Sed sagittis iaculis mauris. Integer placerat, urna ut tempus porttitor, augue libero venenatis purus, nec fermentum libero diam auctor ligula. Vestibulum mi. Donec nisi quam, vestibulum sit amet, consequat in, luctus non, risus. Donec euismod libero sit amet augue. Curabitur mattis. In hac habitasse platea dictumst. Cras pharetra. Mauris vehicula pede nec sapien.  </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.13.01</value>      
@@ -474,6 +516,7 @@
       <value>Name_14</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.14.01</value>
@@ -490,6 +533,7 @@
       <value>Name_15</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.15.01</value>
@@ -506,6 +550,7 @@
       <value>Name_16</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.16.01</value>
@@ -522,6 +567,7 @@
       <value>Name_17</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.17.01</value>
@@ -538,6 +584,7 @@
       <value>Name_18</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.18.01</value>
@@ -554,6 +601,7 @@
       <value>Name_19</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.19.01</value>
@@ -570,6 +618,7 @@
       <value>Name_20</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.20.01</value>
@@ -586,6 +635,7 @@
       <value>Name_21</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.21.01</value>
@@ -602,6 +652,7 @@
       <value>Name_22</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.22.01</value>
@@ -618,6 +669,7 @@
       <value>Name_23</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.23.01</value>
@@ -634,6 +686,7 @@
       <value>Name_24</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.24.01</value>
@@ -650,6 +703,7 @@
       <value>Name_25</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.25.01</value>
@@ -666,6 +720,7 @@
       <value>Name_26</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.26.01</value>
@@ -682,6 +737,7 @@
       <value>Name_27</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.27.01</value>
@@ -698,6 +754,7 @@
       <value>Name_28</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.28.01</value>
@@ -714,6 +771,7 @@
       <value>Name_29</value>
       <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan, nunc in eleifend pulvinar, ipsum tellus pharetra dui, a venenatis sem justo eu purus. Donec feugiat. Curabitur felis. Donec eleifend lorem ac augue. Sed quis nunc lacinia ante sodales sagittis. Curabitur ut justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </value>
       <value>Y</value>
+      <value>1</value>
       <value>SIT</value>
       <value>EDC, TX</value>
       <value>10.000.29.01</value>
@@ -7143,52 +7201,81 @@
       <value>Y</value>
     </row>      
   </table>
-    
-  <!--AssetAccessRequestStatus-END-->
-  <!-- 
-  <table name='asset_access_request'>
+
+
+  <table name='asset_attribute'>
     <column>id</column>
-    <column>employee_user_id</column>
-    <column>asset_role_id</column>
-    <column>complete</column>
-    <column>create_date</column>
+    <column>asset_type_id</column>
+    <column>name</column>
+    <column>description</column>
+    <column>type</column>
+    <column>required</column>
     <row>
         <value>1</value>
-        <value>U159282</value>                
-        <value>2</value>
+        <value>1</value>                
+        <value>address</value>
+        <value>location of this asset</value>
+        <value>String</value>
         <value>N</value>
-        <value>2007-01-07</value>
     </row>
     <row>
         <value>2</value>
-        <value>U159282</value>    
-        <value>2</value>
+        <value>1</value>                
+        <value>usage type</value>
+        <value>describe the type of environment this asset is used for. Production, testing, development only.</value>
+        <value>String</value>
         <value>N</value>
-        <value>2007-01-07</value>
+    </row>
+    <row>
+        <value>3</value>
+        <value>1</value>                
+        <value>cost center</value>
+        <value>describe the cost center associated to this asset.</value>
+        <value>String</value>
+        <value>N</value>
+    </row>
+    <row>
+        <value>4</value>
+        <value>2</value>                
+        <value>address</value>
+        <value>location of this asset</value>
+        <value>String</value>
+        <value>N</value>
+    </row>
+    <row>
+        <value>5</value>
+        <value>3</value>                
+        <value>address</value>
+        <value>location of this asset</value>
+        <value>String</value>
+        <value>N</value>
+    </row>
+  </table>     
+  <table name='asset_attribute_value'>
+    <column>id</column>
+    <column>asset_attribute_id</column>
+    <column>asset_detail_id</column>
+    <column>value</column>
+    <row>
+        <value>1</value>
+        <value>1</value>                
+        <value>1</value>
+        <value>This is a sample attribute value.</value>
+    </row>
+    <row>
+        <value>2</value>
+        <value>2</value>                
+        <value>1</value>
+        <value>This is another sample attribute value. I like cookies!</value>
+    </row> 
+    <row>
+        <value>3</value>
+        <value>3</value>                
+        <value>1</value>
+        <value>Yes, an yet sample attribute value. I like apples.</value>
     </row>  
-  </table>  
-   -->
-  <!--AssetAccessRequestStatus-START-->
-  <!-- 
-  <table name='asset_access_request_status'>
-    <column>id</column>
-    <column>approval_user_id</column>
-    <column>approval_status</column>
-    <column>asset_access_request_id</column>
-    <row>
-        <value>1</value>
-        <value>USER_153802</value>
-        <value>pending</value>
-        <value>1</value>
-    </row>
-    <row>
-        <value>2</value>
-        <value>USER_153802</value>
-        <value>pending</value>
-        <value>2</value>
-    </row>    
-  </table>
-   -->
+  </table> 
+
 </dataset>
 
 

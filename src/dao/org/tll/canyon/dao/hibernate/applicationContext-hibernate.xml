@@ -10,6 +10,9 @@
                 <value>org/tll/canyon/model/AssetAccessRequest.hbm.xml</value>
                 <value>org/tll/canyon/model/AssetAccessRequestStatus.hbm.xml</value>
                 <value>org/tll/canyon/model/AssetDetail.hbm.xml</value>
+                <value>org/tll/canyon/model/AssetType.hbm.xml</value>
+                <value>org/tll/canyon/model/AssetAttribute.hbm.xml</value>
+                <value>org/tll/canyon/model/AssetAttributeValue.hbm.xml</value>
                 <value>org/tll/canyon/model/AssetHistoryNote.hbm.xml</value>
                 <value>org/tll/canyon/model/AssetHitStat.hbm.xml</value>
                 <value>org/tll/canyon/model/AssetRole.hbm.xml</value>

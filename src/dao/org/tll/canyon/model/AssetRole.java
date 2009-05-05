@@ -9,6 +9,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 /**
  * This class is used to represent available roles for an Asset
  *
+ * @author chad.lafontaine@gmail.com
+ * 
  * @hibernate.class table="asset_role"
  */
 public class AssetRole extends BaseObject implements Serializable {
@@ -35,7 +37,7 @@ public class AssetRole extends BaseObject implements Serializable {
     }  
     
     /**
-     * @hibernate.property column="name" length="20"
+     * @hibernate.property column="name" length="25"
      */
     public String getName() {
         return this.name;
