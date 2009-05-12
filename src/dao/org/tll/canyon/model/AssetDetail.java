@@ -12,7 +12,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * @hibernate.class table="asset_detail"
  */
 public class AssetDetail extends BaseObject {
-
+                           																																																																																																																																									
     private static final long serialVersionUID = -8922423430356003833L;
     private Long id;
     private String assetName;
@@ -25,7 +25,7 @@ public class AssetDetail extends BaseObject {
     private AssetType assetType;
     private boolean enabled = true;
     private boolean managerApproval = true;
-    private List<AssetAttributeValue> assetAttributeValues;
+    
     private List<AssetHitStat> assetHitStats;
     private List<AssetHistoryNote> assetHistoryNotes;
     private List<AssetRole> assetRoles;
@@ -198,22 +198,7 @@ public class AssetDetail extends BaseObject {
     }
     
     
-    /**
-     * @return Returns the asset attribute value
-     * 
-     * @hibernate.bag name="assetAttributeValues" lazy="true" cascade="all" 
-     * @hibernate.collection-key column="asset_detail_id"
-     * @hibernate.collection-one-to-many class="org.tll.canyon.model.AssetAttributeValue"
-     */
-    public List<AssetAttributeValue> getAssetAttributeValues() {
-		return assetAttributeValues;
-	}
-
-	public void setAssetAttributeValues(
-			List<AssetAttributeValue> assetAttributeValues) {
-		this.assetAttributeValues = assetAttributeValues;
-	}
-
+    
 	/**
      * @return Returns the asset history notes.
      * 

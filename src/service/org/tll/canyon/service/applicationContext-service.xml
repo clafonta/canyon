@@ -87,12 +87,13 @@
     <bean id="assetDetailManager" class="org.tll.canyon.service.impl.AssetDetailManagerImpl" autowire="byName"/>
     <bean id="assetHitStatManager" class="org.tll.canyon.service.impl.AssetHitStatManagerImpl" autowire="byName"/>
     <bean id="assetRoleManager" class="org.tll.canyon.service.impl.AssetRoleManagerImpl" autowire="byName"/>
+    <bean id="assetTypeManager" class="org.tll.canyon.service.impl.AssetTypeManagerImpl" autowire="byName"/>
     <bean id="assetAccessRequestManager" class="org.tll.canyon.service.impl.AssetAccessRequestManagerImpl" autowire="byName"/>
     <bean id="assetRoleInfoManager" class="org.tll.canyon.service.impl.AssetRoleInfoManagerImpl" autowire="byName"/>
     <bean id="assetDetailInfoManager" class="org.tll.canyon.service.impl.AssetDetailInfoManagerImpl" autowire="byName"/>
     <bean id="assetHistoryNoteManager" class="org.tll.canyon.service.impl.AssetHistoryNoteManagerImpl" autowire="byName"/>
     <bean id="assetAccessRequestStatusManager" class="org.tll.canyon.service.impl.AssetAccessRequestStatusManagerImpl" autowire="byName"/>
-    <bean id="employeeInfoManager" class="org.tll.canyon.service.impl.EmployeeInfoManagerImpl" autowire="byName"/>
+    <bean id="employeeInfoManager" class="org.tll.canyon.service.impl.EmployeeInfoManagerImpl" autowire="byName"/>    
     <!-- Load WEB-INF/classes/ApplicationResources.properties for i18n messages using JSTL's fmt tag -->
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="ApplicationResources"/>

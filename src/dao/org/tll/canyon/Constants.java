@@ -99,6 +99,16 @@ public class Constants {
      * The request scope attribute that holds the assetRole list
      */
     public static final String ASSETROLE_LIST = "assetRoleList";
+    
+    /**
+     * The request scope attribute that holds the assetType form.
+     */
+    public static final String ASSETTYPE_KEY = "assetTypeForm";
+
+    /**
+     * The request scope attribute that holds the assetType list
+     */
+    public static final String ASSETTYPE_LIST = "assetTypeList";
 
     /**
      * The request scope attribute that holds the assetAccessRequest form.

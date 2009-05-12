@@ -3,6 +3,8 @@ package org.tll.canyon.model;
 import java.util.List;
 
 /**
+ * AssetType has 0 or more AssetAttribute objects associated with it. 
+ * 
  * 
  * @author chad.lafontaine@gmail.com
  * 
@@ -17,7 +19,22 @@ public class AssetType extends BaseObject {
 	private String description;
 	private List<AssetAttribute> assetAttributeList;
 	
-	
+//	/**
+//     * @return Returns the asset attribute value
+//     * 
+//     * @hibernate.bag name="assetAttributeValues" lazy="true" cascade="all" 
+//     * @hibernate.collection-key column="asset_detail_id"
+//     * @hibernate.collection-one-to-many class="org.tll.canyon.model.AssetAttributeValue"
+//     */
+//    public List<AssetAttributeValue> getAssetAttributeValues() {
+//		return assetAttributeValues;
+//	}
+//
+//	public void setAssetAttributeValues(
+//			List<AssetAttributeValue> assetAttributeValues) {
+//		this.assetAttributeValues = assetAttributeValues;
+//	}
+
 	/**
 	 * @return Returns the id.
 	 * @hibernate.id column="id" generator-class="native" unsaved-value="null"

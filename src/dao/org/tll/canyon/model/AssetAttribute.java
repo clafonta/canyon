@@ -1,11 +1,13 @@
 package org.tll.canyon.model;
 
+import java.util.Date;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * 
+ * An AssetType can have one or 
  * @author chad.lafontaine@gmail.com
  * 
  * @hibernate.class table="asset_attribute"
@@ -14,12 +16,15 @@ public class AssetAttribute extends BaseObject {
 
 	private static final long serialVersionUID = -6747169316191700318L;
 	private Long id;
-	private Long assetTypeId;
+	
 	private String name;
 	private String description;
-	private String type; // String, Long, Date, Boolean
+	private String type; // String, float, Date, boolean
 	private boolean required;
+	private Long assetTypeId;
 	private AssetType assetType; // 
+	
+
 
 	/**
 	 * @return Returns the id.

@@ -1,5 +1,9 @@
 package org.tll.canyon.model;
 
+import java.util.Date;
+
+
+
 
 /**
  * @hibernate.class table="asset_attribute_value"
@@ -13,8 +17,57 @@ public class AssetAttributeValue extends BaseObject {
 	private Long assetDetailId;
 	private AssetAttribute assetAttribute;
 	private AssetDetail assetDetail;
-	private String value;
 	
+	private String stringValue;
+	private float floatValue;
+	private Date dateValue;
+	private boolean booleanValue;
+		
+	/**
+     * @hibernate.property column="attribute_type_string" length="500"
+     */
+	public String getStringValue() {
+		return stringValue;
+	}
+
+	public void setStringValue(String stringValue) {
+		this.stringValue = stringValue;
+	}
+
+	/**
+     * @hibernate.property column="attribute_type_float" 
+     */
+	public float getFloatValue() {
+		return floatValue;
+	}
+
+	public void setFloatValue(float floatValue) {
+		this.floatValue = floatValue;
+	}
+
+	/**
+     * @hibernate.property column="attribute_type_date" type="date"
+     * 
+     */
+	public Date getDateValue() {
+		return dateValue;
+	}
+
+	public void setDateValue(Date dateValue) {
+		this.dateValue = dateValue;
+	}
+
+	/**
+     * @hibernate.property column="attribute_type_boolean" type="yes_no"
+     */
+	public boolean isBooleanValue() {
+		return booleanValue;
+	}
+
+	public void setBooleanValue(boolean booleanValue) {
+		this.booleanValue = booleanValue;
+	}
+
 	/**
      * @return Returns the id.
      * @hibernate.id column="id" generator-class="native" unsaved-value="null"
@@ -77,11 +130,11 @@ public class AssetAttributeValue extends BaseObject {
      * @hibernate.property column="value" length="400" not-null="true" unique="true"
      */
 	public String getValue() {
-		return value;
+		return stringValue;
 	}
 
 	public void setValue(String value) {
-		this.value = value;
+		this.stringValue = value;
 	}
 
 	@Override

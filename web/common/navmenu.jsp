@@ -30,10 +30,11 @@
 		                <div id="shopping" class="yuimenu">
 		                    <div class="bd">                    
 		                        <ul>
-		                            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<c:url value="/assetDetailList.html" />">See all Assets <b>|</b> Request for Access</a></li>
-                                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<c:url value="/editAssetDetail.html" />">Add an Asset</a></li>
-																<li class="yuimenuitem"><a class="yuimenuitemlabel" href="<c:url value="/assetdetail/csv/import.html" />">Import Assets</a></li>
-		                            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<c:url value="/assetAccessRequests.html" />">Access Request Queue</a></li> 		                            
+                                  <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<c:url value="/assetDetailList.html" />">See all Assets <b>|</b> Request for Access</a></li>
+                                  <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<c:url value="/editAssetDetail.html" />">Add an Asset</a></li>
+                                  <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<c:url value="/assetdetail/csv/import.html" />">Import Assets</a></li>
+                                  <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<c:url value="/assetTypes.html" />">Asset Types</a></li>
+                                  <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<c:url value="/assetAccessRequests.html" />">Access Request Queue</a></li> 		                            
 		                        </ul>
 		                    </div>
 		                </div>                                
