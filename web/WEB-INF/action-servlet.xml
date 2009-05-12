@@ -90,6 +90,14 @@
         <property name="assetTypeManager"><ref bean="assetTypeManager"/></property>
     </bean>
     
+    <bean id="assetAttributeFormController" class="org.tll.canyon.webapp.action.AssetAttributeFormController" autowire="byName">
+        <property name="commandName"><value>assetAttribute</value></property>
+        <property name="commandClass"><value>org.tll.canyon.model.AssetAttribute</value></property>             
+        <property name="formView"><value>assetAttributeForm</value></property>
+        <property name="assetTypeManager"><ref bean="assetTypeManager"/></property>
+        <property name="assetAttributeManager"><ref bean="assetAttributeManager"/></property>
+    </bean>
+    
     <bean id="assetAccessRequestController" class="org.tll.canyon.webapp.action.AssetAccessRequestController" autowire="byName">
         <property name="assetAccessRequestManager"><ref bean="assetAccessRequestManager"/></property>        
         <property name="assetDetailManager"><ref bean="assetDetailManager"/></property>
@@ -176,6 +184,7 @@
                 <prop key="/editAssetRole.html">assetRoleFormController</prop>
                 <prop key="/assetTypes.html">assetTypeController</prop>
                 <prop key="/editAssetType.html">assetTypeFormController</prop>
+                <prop key="/editAssetAttribute.html">assetAttributeFormController</prop>
                 <prop key="/viewAssetDetail.html">assetDetailController</prop>
                 <prop key="/editAssetDetail.html">assetDetailFormController</prop>
                 <prop key="/assetdetail/csv/import.html">assetDetailCsvFormController</prop>

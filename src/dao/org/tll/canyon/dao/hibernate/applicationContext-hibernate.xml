@@ -63,6 +63,7 @@
 	<bean id="assetHitStatDao" class="org.tll.canyon.dao.hibernate.AssetHitStatDaoHibernate" autowire="byName"/>
     <bean id="assetRoleDao" class="org.tll.canyon.dao.hibernate.AssetRoleDaoHibernate" autowire="byName"/>
     <bean id="assetTypeDao" class="org.tll.canyon.dao.hibernate.AssetTypeDaoHibernate" autowire="byName"/>
+    <bean id="assetAttributeDao" class="org.tll.canyon.dao.hibernate.AssetAttributeDaoHibernate" autowire="byName"/>
     <bean id="assetAccessRequestDao" class="org.tll.canyon.dao.hibernate.AssetAccessRequestDaoHibernate" autowire="byName"/>        
     <bean id="assetAccessRequestStatusDao" class="org.tll.canyon.dao.hibernate.AssetAccessRequestStatusDaoHibernate" autowire="byName"/>        
     <bean id="employeeInfoDao" class="org.tll.canyon.dao.hibernate.EmployeeInfoDaoHibernate" autowire="byName"/>

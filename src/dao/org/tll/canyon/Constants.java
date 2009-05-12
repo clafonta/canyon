@@ -111,6 +111,16 @@ public class Constants {
     public static final String ASSETTYPE_LIST = "assetTypeList";
 
     /**
+     * The request scope attribute that holds the assetAttribute form.
+     */
+    public static final String ASSETATTRIBUTE_KEY = "assetAttributeForm";
+
+    /**
+     * The request scope attribute that holds the assetAttribute list
+     */
+    public static final String ASSETATTRIBUTE_LIST = "assetAttributeList";
+
+    /**
      * The request scope attribute that holds the assetAccessRequest form.
      */
     public static final String ASSETACCESSREQUEST_KEY = "assetAccessRequest";

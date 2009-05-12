@@ -3,6 +3,16 @@
 <title><fmt:message key="assetTypeDetail.title"/></title>
 <content tag="heading"><fmt:message key="assetTypeDetail.heading"/> </content>
 
+<c:if test="${assetType.id != null}">    
+    <ul>
+      <c:url var="editAssetAttributeUrl" value="/editAssetAttribute.html">
+          <c:param name="assetTypeId" value="${assetType.id}"/>
+      </c:url>
+      <li><h3><a href="<c:out value="${editAssetAttributeUrl}"/>">Add Attribute</a></h3></li>
+    </ul>
+</c:if>
+
+
 <spring:bind path="assetType.*">
     <c:if test="${not empty status.errorMessages}">
     <div class="error">    
@@ -40,7 +50,24 @@
         </li>
     </ul>
   </form:form>
+  <c:if test="${not empty assetType.assetAttributeList}">
+  <h1>Attributes</h1>
+  <display:table name="assetType.assetAttributeList" cellspacing="0" cellpadding="0" requestURI="" id="assetType.assetAttributeList" pagesize="25" class="greytable assetAttributeList" export="false">
+		<authz:authorize ifAnyGranted="admin, user">
+      <display:column property="name" escapeXml="true" sortable="true" url="/editAssetAttribute.html" paramId="id" paramProperty="id" titleKey="assetAttribute.name" class="medium"/>
+		</authz:authorize>   
+		<authz:authorize ifAnyGranted="ROLE_ANONYMOUS">
+      <display:column property="name" escapeXml="true" sortable="true" titleKey="assetAttribute.name"/>
+		</authz:authorize>   
+    <display:column property="description" escapeXml="true" sortable="true" titleKey="assetAttribute.description"/>    
+    <display:setProperty name="paging.banner.item_name" value="assetAttribute"/>
+    <display:setProperty name="paging.banner.items_name" value="assetAttributes"/>
+</display:table>
+</c:if>
+
+   
 </div>
+
 <script type="text/javascript">
     Form.focusFirstElement($('assetTypeForm'));
 </script>
