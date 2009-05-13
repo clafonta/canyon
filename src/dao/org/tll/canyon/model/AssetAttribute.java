@@ -1,5 +1,7 @@
 package org.tll.canyon.model;
 
+import java.util.List;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -21,9 +23,13 @@ public class AssetAttribute extends BaseObject {
 	private boolean required;
 	private Long assetTypeId;
 	private AssetType assetType; // 
-	
+	private List<OptionValue> optionValueList;
+	private final String[] supportedTypes = new String[]{"string", "float", "date", "boolean", "radio", "dropdown", "checkboxes"};
 
-
+	// 
+	public String[] getSupportedTypes(){
+		return this.supportedTypes;
+	}
 	/**
 	 * @return Returns the id.
 	 * @hibernate.id column="id" generator-class="native" unsaved-value="null"
@@ -103,6 +109,21 @@ public class AssetAttribute extends BaseObject {
 		this.assetType = assetType;
 	}
 
+	/**
+     * @return Returns the asset roles.
+     * 
+     * @hibernate.bag name="optionValueList" lazy="true" cascade="all"
+     * @hibernate.collection-key column="asset_type_id"
+     * @hibernate.collection-one-to-many class="org.tll.canyon.model.OptionValue"
+     */
+    public List<OptionValue> getOptionValueList() {
+        return optionValueList;
+    }
+
+    public void setOptionValueList(List<OptionValue> optionValueList) {
+        this.optionValueList = optionValueList;
+    }
+    
 	/**
 	 * @see java.lang.Object#toString()
 	 */

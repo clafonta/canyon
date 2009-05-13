@@ -3,14 +3,7 @@
 <title><fmt:message key="assetTypeDetail.title"/></title>
 <content tag="heading"><fmt:message key="assetTypeDetail.heading"/> </content>
 
-<c:if test="${assetType.id != null}">    
-    <ul>
-      <c:url var="editAssetAttributeUrl" value="/editAssetAttribute.html">
-          <c:param name="assetTypeId" value="${assetType.id}"/>
-      </c:url>
-      <li><h3><a href="<c:out value="${editAssetAttributeUrl}"/>">Add Attribute</a></h3></li>
-    </ul>
-</c:if>
+
 
 
 <spring:bind path="assetType.*">
@@ -50,7 +43,7 @@
         </li>
     </ul>
   </form:form>
-  <c:if test="${not empty assetType.assetAttributeList}">
+  <c:if test="${assetType.id != null}">    
   <h1>Attributes</h1>
   <display:table name="assetType.assetAttributeList" cellspacing="0" cellpadding="0" requestURI="" id="assetType.assetAttributeList" pagesize="25" class="greytable assetAttributeList" export="false">
 		<authz:authorize ifAnyGranted="admin, user">
@@ -59,10 +52,29 @@
 		<authz:authorize ifAnyGranted="ROLE_ANONYMOUS">
       <display:column property="name" escapeXml="true" sortable="true" titleKey="assetAttribute.name"/>
 		</authz:authorize>   
-    <display:column property="description" escapeXml="true" sortable="true" titleKey="assetAttribute.description"/>    
+    <display:column property="description" escapeXml="true" sortable="true" titleKey="assetAttribute.description"/> 
+    <display:column property="type" escapeXml="true" sortable="true" titleKey="assetAttribute.type"/>    
     <display:setProperty name="paging.banner.item_name" value="assetAttribute"/>
     <display:setProperty name="paging.banner.items_name" value="assetAttributes"/>
-</display:table>
+  </display:table>
+
+  <div class="groupformcenter">    
+     <h5>Add another attribute</h5>
+     <form method="get" action="<c:url value="/editAssetAttribute.html"/>" >
+      <input type="hidden" name="assetTypeId" value="<c:out value="${assetType.id}"/>"/>
+      <select name="type">
+        <option value="string">string</option>
+        <option value="float">float</option>
+        <option value="date">date</option>
+        <option value="boolean">boolean</option>
+        <option value="radio">radio</option>
+        <option value="dropdown">dropdown</option>
+        <option value="checkboxes">checkboxes</option>
+      </select>
+       <input type="submit" name="add_attribute"  value="Add Attribute" />        
+  
+      </form>
+  </div>    
 </c:if>
 
    

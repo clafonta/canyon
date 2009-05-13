@@ -98,6 +98,14 @@
         <property name="assetAttributeManager"><ref bean="assetAttributeManager"/></property>
     </bean>
     
+    <bean id="optionValueFormController" class="org.tll.canyon.webapp.action.OptionValueFormController" autowire="byName">
+        <property name="commandName"><value>optionValue</value></property>
+        <property name="commandClass"><value>org.tll.canyon.model.OptionValue</value></property>             
+        <property name="formView"><value>optionValueForm</value></property>
+        <property name="optionValueManager"><ref bean="optionValueManager"/></property>
+        <property name="assetAttributeManager"><ref bean="assetAttributeManager"/></property>
+    </bean>
+    
     <bean id="assetAccessRequestController" class="org.tll.canyon.webapp.action.AssetAccessRequestController" autowire="byName">
         <property name="assetAccessRequestManager"><ref bean="assetAccessRequestManager"/></property>        
         <property name="assetDetailManager"><ref bean="assetDetailManager"/></property>
@@ -185,6 +193,7 @@
                 <prop key="/assetTypes.html">assetTypeController</prop>
                 <prop key="/editAssetType.html">assetTypeFormController</prop>
                 <prop key="/editAssetAttribute.html">assetAttributeFormController</prop>
+                <prop key="/editOptionValue.html">optionValueFormController</prop>
                 <prop key="/viewAssetDetail.html">assetDetailController</prop>
                 <prop key="/editAssetDetail.html">assetDetailFormController</prop>
                 <prop key="/assetdetail/csv/import.html">assetDetailCsvFormController</prop>

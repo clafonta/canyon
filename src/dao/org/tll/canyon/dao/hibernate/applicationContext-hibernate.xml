@@ -16,6 +16,7 @@
                 <value>org/tll/canyon/model/AssetHistoryNote.hbm.xml</value>
                 <value>org/tll/canyon/model/AssetHitStat.hbm.xml</value>
                 <value>org/tll/canyon/model/AssetRole.hbm.xml</value>
+                <value>org/tll/canyon/model/OptionValue.hbm.xml</value>
                 <value>org/tll/canyon/model/Role.hbm.xml</value>
                 <value>org/tll/canyon/model/User.hbm.xml</value>
                 <value>org/tll/canyon/model/EmployeeInfo.hbm.xml</value>

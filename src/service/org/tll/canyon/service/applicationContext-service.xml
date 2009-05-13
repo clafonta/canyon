@@ -89,6 +89,7 @@
     <bean id="assetRoleManager" class="org.tll.canyon.service.impl.AssetRoleManagerImpl" autowire="byName"/>
     <bean id="assetTypeManager" class="org.tll.canyon.service.impl.AssetTypeManagerImpl" autowire="byName"/>
     <bean id="assetAttributeManager" class="org.tll.canyon.service.impl.AssetAttributeManagerImpl" autowire="byName"/>
+    <bean id="optionValueManager" class="org.tll.canyon.service.impl.OptionValueManagerImpl" autowire="byName"/>
     <bean id="assetAccessRequestManager" class="org.tll.canyon.service.impl.AssetAccessRequestManagerImpl" autowire="byName"/>
     <bean id="assetRoleInfoManager" class="org.tll.canyon.service.impl.AssetRoleInfoManagerImpl" autowire="byName"/>
     <bean id="assetDetailInfoManager" class="org.tll.canyon.service.impl.AssetDetailInfoManagerImpl" autowire="byName"/>

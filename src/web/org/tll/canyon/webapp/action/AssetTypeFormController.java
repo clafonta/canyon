@@ -62,12 +62,12 @@ public class AssetTypeFormController extends BaseFormController {
             //assetTypeManager.saveAssetType(assetType);
             assetTypeManager.removeAssetType(assetType.getId().toString());
             MessageUtil.saveMessage(request, getText("assetType.deleted", locale));
-            successView = "/assetRoles.html"; //"editAsset.html?view=true&id=" + assetType.getAssetDetailId();
+            successView = "assetRoles.html"; //"editAsset.html?view=true&id=" + assetType.getAssetDetailId();
         } else {
             assetTypeManager.saveAssetType(assetType);
             String key = (isNew) ? "assetType.added" : "assetType.updated";
             MessageUtil.saveMessage(request, getText(key, locale)); 
-            successView = "/editAssetType.html?id="+assetType.getId();
+            successView = "editAssetType.html?id="+assetType.getId();
             
         }
         

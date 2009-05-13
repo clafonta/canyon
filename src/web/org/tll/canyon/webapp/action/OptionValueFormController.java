@@ -11,16 +11,19 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import org.tll.canyon.model.AssetAttribute;
 import org.tll.canyon.model.AssetType;
+import org.tll.canyon.model.OptionValue;
 import org.tll.canyon.service.AssetAttributeManager;
 import org.tll.canyon.service.AssetTypeManager;
+import org.tll.canyon.service.OptionValueManager;
 import org.tll.canyon.webapp.util.MessageUtil;
 
-public class AssetAttributeFormController extends BaseFormController {
+public class OptionValueFormController extends BaseFormController {
+	private OptionValueManager optionValueManager = null;
+	
 	private AssetAttributeManager assetAttributeManager = null;
-	private AssetTypeManager assetTypeManager = null;
 
-	public void setAssetTypeManager(AssetTypeManager assetTypeManager) {
-		this.assetTypeManager = assetTypeManager;
+	public void setOptionValueManager(OptionValueManager optionValueManager) {
+		this.optionValueManager = optionValueManager;
 	}
 
 	public void setAssetAttributeManager(
@@ -28,31 +31,31 @@ public class AssetAttributeFormController extends BaseFormController {
 		this.assetAttributeManager = assetAttributeManager;
 	}
 
-	public AssetAttributeFormController() {
-		setCommandName("assetAttribute");
-		setCommandClass(AssetAttribute.class);
+	public OptionValueFormController() {
+		setCommandName("optionValue");
+		setCommandClass(OptionValue.class);
 	}
 
 	protected Object formBackingObject(HttpServletRequest request)
 			throws Exception {
 		String id = request.getParameter("id");
-		String assetTypeId = request.getParameter("assetTypeId");
-		String type = request.getParameter("type");
+		String assetAttributeId = request.getParameter("assetAttributeId");
+		
 
-		AssetAttribute assetAttribute = null;
+		OptionValue optionValue = null;
 
 		if (!StringUtils.isEmpty(id)) {
-			assetAttribute = assetAttributeManager.getAssetAttribute(id);
+			optionValue = this.optionValueManager.getOptionValue(id);
+			
 		} else {
 
-			assetAttribute = new AssetAttribute();
-			AssetType assetType = this.assetTypeManager
-					.getAssetType(assetTypeId);
-			assetAttribute.setAssetType(assetType);
-			assetAttribute.setType(type);
+			optionValue = new OptionValue();
+			AssetAttribute assetAttribute = this.assetAttributeManager.getAssetAttribute(assetAttributeId);
+			optionValue.setAssetAttribute(assetAttribute);
+			
 		}
 
-		return assetAttribute;
+		return optionValue;
 	}
 
 	public ModelAndView onSubmit(HttpServletRequest request,
@@ -62,22 +65,23 @@ public class AssetAttributeFormController extends BaseFormController {
 			log.debug("entering 'onSubmit' method...");
 		}
 
-		AssetAttribute assetAttribute = (AssetAttribute) command;
-		boolean isNew = (assetAttribute.getId() == null);
+		OptionValue optionValue = (OptionValue) command;
+		boolean isNew = (optionValue.getId() == null);
 		Locale locale = request.getLocale();
-		String successView = "editAssetType.html?view=true&id="
-				+ assetAttribute.getAssetTypeId();
+		String successView = "editAssetAttribute.html?view=true&id="
+				+ optionValue.getAssetAttributeId();
+		
 		if (request.getParameter("delete") != null) {
-
-			assetAttributeManager.removeAssetAttribute(assetAttribute.getId()
-					.toString());
-			MessageUtil.saveMessage(request, getText("assetAttribute.deleted",
+			this.optionValueManager.removeOptionValue(optionValue.getId().toString());
+			
+			MessageUtil.saveMessage(request, getText("optionValue.deleted",
 					locale));
 
 		} else {
-			assetAttributeManager.saveAssetAttribute(assetAttribute);
-			String key = (isNew) ? "assetAttribute.added"
-					: "assetAttribute.updated";
+			
+			optionValueManager.saveOptionValue(optionValue);
+			String key = (isNew) ? "optionValue.added"
+					: "optionValue.updated";
 			MessageUtil.saveMessage(request, getText(key, locale));
 
 		}

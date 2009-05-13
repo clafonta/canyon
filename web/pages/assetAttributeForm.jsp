@@ -21,6 +21,36 @@
     </c:if>
 </spring:bind>
 <div class="groupformcenter">
+<div>
+  <h3>You're adding an attribute of type:
+  <c:choose>
+    <c:when test="${assetAttribute.type == 'string'}">
+     STRING
+    </c:when>
+    <c:when test="${assetAttribute.type == 'float'}">
+    FLOAT
+    </c:when>
+    <c:when test="${assetAttribute.type == 'date'}">
+    DATE
+    </c:when>
+    <c:when test="${assetAttribute.type == 'boolean'}">
+    BOOLEAN
+    </c:when>
+    <c:when test="${assetAttribute.type == 'radio'}">
+    RADIO
+    </c:when>
+    <c:when test="${assetAttribute.type == 'checkboxes'}">
+    CHECKBOXES
+    </c:when>
+    <c:when test="${assetAttribute.type == 'dropdown'}">
+    DROPDOWN
+    </c:when>
+    <c:otherwise>
+    (Invalid entry)
+    </c:otherwise>
+  </c:choose>
+  </h3>
+<div>
   <form:form commandName="assetAttribute" method="post" action="editAssetAttribute.html" onsubmit="return validateAssetAttribute(this)" id="assetAttributeForm">
     <ul>  
     <form:hidden path="id"/>
