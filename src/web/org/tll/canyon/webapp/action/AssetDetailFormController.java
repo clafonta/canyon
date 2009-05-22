@@ -1,5 +1,9 @@
 package org.tll.canyon.webapp.action;
 
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,18 +14,28 @@ import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import org.tll.canyon.Constants;
+import org.tll.canyon.model.AssetAttribute;
+import org.tll.canyon.model.AssetAttributeValue;
 import org.tll.canyon.model.AssetDetail;
 import org.tll.canyon.model.AssetType;
 import org.tll.canyon.model.EmployeeInfo;
+import org.tll.canyon.service.AssetAttributeManager;
 import org.tll.canyon.service.AssetDetailManager;
 import org.tll.canyon.service.AssetTypeManager;
 import org.tll.canyon.service.EmployeeInfoManager;
 import org.tll.canyon.webapp.util.MessageUtil;
 
 public class AssetDetailFormController extends BaseFormController {
+	private static final String ASSET_ATTRIBUTE_PREFIX = "assetAttribute_";
+	
 	private AssetDetailManager assetDetailManager = null;
 	private EmployeeInfoManager employeeInfoManager = null;
 	private AssetTypeManager assetTypeManager = null;
+	private AssetAttributeManager assetAttributeManager = null;
+
+	public void setAssetAttributeManager(AssetAttributeManager assetAttributeManager) {
+		this.assetAttributeManager = assetAttributeManager;
+	}
 
 	public void setAssetTypeManager(AssetTypeManager assetTypeManager) {
 		this.assetTypeManager = assetTypeManager;
@@ -38,15 +52,27 @@ public class AssetDetailFormController extends BaseFormController {
 	protected Object formBackingObject(HttpServletRequest request)
 			throws Exception {
 		String id = request.getParameter("id");
-		String assetTypeId = request.getParameter("assetTypeId");
 		
-		AssetType assetType = this.assetTypeManager.getAssetType(assetTypeId);
 		AssetDetail assetDetail = null;
 		if (!StringUtils.isEmpty(id)) {
 			assetDetail = assetDetailManager.getAssetDetail(id);
 		} else {
+			String assetTypeId = request.getParameter("assetTypeId");
+			AssetType assetType = this.assetTypeManager.getAssetType(assetTypeId);
 			assetDetail = new AssetDetail();
 			assetDetail.setAssetType(assetType);
+			
+			List<AssetAttributeValue> assetAttributeValueList = new ArrayList<AssetAttributeValue>();
+			List<AssetAttribute> assetAttributeList = assetType.getAssetAttributeList();
+			Iterator<AssetAttribute> iter = assetAttributeList.iterator();
+			while (iter.hasNext()) {
+				AssetAttribute assetAttribute = iter.next();
+				AssetAttributeValue value = new AssetAttributeValue();
+				value.setAssetAttributeId(assetAttribute.getId());
+				value.setAssetAttribute(assetAttribute);
+				assetAttributeValueList.add(value);
+			}
+			assetDetail.setAssetAttributeValueList(assetAttributeValueList);
 		}
 
 		return assetDetail;
@@ -73,8 +99,42 @@ public class AssetDetailFormController extends BaseFormController {
 		AssetType assetType = this.assetTypeManager.getAssetType(assetTypeId);
 		AssetDetail assetDetail = (AssetDetail) command;
 		assetDetail.setAssetType(assetType);
-		
 		boolean isNew = (assetDetail.getId() == null);
+		
+		//**********************************************
+		// UPDATE THE DYNAMIC ATTRIBUTE VALUES
+		//**********************************************
+		List<String> assetAttributeIdList = extractIds(request,ASSET_ATTRIBUTE_PREFIX);
+		List<AssetAttributeValue> _newAssetAttributeValueList = new ArrayList<AssetAttributeValue>();
+		// VALIDATION - PASS!
+		if (!isNew) {
+			// IF NOT NEW, THEN UPDATE ALL ATTRIBUTE VALUES
+			Iterator<String> iter = assetAttributeIdList.iterator();
+			while(iter.hasNext()){
+				String assetAttributeId = iter.next();
+				String value = request.getParameter(ASSET_ATTRIBUTE_PREFIX+assetAttributeId);
+				AssetAttributeValue assetAttributeValue = assetDetail.getAssetAttributeValueWithMatchingId(new Long(assetAttributeId));
+				assetAttributeValue.setValue(value);
+				_newAssetAttributeValueList.add(assetAttributeValue);	
+			}
+		}else {
+			// ELSE, CREATE NEW ATTRIBUTE VALUES
+			List<AssetAttribute> assetAttributeList = assetDetail.getAssetType().getAssetAttributeList();
+			Iterator<AssetAttribute> iter = assetAttributeList.iterator();
+			while (iter.hasNext()) {
+				AssetAttribute assetAttribute = (AssetAttribute) iter.next();
+				AssetAttributeValue assetAttributeValue = new AssetAttributeValue();
+				assetAttributeValue.setAssetAttribute(assetAttribute);
+				assetAttributeValue.setAssetAttributeId(assetAttribute.getId());
+				assetAttributeValue.setValue(request.getParameter(ASSET_ATTRIBUTE_PREFIX+assetAttribute.getId()));
+				_newAssetAttributeValueList.add(assetAttributeValue);
+			}
+		}
+		assetDetail.setAssetAttributeValueList(_newAssetAttributeValueList);
+		
+		
+		
+		
 		String success = getSuccessView();
 		Locale locale = request.getLocale();
 
@@ -170,8 +230,10 @@ public class AssetDetailFormController extends BaseFormController {
 						"assetDetail.invalidOrInactiveEmployeeInfo", locale);
 				MessageUtil.saveError(request, msg);
 				return mv;
-			} else {				
-
+			} else {		
+				
+				
+				
 				assetDetailManager.saveAssetDetail(assetDetail);
 				String key = (isNew) ? "assetDetail.added"
 						: "assetDetail.updated";
@@ -186,5 +248,20 @@ public class AssetDetailFormController extends BaseFormController {
 
 		return new ModelAndView(new RedirectView(success));
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	private List<String> extractIds (HttpServletRequest request, String prefix){
+		List<String> assetAttributeIds = new ArrayList<String>(); 
+		Enumeration<String> parameterNames = request.getParameterNames();
+		while(parameterNames.hasMoreElements()){
+			String paramName = parameterNames.nextElement();
+			if(paramName.startsWith(prefix)){
+				assetAttributeIds.add(paramName.substring(prefix.length()));
+			}
+		}
+		return assetAttributeIds;
+	}
+	
+	
+	
 }

@@ -57,6 +57,13 @@
             <form:errors path="assetName" cssClass="fieldError"/>
             <form:input path="assetName" id="assetName" cssClass="text large"/>
         </li> 
+        
+        <c:forEach var="assetAttributeValue" items="${assetDetail.assetAttributeValueList}">
+	        <li>
+	            <label styleClass="desc"><c:out value="${assetAttributeValue.assetAttribute.name}"/></label>
+	            <input type="text" name="assetAttribute_<c:out value="${assetAttributeValue.assetAttribute.id}"/>" value="<c:out value="${assetAttributeValue.value}"/>" />
+	        </li>
+        </c:forEach>
         <li>
             <canyon:label styleClass="desc" key="assetDetail.assetAdminTeamName"/>
             <form:errors path="assetAdminTeamName" cssClass="fieldError"/>
@@ -70,43 +77,41 @@
         <li>
             <canyon:label styleClass="desc" key="assetDetail.filterPrimaryAdminEmpEmail"/>
             <form:errors path="filterPrimaryAdminEmpEmail" cssClass="fieldError"/>
-						<canyon:focus flag="${not assetDetail.primaryAdminEmployeeInfo.active and not empty assetDetail.id}" flagMessage="Inactive/invalid user"/>
+			<canyon:focus flag="${not assetDetail.primaryAdminEmployeeInfo.active and not empty assetDetail.id}" flagMessage="Inactive/invalid user"/>
             <form:input path="filterPrimaryAdminEmpEmail" id="filterPrimaryAdminEmpEmail" cssClass="text large"/>
         </li>
         <li>
-      			<canyon:label styleClass="desc" key="assetDetail.filterSecondaryAdminEmpEmail"/>
-      			<form:errors path="filterSecondaryAdminEmpEmail" cssClass="fieldError"/>
-      			<canyon:focus flag="${not assetDetail.secondaryAdminEmployeeInfo.active and not empty assetDetail.id}" flagMessage="Inactive/invalid user"/>
-      			<form:input path="filterSecondaryAdminEmpEmail" id="filterSecondaryAdminEmpEmail" cssClass="text large"/>
+  			<canyon:label styleClass="desc" key="assetDetail.filterSecondaryAdminEmpEmail"/>
+  			<form:errors path="filterSecondaryAdminEmpEmail" cssClass="fieldError"/>
+  			<canyon:focus flag="${not assetDetail.secondaryAdminEmployeeInfo.active and not empty assetDetail.id}" flagMessage="Inactive/invalid user"/>
+  			<form:input path="filterSecondaryAdminEmpEmail" id="filterSecondaryAdminEmpEmail" cssClass="text large"/>
         </li>  
         <li>
-      			<canyon:label styleClass="desc" key="assetDetail.filterPrimaryOwnerEmpEmail"/>
-      			<form:errors path="filterPrimaryOwnerEmpEmail" cssClass="fieldError"/>
-      			<canyon:focus flag="${not assetDetail.primaryOwnerEmployeeInfo.active and not empty assetDetail.id}" flagMessage="Inactive/invalid user"/>
-      			<form:input path="filterPrimaryOwnerEmpEmail" id="filterPrimaryOwnerEmpEmail" cssClass="text large"/> 
-			
+   			<canyon:label styleClass="desc" key="assetDetail.filterPrimaryOwnerEmpEmail"/>
+   			<form:errors path="filterPrimaryOwnerEmpEmail" cssClass="fieldError"/>
+   			<canyon:focus flag="${not assetDetail.primaryOwnerEmployeeInfo.active and not empty assetDetail.id}" flagMessage="Inactive/invalid user"/>
+   			<form:input path="filterPrimaryOwnerEmpEmail" id="filterPrimaryOwnerEmpEmail" cssClass="text large"/> 			
         </li> 
         <li>
-      			<canyon:label styleClass="desc" key="assetDetail.filterSecondaryOwnerEmpEmail"/>
-      			<form:errors path="filterSecondaryOwnerEmpEmail" cssClass="fieldError"/>
-      			<canyon:focus flag="${not assetDetail.secondaryOwnerEmployeeInfo.active and not empty assetDetail.id}" flagMessage="Inactive/invalid user"/>
-      			<form:input path="filterSecondaryOwnerEmpEmail" id="filterSecondaryOwnerEmpEmail" cssClass="text large"/>
+   			<canyon:label styleClass="desc" key="assetDetail.filterSecondaryOwnerEmpEmail"/>
+   			<form:errors path="filterSecondaryOwnerEmpEmail" cssClass="fieldError"/>
+   			<canyon:focus flag="${not assetDetail.secondaryOwnerEmployeeInfo.active and not empty assetDetail.id}" flagMessage="Inactive/invalid user"/>
+   			<form:input path="filterSecondaryOwnerEmpEmail" id="filterSecondaryOwnerEmpEmail" cssClass="text large"/>
         </li> 
         <li class="buttonBar bottom">
             <input type="submit" class="button" name="save"  onclick="bCancel=false" value="<fmt:message key="button.save"/>" />
             <input type="submit" class="button" name="delete" onclick="bCancel=true;return confirmDelete('AssetDetail')" value="<fmt:message key="button.delete"/>" />
-						<c:choose>
-						  <c:when test="${not empty assetDetail.id}">
-              <c:url var="viewAssetDetailUrl" value="/viewAssetDetail.html">
-                <c:param name="id" value="${assetDetail.id}"/>
-              </c:url>
-							<a href="<c:out value="${viewAssetDetailUrl}"/>"><fmt:message key="button.cancel"/></a>
-							</c:when>
-							<c:otherwise>
-              		<input type="submit" class="button" name="cancel" onclick="bCancel=true" value="<fmt:message key="button.cancel"/>" />
-							</c:otherwise>
-						</c:choose>
-            
+			<c:choose>
+				<c:when test="${not empty assetDetail.id}">
+					<c:url var="viewAssetDetailUrl" value="/viewAssetDetail.html">
+					   <c:param name="id" value="${assetDetail.id}"/>
+					</c:url>
+					<a href="<c:out value="${viewAssetDetailUrl}"/>"><fmt:message key="button.cancel"/></a>
+				</c:when>
+				<c:otherwise>
+				    <input type="submit" class="button" name="cancel" onclick="bCancel=true" value="<fmt:message key="button.cancel"/>" />
+				</c:otherwise>
+			</c:choose>
         </li>
     </ul>
     </form:form>

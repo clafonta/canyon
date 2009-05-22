@@ -18,22 +18,7 @@ public class AssetType extends BaseObject {
 	private String name;
 	private String description;
 	private List<AssetAttribute> assetAttributeList;
-	
-//	/**
-//     * @return Returns the asset attribute value
-//     * 
-//     * @hibernate.bag name="assetAttributeValues" lazy="true" cascade="all" 
-//     * @hibernate.collection-key column="asset_detail_id"
-//     * @hibernate.collection-one-to-many class="org.tll.canyon.model.AssetAttributeValue"
-//     */
-//    public List<AssetAttributeValue> getAssetAttributeValues() {
-//		return assetAttributeValues;
-//	}
-//
-//	public void setAssetAttributeValues(
-//			List<AssetAttributeValue> assetAttributeValues) {
-//		this.assetAttributeValues = assetAttributeValues;
-//	}
+
 
 	/**
 	 * @return Returns the id.

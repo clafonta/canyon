@@ -2,6 +2,7 @@ package org.tll.canyon.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class AssetDetail extends BaseObject {
     private List<AssetHitStat> assetHitStats;
     private List<AssetHistoryNote> assetHistoryNotes;
     private List<AssetRole> assetRoles;
+    private List<AssetAttributeValue> assetAttributeValueList;
     private Date createDate;
     private String assetAdminTeamName;
     private String assetAdminTeamEmail;
@@ -40,6 +42,22 @@ public class AssetDetail extends BaseObject {
 	// TRANSIENT
 	private List<Issue> issues = null;
 
+	/**
+  * @return Returns the asset attribute value
+  * 
+  * @hibernate.bag name="assetAttributeValues" lazy="true" cascade="all" 
+  * @hibernate.collection-key column="asset_detail_id"
+  * @hibernate.collection-one-to-many class="org.tll.canyon.model.AssetAttributeValue"
+  */
+ public List<AssetAttributeValue> getAssetAttributeValueList() {
+		return assetAttributeValueList;
+	}
+
+	public void setAssetAttributeValueList(
+			List<AssetAttributeValue> assetAttributeValues) {
+		this.assetAttributeValueList = assetAttributeValues;
+	}
+	
     /**
      * @return Returns the id.
      * @hibernate.id column="id" generator-class="native" unsaved-value="null"
@@ -376,6 +394,21 @@ public class AssetDetail extends BaseObject {
 		return null;
 	}
 	
+	public AssetAttributeValue getAssetAttributeValueWithMatchingId(Long assetAttributeId){
+		AssetAttributeValue value = null;
+		if(this.assetAttributeValueList!=null){
+			Iterator<AssetAttributeValue> iter = this.assetAttributeValueList.iterator();
+			while(iter.hasNext()){
+				AssetAttributeValue tempValue = iter.next();
+				if(tempValue.getAssetAttributeId().equals(assetAttributeId)){
+					value = tempValue;
+					break;
+				}
+			}
+		}
+		return value;
+		
+	}
 
 	
 }

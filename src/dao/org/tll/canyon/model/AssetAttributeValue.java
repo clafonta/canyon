@@ -22,7 +22,8 @@ public class AssetAttributeValue extends BaseObject {
 	private float floatValue;
 	private Date dateValue;
 	private boolean booleanValue;
-		
+	
+	
 	/**
      * @hibernate.property column="attribute_type_string" length="500"
      */
