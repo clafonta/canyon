@@ -5,6 +5,9 @@
     <decorator name="medium_onecolumn" page="medium_onecolumn.jsp">
         <pattern>/*</pattern>
     </decorator>
+    <decorator name="medium_twocolumn" page="medium_twocolumn.jsp">
+        <pattern>/editOptionValue.*</pattern>
+    </decorator>
     <decorator name="default" page="default.jsp">
         <pattern>/someotherpattern</pattern>
     </decorator>

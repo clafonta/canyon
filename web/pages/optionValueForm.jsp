@@ -40,6 +40,7 @@
         </li>
     </ul>
   </form:form>
+
 </div>
 <script type="text/javascript">
     Form.focusFirstElement($('optionValueForm'));
@@ -47,3 +48,14 @@
 
 <v:javascript formName="optionValue" cdata="false" dynamicJavascript="true" staticJavascript="false"/>
 <script type="text/javascript"  src="<c:url value="/scripts/validator.jsp"/>"></script>
+
+<!-- FOLLOWING BELONGS TO TWO COLUMN TEMPLATE. -->
+</div>    <!-- closes yui-b (main body content)-->          
+</div>    <!-- closes yui-main (main body) -->
+<!-- SIDEBAR -->
+<div class="yui-b"> 
+  <h2>Sidebar</h2>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
+</div>	  
+<!-- closes SIDEBAR -->
