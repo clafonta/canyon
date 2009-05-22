@@ -10,10 +10,8 @@ import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import org.tll.canyon.model.AssetAttribute;
-import org.tll.canyon.model.AssetType;
 import org.tll.canyon.model.OptionValue;
 import org.tll.canyon.service.AssetAttributeManager;
-import org.tll.canyon.service.AssetTypeManager;
 import org.tll.canyon.service.OptionValueManager;
 import org.tll.canyon.webapp.util.MessageUtil;
 
@@ -80,8 +78,7 @@ public class OptionValueFormController extends BaseFormController {
 		} else {
 			
 			optionValueManager.saveOptionValue(optionValue);
-			String key = (isNew) ? "optionValue.added"
-					: "optionValue.updated";
+			String key = (isNew) ? "optionValue.added" 	: "optionValue.updated";
 			MessageUtil.saveMessage(request, getText(key, locale));
 
 		}

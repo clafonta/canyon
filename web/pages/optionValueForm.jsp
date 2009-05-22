@@ -3,8 +3,8 @@
 <title><fmt:message key="optionValueDetail.title"/></title>
 <content tag="heading"><fmt:message key="optionValueDetail.heading"/> </content>
 <div class="largebuffer">
-  <c:url var="assetAttributeURL" value="/editAssetAttribute.html?from=list&id=1">
-    <c:param name="assetAttributeId" value="${optionValue.assetAttributeId}"/>
+  <c:url var="assetAttributeURL" value="/editAssetAttribute.html">
+    <c:param name="id" value="${optionValue.assetAttribute.id}"/>
 	<c:param name="view" value="true"/>
   </c:url>
 	<a href="<c:out value="${assetAttributeURL}" />">Back to <c:out value="${optionValue.assetAttribute.name}" /></a>

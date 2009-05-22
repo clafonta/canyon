@@ -113,7 +113,7 @@ public class AssetAttribute extends BaseObject {
      * @return Returns the asset roles.
      * 
      * @hibernate.bag name="optionValueList" lazy="true" cascade="all"
-     * @hibernate.collection-key column="asset_type_id"
+     * @hibernate.collection-key column="asset_attribute_id"
      * @hibernate.collection-one-to-many class="org.tll.canyon.model.OptionValue"
      */
     public List<OptionValue> getOptionValueList() {

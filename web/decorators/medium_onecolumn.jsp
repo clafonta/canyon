@@ -18,7 +18,7 @@
         <link type="text/css" rel="stylesheet" href="<c:url value="/styles/style.css" />" />     
         <link type="text/css" rel="stylesheet" href="<c:url value="/styles/forms.css" />"/>
         <link type="text/css" rel="stylesheet" href="<c:url value="/styles/messages.css" />" /> 
-				<link type="text/css" rel="stylesheet" href="<c:url value="/styles/accordion.css" />" />
+		<link type="text/css" rel="stylesheet" href="<c:url value="/styles/accordion.css" />" />
         <script type="text/javascript" src="<c:url value="/yui/build/utilities/utilities.js" /> "></script>
         <script type="text/javascript" src="<c:url value="/yui/build/element/element-beta-min.js"/>"></script>
         <script type="text/javascript" src="<c:url value="/yui/build/button/button-min.js"/>"></script>
@@ -26,8 +26,8 @@
         <script type="text/javascript" src="<c:url value="/yui/build/menu/menu.js" /> "></script>
         <script type="text/javascript" src="<c:url value="/scripts/prototype.js" />"></script>
         <script type="text/javascript" src="<c:url value="/scripts/util.js" />"></script>    
-				<script type="text/javascript" src="<c:url value="/scripts/effects.js" />"></script> 
-				<script type="text/javascript" src="<c:url value="/scripts/accordion.js" />"></script>  
+		<script type="text/javascript" src="<c:url value="/scripts/effects.js" />"></script> 
+		<script type="text/javascript" src="<c:url value="/scripts/accordion.js" />"></script>  
         <script type="text/javascript" src="<c:url value="/scripts/global.js" />"></script>
         <script type="text/javascript">
             YAHOO.util.Event.onContentReady("productsandservices", function () {

@@ -54,6 +54,7 @@
   <form:form commandName="assetAttribute" method="post" action="editAssetAttribute.html" onsubmit="return validateAssetAttribute(this)" id="assetAttributeForm">
     <ul>  
     <form:hidden path="id"/>
+    <form:hidden path="type"/>
     <input type="hidden" name="assetTypeId" value="<c:out value="${assetAttribute.assetType.id}" />" />
         <li>
             <canyon:label styleClass="desc" key="assetAttribute.name"/>
@@ -71,7 +72,21 @@
                 <label for="required" class="choice"><fmt:message key="assetAttribute.required"/></label>            
             </fieldset>
         </li>
-    
+        <c:if test="${assetAttribute.type == 'dropdown' and !empty assetAttribute.id}">
+        list of dropdown values        
+          
+          <c:forEach var="optionValue" items="${assetAttribute.optionValueList}">
+            <c:url var="optionEditValueURL" value="/editOptionValue.html">
+              <c:param name="id" value="${optionValue.id}"/>   
+              <c:param name="assetAttributeId" value="${optionValue.assetAttribute.id}"/>            
+            </c:url>
+             <a href="<c:out value="${optionEditValueURL}" />"><c:out value="${optionValue.value}"/></a><br />
+          </c:forEach>
+          <c:url var="optionValueURL" value="/editOptionValue.html">
+            <c:param name="assetAttributeId" value="${assetAttribute.id}"/>            
+          </c:url>
+          <a href="<c:out value="${optionValueURL}" />">Add a dropdown value</a>
+        </c:if>
         <li class="buttonBar bottom">
             <input type="submit" class="button" name="save"  onclick="bCancel=false" value="<fmt:message key="button.save"/>" />        
     				<c:if test="${not empty assetAttribute.id}">				
@@ -81,6 +96,7 @@
         </li>
     </ul>
   </form:form>
+  
 </div>
 <script type="text/javascript">
     Form.focusFirstElement($('assetAttributeForm'));
