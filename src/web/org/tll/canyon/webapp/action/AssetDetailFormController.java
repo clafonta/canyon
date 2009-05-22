@@ -11,14 +11,21 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import org.tll.canyon.Constants;
 import org.tll.canyon.model.AssetDetail;
+import org.tll.canyon.model.AssetType;
 import org.tll.canyon.model.EmployeeInfo;
 import org.tll.canyon.service.AssetDetailManager;
+import org.tll.canyon.service.AssetTypeManager;
 import org.tll.canyon.service.EmployeeInfoManager;
 import org.tll.canyon.webapp.util.MessageUtil;
 
 public class AssetDetailFormController extends BaseFormController {
 	private AssetDetailManager assetDetailManager = null;
 	private EmployeeInfoManager employeeInfoManager = null;
+	private AssetTypeManager assetTypeManager = null;
+
+	public void setAssetTypeManager(AssetTypeManager assetTypeManager) {
+		this.assetTypeManager = assetTypeManager;
+	}
 
 	public void setEmployeeInfoManager(EmployeeInfoManager employeeInfoManager) {
 		this.employeeInfoManager = employeeInfoManager;
@@ -31,11 +38,15 @@ public class AssetDetailFormController extends BaseFormController {
 	protected Object formBackingObject(HttpServletRequest request)
 			throws Exception {
 		String id = request.getParameter("id");
+		String assetTypeId = request.getParameter("assetTypeId");
+		
+		AssetType assetType = this.assetTypeManager.getAssetType(assetTypeId);
 		AssetDetail assetDetail = null;
 		if (!StringUtils.isEmpty(id)) {
 			assetDetail = assetDetailManager.getAssetDetail(id);
 		} else {
 			assetDetail = new AssetDetail();
+			assetDetail.setAssetType(assetType);
 		}
 
 		return assetDetail;
@@ -58,7 +69,11 @@ public class AssetDetailFormController extends BaseFormController {
 			log.debug("entering 'onSubmit' method...");
 		}
 
+		String assetTypeId = request.getParameter("assetTypeId");
+		AssetType assetType = this.assetTypeManager.getAssetType(assetTypeId);
 		AssetDetail assetDetail = (AssetDetail) command;
+		assetDetail.setAssetType(assetType);
+		
 		boolean isNew = (assetDetail.getId() == null);
 		String success = getSuccessView();
 		Locale locale = request.getLocale();
@@ -111,6 +126,7 @@ public class AssetDetailFormController extends BaseFormController {
 				errors.rejectValue("filterPrimaryAdminEmpEmail",
 						"filterPrimaryAdminEmpEmail");
 				inactiveEmployees = true;
+				prmAdm = new EmployeeInfo();
 			}
 			if (secAdm == null
 					|| !EmployeeInfo.EMP_STATUS_ACTIVE.equalsIgnoreCase(secAdm
@@ -118,6 +134,7 @@ public class AssetDetailFormController extends BaseFormController {
 				errors.rejectValue("filterSecondaryAdminEmpEmail",
 						"filterSecondaryAdminEmpEmail");
 				inactiveEmployees = true;
+				secAdm = new EmployeeInfo();
 				
 			}
 			if (prmOwn == null

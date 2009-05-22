@@ -26,8 +26,6 @@ public class AssetDetailInfoView extends AbstractView {
 //				"assetName", "assetName").toString();
 		AjaxXmlBuilder builder = new AjaxXmlBuilder();
 		builder.addItems(assetDetailInfoList,"assetName", "assetName").toString();
-		builder.addItems(assetDetailInfoList,"assetDescription", "assetDescription").toString();
-		builder.addItems(assetDetailInfoList,"assetAddress", "assetAddress").toString();
 		
 		ServletOutputStream out = response.getOutputStream();
 		out.print(builder.toString());

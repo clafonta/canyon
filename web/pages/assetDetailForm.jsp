@@ -1,9 +1,9 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <title><fmt:message key="assetDetailDetail.title"/></title>
-<content tag="heading"><fmt:message key="assetDetailDetail.heading"/>
+<content tag="heading"><fmt:message key="assetDetailDetail.heading"/> (type = <c:out value="${assetDetail.assetType.name}"/>)
   <c:if test="${not empty assetDetail.assetName}">
-  :<span class="focus"><c:out value="${assetDetail.assetName}"/></span>
+  :<span class="focus"><c:out value="${assetDetail.assetName}"/></span> 
   </c:if>
 </content>
 <meta name="menu" content="AssetMenu"/>
@@ -43,64 +43,20 @@
     <table class="table largetable">
       <tbody>
         <tr><th width="20%">Name:</th><td><c:out value="${assetDetail.assetName}"/> <authz:authorize ifAnyGranted="admin, user">[<a href="<c:out value="${assetDetailURL}" />">Edit</a>]</authz:authorize></td></tr>
-        <tr><th width="20%">Description:</th><td><c:out value="${assetDetail.assetDescription}"/></td></tr>
-        <tr><th width="20%">Usage:</th><td><c:out value="${assetDetail.assetUsageType}"/></td></tr>
-        <tr><th width="20%">Location:</th><td><c:out value="${assetDetail.assetLocation}"/></td></tr>
-        <tr><th width="20%">Address:</th><td><c:out value="${assetDetail.assetAddress}"/></td></tr>
       </tbody>
     </table>
   </c:when>
   <c:otherwise>
 <div class="groupformcenter">
     <form:form commandName="assetDetail" method="post" action="editAssetDetail.html" onsubmit="return validateAssetDetail(this)" id="assetDetailForm">
-    <form:hidden path="id"/>   
+    <form:hidden path="id"/> 
+    <input type="hidden" name="assetTypeId" value="<c:out value="${assetDetail.assetType.id}"/>" />   
     <ul>         
         <li>
             <canyon:label styleClass="desc" key="assetDetail.assetName"/>
             <form:errors path="assetName" cssClass="fieldError"/>
             <form:input path="assetName" id="assetName" cssClass="text large"/>
         </li> 
-				<li>
-            <canyon:label styleClass="desc" key="assetDetail.assetGroupName"/>
-            <form:errors path="assetGroupName" cssClass="fieldError"/>
-            <form:input path="assetGroupName" id="assetGroupName" cssClass="text large"/>
-        </li>    
-        <li>
-            <canyon:label styleClass="desc" key="assetDetail.assetDescription"/>
-            <form:errors path="assetDescription" cssClass="fieldError"/>
-            <form:textarea path="assetDescription" id="assetDescription" cssClass="text large"/>
-        </li>    
-        <li>
-              <canyon:label styleClass="desc" key="assetDetail.assetUsageType"/>
-              <form:errors path="assetUsageType" cssClass="fieldError"/>           
-              <form:select path="assetUsageType" cssClass="text medium">
-                <form:option value="Other"/>
-				        <form:option value="DEV"/>
-                <form:option value="SIT"/>
-                <form:option value="UAT"/>
-                <form:option value="CAPLAB"/>
-                <form:option value="PRODUCTION"/>                
-              </form:select>
-
-        </li>  
-				<li>
-            <canyon:label styleClass="desc" key="assetDetail.assetLocation"/>
-            <form:errors path="assetLocation" cssClass="fieldError"/>
-            <form:input path="assetLocation" id="assetLocation" cssClass="text large"/>
-        </li>  
-        <li>
-            <canyon:label styleClass="desc" key="assetDetail.assetAddress"/>
-            <form:errors path="assetAddress" cssClass="fieldError"/>
-            <form:input path="assetAddress" id="assetAddress" cssClass="text large"/>
-        </li>
-             
-        <li>
-            <fieldset>
-                <legend>Settings</legend>
-                <form:checkbox path="enabled" id="enabled"/>
-                <label for="enabled" class="choice"><fmt:message key="assetDetail.enabled"/></label>            
-            </fieldset>
-        </li>    
         <li>
             <canyon:label styleClass="desc" key="assetDetail.assetAdminTeamName"/>
             <form:errors path="assetAdminTeamName" cssClass="fieldError"/>

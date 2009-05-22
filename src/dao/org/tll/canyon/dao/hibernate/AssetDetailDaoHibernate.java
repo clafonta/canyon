@@ -70,25 +70,11 @@ public class AssetDetailDaoHibernate extends BaseDaoHibernate implements AssetDe
 	            public Object doInHibernate(Session session) throws HibernateException, SQLException {
 	                Criteria criteria = session.createCriteria(AssetDetail.class);
 	                Disjunction disjunction = Expression.disjunction(); 
-	                if(assetDetail.getAssetAddress()!=null && assetDetail.getAssetAddress().trim().length()>0){
-	                	disjunction.add(Expression.ilike("assetAddress", assetDetail.getAssetAddress().trim()));
-	                }
-	                if(assetDetail.getAssetGroupName()!=null && assetDetail.getAssetGroupName().trim().length()>0){
-	                	disjunction.add(Expression.ilike("assetGroupName",assetDetail.getAssetGroupName().trim(), MatchMode.ANYWHERE));
-	                	log.debug("Added disjunction for 'assetGroupName'");
-	                }
+	                
 	                if(assetDetail.getAssetName()!=null && assetDetail.getAssetName().trim().length()>0){
 	                	disjunction.add(Expression.ilike("assetName",assetDetail.getAssetName().trim(), MatchMode.ANYWHERE));
 	                }
-	                if(assetDetail.getAssetDescription()!=null && assetDetail.getAssetDescription().trim().length()>0){
-	                	disjunction.add(Expression.ilike("assetDescription",assetDetail.getAssetDescription().trim(), MatchMode.ANYWHERE));
-	                }
-	                if(assetDetail.getAssetLocation()!=null && assetDetail.getAssetLocation().trim().length()>0){
-	                	disjunction.add(Expression.ilike("assetLocation",assetDetail.getAssetLocation().trim(), MatchMode.ANYWHERE));
-	                }
-	                if(assetDetail.getAssetUsageType()!=null && assetDetail.getAssetUsageType().trim().length()>0){
-	                	disjunction.add(Expression.ilike("assetUsageType",assetDetail.getAssetUsageType().trim(), MatchMode.ANYWHERE));
-	                }
+	                
 	                if(assetDetail.getAssetAdminTeamEmail()!=null && assetDetail.getAssetAdminTeamEmail().trim().length()>0){
 	                	disjunction.add(Expression.ilike("assetAdminTeamEmail",assetDetail.getAssetAdminTeamEmail().trim(), MatchMode.ANYWHERE));
 	                }

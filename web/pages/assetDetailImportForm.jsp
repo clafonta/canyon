@@ -16,11 +16,6 @@
     <thead><tr><th>Column</th><th>Length</th><th>Type</th></tr></thead>
 	<tbody>
 	<tr><td><fmt:message key="assetDetail.assetName"/></td><td>100</td><td>VARCHAR</td></tr>
-	<tr><td><fmt:message key="assetDetail.assetGroupName"/></td><td>100</td><td>VARCHAR</td></tr>
-	<tr><td><fmt:message key="assetDetail.assetDescription"/></td><td>2000</td><td>VARCHAR</td></tr>
-	<tr><td><fmt:message key="assetDetail.assetUsageType"/></td><td>100</td><td>VARCHAR</td></tr>
-  <tr><td><fmt:message key="assetDetail.assetLocation"/></td><td>100</td><td>VARCHAR</td></tr>
-  <tr><td><fmt:message key="assetDetail.assetAddress"/></td><td>100</td><td>VARCHAR</td></tr>
 	<tr><td><fmt:message key="assetDetail.assetAdminTeamName"/></td><td>50</td><td>VARCHAR</td></tr>
 	<tr><td><fmt:message key="assetDetail.assetAdminTeamEmail"/></td><td>50</td><td>VARCHAR</td></tr>
 	<tr><td><fmt:message key="assetDetail.primaryAdminEmployeeId"/></td><td>50</td><td>VARCHAR</td></tr>

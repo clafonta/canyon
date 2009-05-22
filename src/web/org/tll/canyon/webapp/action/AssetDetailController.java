@@ -13,18 +13,24 @@ import org.springframework.web.servlet.mvc.Controller;
 import org.tll.canyon.Constants;
 import org.tll.canyon.model.AssetAccessRequest;
 import org.tll.canyon.model.AssetDetail;
+import org.tll.canyon.model.AssetType;
 import org.tll.canyon.model.viewwrappers.AssetAccessRequestSearchForm;
 import org.tll.canyon.service.AssetAccessRequestManager;
 import org.tll.canyon.service.AssetDetailManager;
+import org.tll.canyon.service.AssetTypeManager;
 
 
 public class AssetDetailController implements Controller {
     private final Log log = LogFactory.getLog(AssetDetailController.class);
     private AssetDetailManager assetDetailManager = null;
     private AssetAccessRequestManager assetAccessRequestManager = null;
-   
+    private AssetTypeManager assetTypeManager = null;
     
-    public void setAssetAccessRequestManager(AssetAccessRequestManager assetAccessRequestManager) {
+    public void setAssetTypeManager(AssetTypeManager assetTypeManager) {
+		this.assetTypeManager = assetTypeManager;
+	}
+
+	public void setAssetAccessRequestManager(AssetAccessRequestManager assetAccessRequestManager) {
         this.assetAccessRequestManager = assetAccessRequestManager;
     }
 
@@ -34,6 +40,7 @@ public class AssetDetailController implements Controller {
 
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
+		
         String id = request.getParameter("id");        
         ModelAndView mv = new ModelAndView("assetDetail");  
         AssetDetail assetDetail = null;
@@ -57,6 +64,9 @@ public class AssetDetailController implements Controller {
             List<AssetAccessRequest> items = this.assetAccessRequestManager.getAssetAccessRequestsBySearch(assetAccessRequestSearchForm);
             mv.addObject(Constants.ASSETACCESSREQUEST_LIST, items);
         }
+        
+        List<AssetType> assetTypeList = this.assetTypeManager.getAssetTypes(new AssetType());
+        mv.addObject(Constants.ASSETTYPE_LIST, assetTypeList);
         return mv;
     }
 

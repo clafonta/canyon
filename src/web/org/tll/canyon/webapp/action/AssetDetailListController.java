@@ -12,8 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 import org.tll.canyon.Constants;
 import org.tll.canyon.model.AssetDetail;
+import org.tll.canyon.model.AssetType;
 import org.tll.canyon.model.EmployeeInfo;
 import org.tll.canyon.service.AssetDetailManager;
+import org.tll.canyon.service.AssetTypeManager;
 import org.tll.canyon.service.EmployeeInfoManager;
 
 /**
@@ -26,8 +28,12 @@ public class AssetDetailListController implements Controller {
 	.getLog(AssetDetailListController.class);
     private AssetDetailManager assetDetailManager = null;
     private EmployeeInfoManager employeeInfoManager = null;
-        
-    public void setEmployeeInfoManager(EmployeeInfoManager employeeInfoManager) {
+    private AssetTypeManager assetTypeManager;
+    public void setAssetTypeManager(AssetTypeManager assetTypeManager) {
+		this.assetTypeManager = assetTypeManager;
+	}
+
+	public void setEmployeeInfoManager(EmployeeInfoManager employeeInfoManager) {
 		this.employeeInfoManager = employeeInfoManager;
 	}
 
@@ -60,11 +66,12 @@ public class AssetDetailListController implements Controller {
         exampleAssetDetail.setSecondaryOwnerEmployeeId((secOwn!=null) ? secOwn.getEmployeeUserId() : null);
         
         List<AssetDetail> assetDetailList = assetDetailManager.getAssetDetails(exampleAssetDetail);
-        
+        List<AssetType> assetTypeList = this.assetTypeManager.getAssetTypes(null);
         
         ModelAndView mv = new ModelAndView("assetDetailList");
         mv.addObject(Constants.ASSETDETAIL_LIST, assetDetailList);
         mv.addObject(Constants.ASSETDETAIL_KEY, exampleAssetDetail);
+        mv.addObject(Constants.ASSETTYPE_LIST, assetTypeList);
         return mv;
     }
     

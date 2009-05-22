@@ -19,8 +19,7 @@ public class AssetDetailDaoTest extends BaseDaoTestCase {
     public void testGetAssetDetail() throws Exception {
         assetDetail = new AssetDetail();
         assetDetail.setAssetName("CMD");        
-        assetDetail.setEnabled(true);
-
+        
         dao.saveAssetDetail(assetDetail);
         assertNotNull(assetDetail.getId());
 
@@ -31,7 +30,7 @@ public class AssetDetailDaoTest extends BaseDaoTestCase {
     public void testSaveAssetDetail() throws Exception {
         assetDetail = dao.getAssetDetail(new Long(1));
         assetDetail.setAssetName("CMD");
-        assetDetail.setEnabled(true);
+        
        
 
         dao.saveAssetDetail(assetDetail);
@@ -46,7 +45,7 @@ public class AssetDetailDaoTest extends BaseDaoTestCase {
     public void testAddAndRemoveAssetDetail() throws Exception {
         assetDetail = new AssetDetail();
         assetDetail.setAssetName("CMD");     
-        assetDetail.setEnabled(true);
+       
         dao.saveAssetDetail(assetDetail);
 
         assertEquals(assetDetail.getAssetName(), "CMD");

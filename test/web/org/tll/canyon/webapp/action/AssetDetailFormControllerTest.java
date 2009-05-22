@@ -28,12 +28,6 @@ public class AssetDetailFormControllerTest extends BaseControllerTestCase {
         log.debug("testing edit...");
         request = newGet("/editAssetDetail.html");
         request.addParameter("assetName", "tomcat");
-        request.addParameter("assetDescription", "tomcat");
-        request.addParameter("assetUsageType", "tomcat");
-        request.addParameter("assetLocation", "tomcat");
-        request.addParameter("assetAddress", "tomcat");
-        request.addParameter("enabled", "Y");
-
         mv = c.handleRequest(request, new MockHttpServletResponse());
 
         assertEquals("assetDetailForm", mv.getViewName());
@@ -44,12 +38,7 @@ public class AssetDetailFormControllerTest extends BaseControllerTestCase {
         request = newGet("/editAssetDetail.html");
         request.addParameter("id", "1");
         request.addParameter("assetName", "tomcat");
-        request.addParameter("assetDescription", "tomcat");
-        request.addParameter("assetUsageType", "tomcat");
-        request.addParameter("assetLocation", "tomcat");
-        request.addParameter("assetAddress", "tomcat");
-        request.addParameter("enabled", "Y");
-
+        
         mv = c.handleRequest(request, new MockHttpServletResponse());
 
         AssetDetail assetDetail = (AssetDetail) mv.getModel().get(c.getCommandName());
@@ -73,11 +62,6 @@ public class AssetDetailFormControllerTest extends BaseControllerTestCase {
         request.addParameter("delete", "");
         request.addParameter("id", "2");
         request.addParameter("assetName", "tomcat");
-        request.addParameter("assetDescription", "tomcat");
-        request.addParameter("assetUsageType", "tomcat");
-        request.addParameter("assetLocation", "tomcat");
-        request.addParameter("assetAddress", "tomcat");
-        request.addParameter("enabled", "Y");
         mv = c.handleRequest(request, new MockHttpServletResponse());
         assertNotNull(request.getSession().getAttribute("successMessages"));
     }

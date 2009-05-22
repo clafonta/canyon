@@ -44,11 +44,6 @@
 	<tbody>
    	  
 		<tr><th class="right" width="20%"><fmt:message key="assetDetail.assetName"/></th><td><c:out value="${assetDetail.assetName}"/></td></tr>
-		<tr><th class="right" width="20%"><fmt:message key="assetDetail.assetGroupName"/></th><td><c:out value="${assetDetail.assetGroupName}"/></td></tr>
-		<tr><th class="right" width="20%"><fmt:message key="assetDetail.assetDescription"/></th><td><c:out value="${assetDetail.assetDescription}"/></td></tr>
-		<tr><th class="right" width="20%"><fmt:message key="assetDetail.assetUsageType"/></th><td><c:out value="${assetDetail.assetUsageType}"/></td></tr>
-		<tr><th class="right" width="20%"><fmt:message key="assetDetail.assetLocation"/></th><td><c:out value="${assetDetail.assetLocation}"/></td></tr>
-		<tr><th class="right" width="20%"><fmt:message key="assetDetail.assetAddress"/></th><td><c:out value="${assetDetail.assetAddress}"/></td></tr>
 		<tr><th class="right" width="20%"><fmt:message key="assetDetail.assetAdminTeamName"/></th><td><c:out value="${assetDetail.assetAdminTeamName}"/> (<c:out value="${assetDetail.assetAdminTeamEmail}"/>)</td></tr>
 		<tr>
 		  <th class="right" width="20%"><fmt:message key="assetDetail.primaryAdminEmployeeName"/></th>
@@ -80,9 +75,6 @@
 
 			</td>
 		</tr>
-    <c:forEach var="assetAttributeValue" items="${assetDetail.assetAttributeValues}">
-              <tr><th class="right" width="20%"><c:out value="${assetAttributeValue.assetAttribute.name}"/></th><td><c:out value="${assetAttributeValue.value}"/></td></tr>
-	  </c:forEach>
 		<authz:authorize ifAnyGranted="admin, user">
       <tr><th></th><td align="right">
       				<form method="get" action="<c:url value="/editAssetDetail.html?from=list"/>">

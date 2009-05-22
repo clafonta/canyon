@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 /**
  * @hibernate.class table="asset_detail"
  */
@@ -16,16 +12,8 @@ public class AssetDetail extends BaseObject {
     private static final long serialVersionUID = -8922423430356003833L;
     private Long id;
     private String assetName;
-    private String assetGroupName;
-    private String assetDescription;
-    private String assetUsageType;
-    private String assetLocation;
-    private String assetAddress;
     private Long assetTypeId;
     private AssetType assetType;
-    private boolean enabled = true;
-    private boolean managerApproval = true;
-    
     private List<AssetHitStat> assetHitStats;
     private List<AssetHistoryNote> assetHistoryNotes;
     private List<AssetRole> assetRoles;
@@ -77,87 +65,6 @@ public class AssetDetail extends BaseObject {
     public void setAssetName(String assetName) {
         this.assetName = assetName;
     }
-
-    /**
-     * @hibernate.property column="asset_description" length="2000"
-     */
-    public String getAssetDescription() {
-        return assetDescription;
-    }
-    
-    /**
-     * 
-     */
-    public void setAssetGroupName(String assetGroupName) {
-        this.assetGroupName = assetGroupName;
-    }
-
-    /**
-     * @hibernate.property column="asset_group_name" length="100"
-     */
-    public String getAssetGroupName() {
-        return assetGroupName;
-    }
-
-    /**
-     * @spring.validator type="required"
-     */
-    public void setAssetDescription(String assetDescription) {
-        this.assetDescription = assetDescription;
-    }
-
-    /**
-     * @hibernate.property column="asset_usagetype" length="100"
-     */
-    public String getAssetUsageType() {
-        return assetUsageType;
-    }
-
-    public void setAssetUsageType(String assetUsageType) {
-        this.assetUsageType = assetUsageType;
-    }
-
-    /**
-     * @hibernate.property column="asset_location" length="100"
-     */
-    public String getAssetLocation() {
-        return assetLocation;
-    }
-
-    public void setAssetLocation(String assetLocation) {
-        this.assetLocation = assetLocation;
-    }
-
-    /**
-     * Address, e.g. IP address.
-     * 
-     * @hibernate.property column="asset_address" length="100"
-     */
-    public String getAssetAddress() {
-        return assetAddress;
-    }
-
-    /**
-     * @spring.validator type="required"
-     */
-    public void setAssetAddress(String assetAddress) {
-        this.assetAddress = assetAddress;
-    }
-
-    /**
-     * @hibernate.property column="asset_enabled" type="yes_no"
-     */
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    /**
-     * @spring.validator type="required"
-     */
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-    
     
     /**
 	 * @hibernate.property column="asset_type_id"
@@ -229,18 +136,7 @@ public class AssetDetail extends BaseObject {
     public void setAssetRoles(List<AssetRole> assetRoles) {
         this.assetRoles = assetRoles;
     }
-
-    /**
-     * @hibernate.property column="manager_approval_req" type="yes_no"
-     */
-    public boolean isManagerApproval() {
-        return managerApproval;
-    }
-
-    public void setManagerApproval(boolean managerApproval) {
-        this.managerApproval = managerApproval;
-    }
-
+    
     /**
      * @hibernate.property column="create_date" type="date"
      * 
@@ -461,91 +357,25 @@ public class AssetDetail extends BaseObject {
 			return false;
 		}
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
-	/**
-	 * @see java.lang.Object#equals(Object)
-	 */
-	public boolean equals(Object object) {
-		if (!(object instanceof AssetDetail)) {
-			return false;
-		}
-		AssetDetail rhs = (AssetDetail) object;
-		return new EqualsBuilder()
-				.append(this.primaryOwnerEmployeeInfo,
-						rhs.primaryOwnerEmployeeInfo)
-				.append(this.assetUsageType, rhs.assetUsageType)
-				.append(this.managerApproval, rhs.managerApproval)
-				.append(this.assetRoles, rhs.assetRoles)
-				.append(this.assetAdminTeamEmail, rhs.assetAdminTeamEmail)
-				.append(this.assetAdminTeamName, rhs.assetAdminTeamName)
-				.append(this.assetHitStats, rhs.assetHitStats)
-				.append(this.id, rhs.id)
-				.append(this.secondaryAdminEmployeeInfo,
-						rhs.secondaryAdminEmployeeInfo)
-				.append(this.secondaryOwnerEmployeeId,
-						rhs.secondaryOwnerEmployeeId)
-				.append(this.assetName, rhs.assetName)
-				.append(this.assetLocation, rhs.assetLocation)
-				.append(this.primaryAdminEmployeeId, rhs.primaryAdminEmployeeId)
-				.append(this.secondaryOwnerEmployeeInfo,
-						rhs.secondaryOwnerEmployeeInfo)
-				.append(this.secondaryAdminEmployeeId,
-						rhs.secondaryAdminEmployeeId)
-				.append(this.assetDescription, rhs.assetDescription)
-				.append(this.enabled, rhs.enabled)
-				.append(this.primaryOwnerEmployeeId, rhs.primaryOwnerEmployeeId)
-				.append(this.createDate, rhs.createDate).append(
-						this.primaryAdminEmployeeInfo,
-						rhs.primaryAdminEmployeeInfo).append(this.assetAddress,
-						rhs.assetAddress).isEquals();
-	}
-
-	/**
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString() {
-		return new ToStringBuilder(this).append("secondaryAdminEmployeeId",
-				this.secondaryAdminEmployeeId).append("assetAdminTeamName",
-				this.assetAdminTeamName).append("id", this.id).append(
-				"assetAddress", this.assetAddress).append("assetLocation",
-				this.assetLocation).append("enabled", this.enabled).append(
-				"secondaryOwnerEmployeeInfo", this.secondaryOwnerEmployeeInfo)
-				.append("primaryAdminEmployeeInfo",
-						this.primaryAdminEmployeeInfo).append(
-						"primaryAdminEmployeeId", this.primaryAdminEmployeeId)
-				.append("assetHitStats", this.assetHitStats).append(
-						"assetAdminTeamEmail", this.assetAdminTeamEmail)
-				.append("assetName", this.assetName).append("assetUsageType",
-						this.assetUsageType).append("secondaryOwnerEmployeeId",
-						this.secondaryOwnerEmployeeId).append(
-						"primaryOwnerEmployeeId", this.primaryOwnerEmployeeId)
-				.append("assetDescription", this.assetDescription).append(
-						"secondaryAdminEmployeeInfo",
-						this.secondaryAdminEmployeeInfo).append(
-						"primaryOwnerEmployeeInfo",
-						this.primaryOwnerEmployeeInfo).append(
-						"managerApproval", this.managerApproval).append(
-						"assetRoles", this.assetRoles).append("createDate",
-						this.createDate).toString();
-	}
-
-	/**
-	 * @see java.lang.Object#hashCode()
-	 */
-	public int hashCode() {
-		return new HashCodeBuilder(1192128325, -170164571).append(
-				this.assetUsageType).append(this.managerApproval).append(
-				this.assetRoles).append(this.assetAdminTeamEmail).append(
-				this.assetAdminTeamName).append(this.assetHitStats).append(
-				this.id).append(
-				this.secondaryAdminEmployeeInfo).append(
-				this.secondaryOwnerEmployeeId).append(this.assetName).append(
-				this.assetLocation).append(this.primaryAdminEmployeeId).append(
-				this.secondaryOwnerEmployeeInfo).append(
-				this.secondaryAdminEmployeeId).append(this.assetDescription)
-				.append(this.enabled).append(this.primaryOwnerEmployeeId)
-				.append(this.createDate).append(this.primaryAdminEmployeeInfo)
-				.append(this.assetAddress).toHashCode();
-	}
+	
 }

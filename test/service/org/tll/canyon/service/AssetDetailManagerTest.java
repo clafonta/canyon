@@ -51,7 +51,7 @@ public class AssetDetailManagerTest extends BaseManagerTestCase {
 
         // set required fields
         assetDetail.setAssetName("CMD");
-        assetDetail.setEnabled(true);
+        
 
         // set expected behavior on dao
         assetDetailDao.expects(once()).method("saveAssetDetail")

@@ -44,10 +44,6 @@ public class AjaxFrontController extends MultiActionController {
         log.debug("AJAX - Fetching %" + arg + "%");
         AssetDetail assetDetail = new AssetDetail();
 		assetDetail.setAssetName(arg);
-		assetDetail.setAssetAddress(arg);
-		assetDetail.setAssetDescription(arg);
-		assetDetail.setAssetLocation(arg);
-		assetDetail.setAssetUsageType(arg);
 		
 		List<AssetDetail> assetDetailList = this.assetDetailManager.getAssetDetails(assetDetail);
 		List<AssetDetailInfo> assetDetailInfoList = new ArrayList<AssetDetailInfo>();

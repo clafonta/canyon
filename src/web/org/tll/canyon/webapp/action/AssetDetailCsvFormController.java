@@ -241,13 +241,6 @@ public class AssetDetailCsvFormController extends MultiActionController {
 	 * <ul>
 	 * <li></li>
 	 * <li>assetName (non-empty)
-	 * <li>assetGroupName (can be empty)
-	 * <li>assetDescription (non-empty)
-	 * <li>assetUsageType (non-empty)
-	 * <li>assetLocation (non-empty)
-	 * <li>assetAddress (non-empty)
-	 * <li>enabled (non-empty, true OR false)
-	 * <li>managerApproval (non-empty, true OR false)
 	 * <li>assetAdminTeamName (non-empty)
 	 * <li>assetAdminTeamEmail (non-empty)
 	 * <li>primaryAdminEmployeeId (non-empty)
@@ -269,9 +262,7 @@ public class AssetDetailCsvFormController extends MultiActionController {
 		// Minimum, 13 tabs.
 		ColumnPositionMappingStrategy strat = new ColumnPositionMappingStrategy();
 		strat.setType(AssetDetail.class);
-		String[] columns = new String[] { "assetName", "assetGroupName",
-				"assetDescription", "assetUsageType", "assetLocation",
-				"assetAddress", "assetAdminTeamName", "assetAdminTeamEmail",
+		String[] columns = new String[] { "assetName", "assetAdminTeamName", "assetAdminTeamEmail",
 				"primaryAdminEmployeeId", "secondaryAdminEmployeeId",
 				"primaryOwnerEmployeeId", "secondaryOwnerEmployeeId" };
 
