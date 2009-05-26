@@ -24,12 +24,7 @@ public class AssetAttribute extends BaseObject {
 	private Long assetTypeId;
 	private AssetType assetType; // 
 	private List<OptionValue> optionValueList;
-	private final String[] supportedTypes = new String[]{"string", "float", "date", "boolean", "radio", "dropdown", "checkboxes"};
-
-	// 
-	public String[] getSupportedTypes(){
-		return this.supportedTypes;
-	}
+	
 	/**
 	 * @return Returns the id.
 	 * @hibernate.id column="id" generator-class="native" unsaved-value="null"

@@ -55,16 +55,6 @@ public class AssetDetailListController implements Controller {
         
         log.debug("in handleRequest, using as example: " + exampleAssetDetail.toString());
         
-        EmployeeInfo prmAdm = employeeInfoManager.getEmployeeInfoByEmailAddress(exampleAssetDetail.getFilterPrimaryAdminEmpEmail());
-        EmployeeInfo secAdm = employeeInfoManager.getEmployeeInfoByEmailAddress(exampleAssetDetail.getFilterSecondaryAdminEmpEmail());
-        EmployeeInfo prmOwn = employeeInfoManager.getEmployeeInfoByEmailAddress(exampleAssetDetail.getFilterPrimaryOwnerEmpEmail());
-        EmployeeInfo secOwn = employeeInfoManager.getEmployeeInfoByEmailAddress(exampleAssetDetail.getFilterSecondaryOwnerEmpEmail());
-        
-        exampleAssetDetail.setPrimaryAdminEmployeeId((prmAdm!=null) ? prmAdm.getEmployeeUserId() : null);
-        exampleAssetDetail.setSecondaryAdminEmployeeId((secAdm!=null) ? secAdm.getEmployeeUserId() : null);
-        exampleAssetDetail.setPrimaryOwnerEmployeeId((prmOwn!=null) ? prmOwn.getEmployeeUserId() : null);
-        exampleAssetDetail.setSecondaryOwnerEmployeeId((secOwn!=null) ? secOwn.getEmployeeUserId() : null);
-        
         List<AssetDetail> assetDetailList = assetDetailManager.getAssetDetails(exampleAssetDetail);
         List<AssetType> assetTypeList = this.assetTypeManager.getAssetTypes(null);
         

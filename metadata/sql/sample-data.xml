@@ -230,112 +230,79 @@
         <value>UID_7</value>        
     </row>
   </table>
-  <table name='asset_detail'>
+  <table name="asset_type">
     <column>id</column>
-    <column>asset_name</column>
-    <column>admin_team_name</column>
-	<column>admin_team_email</column>
-	<column>primary_admin_emp_id</column>
-	<column>secondary_admin_emp_id</column>
-	<column>primary_owner_emp_id</column>
-	<column>secondary_owner_emp_id</column>	
+    <column>name</column>
+    <column>description</column>
     <row>
       <value>1</value>
-      <value>CMD-UAT</value>
-      <value>Cool PHP Developers1</value>
-      <value>coolphpdevs@somedomain.com</value>
-      <value>UID_9</value>
-      <value>UID_10</value>    
-      <value>UID_8</value>
-      <value>UID_4</value>
+      <value>web application</value>
+      <value>web application</value>    
     </row>
      <row>
       <value>2</value>
-      <value>CMD-PROD</value>
-      <value>Cool PHP Developers2</value>
-      <value>coolphpdevs@somedomain.com</value>
-      <value>UID_9</value>
-      <value>UID_10</value>
-      <value>UID_4</value>
-      <value>UID_7</value>
+      <value>database</value>
+      <value>database</value>    
+    </row>
+    <row>
+      <value>3</value>
+      <value>domain</value>
+      <value>domain</value>    
+    </row>
+  </table>
+  <table name='asset_detail'>
+    <column>id</column>
+    <column>asset_name</column>
+    <column>asset_type_id</column>
+    <row>
+      <value>1</value>
+      <value>CMD-UAT</value>
+      <value>1</value>
+    </row>
+     <row>
+      <value>2</value>
+      <value>CMD-PROD1</value>
+      <value>1</value>
     </row>
     <row>
       <value>3</value>
       <value>RTDB-UAT</value>
-      <value>Cool PHP Developers3</value>
-      <value>coolphpdevs@somedomain.com</value>
-      <value>UID_9</value>
-      <value>UID_10</value>
-      <value>UID_8</value>
-      <value>UID_4</value>
+      <value>1</value>
     </row>
     <row>
       <value>4</value>
-      <value>Cool PHP Developers4</value>
-      <value>coolphpdevs@somedomain.com</value>
-      <value>UID_9</value>
-      <value>UID_10</value>
-      <value>UID_8</value>
-      <value>UID_4</value>
+      <value>CMD-PROD2</value>
+      <value>1</value>
     </row>
     <row>
       <value>5</value>     
-      <value>Cool PHP Developers5</value>
-      <value>coolphpdevs@somedomain.com</value>
-      <value>UID_9</value>
-      <value>UID_10</value>
-      <value>UID_8</value>
-      <value>UID_7</value>
+      <value>SNAPALICIOUS</value>
+      <value>1</value>
     </row>
     <row>
       <value>6</value>
       <value>SNAP-PROD</value>
-      <value>Cool PHP Developers6</value>
-      <value>coolphpdevs@somedomain.com</value>
-      <value>UID_9</value>
-      <value>UID_10</value>
-      <value>UID_8</value>
-      <value>UID_7</value>
+      <value>2</value>
     </row>
     <row>
       <value>7</value>
       <value>SNAP-SIT</value>
-      <value>Cool PHP Developers7</value>
-      <value>coolphpdevs@somedomain.com</value>
-      <value>UID_9</value>
-      <value>UID_10</value>
-      <value>UID_8</value>
-      <value>UID_7</value>
+      <value>3</value>
     </row>
     <row>
       <value>8</value>
       <value>CAT-SIT</value>
-      <value>Cool PHP Developers8</value>
-      <value>coolphpdevs@somedomain.com</value>
-      <value>UID_9</value>
-      <value>UID_10</value>
-      <value>UID_8</value>
-      <value>UID_7</value>
+      <value>1</value>
     </row>
     <row>
       <value>9</value>
       <value>CAT-PROD</value>
-      <value>Cool PHP Developers9</value>
-      <value>coolphpdevs@somedomain.com</value>
-      <value>UID_9</value>
-      <value>UID_10</value>
-      <value>UID_8</value>
-      <value>UID_7</value>
+      <value>1</value>
     </row>
     <row>
       <value>10</value>
       <value>Name_10</value>
-      <value>Cool PHP Developers10</value>
-      <value>coolphpdevs@somedomain.com</value>
-      <value>UID_9</value>
-      <value>UID_10</value>
-      <value>UID_8</value>
-      <value>UID_7</value>
+      <value>1</value>
     </row>   
   </table>
   <table name='asset_hit_stat'>
@@ -1560,26 +1527,7 @@
     </row>
     
   </table>  
-  <table name="asset_type">
-    <column>id</column>
-    <column>name</column>
-    <column>description</column>
-    <row>
-      <value>1</value>
-      <value>web application</value>
-      <value>web application</value>    
-    </row>
-     <row>
-      <value>2</value>
-      <value>database</value>
-      <value>database</value>    
-    </row>
-    <row>
-      <value>3</value>
-      <value>domain</value>
-      <value>domain</value>    
-    </row>
-  </table>
+  
   <table name='asset_history_notes'>
     <column>id</column>
     <column>comment</column>

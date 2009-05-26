@@ -18,7 +18,12 @@ public class AssetType extends BaseObject {
 	private String name;
 	private String description;
 	private List<AssetAttribute> assetAttributeList;
+	private static final String[] supportedTypes = new String[]{"string", "float", "date", "radio", "dropdown", "checkboxes", "textarea", "contact"};
 
+	// 
+	public String[] getSupportedTypes(){
+		return AssetType.supportedTypes;
+	}
 
 	/**
 	 * @return Returns the id.

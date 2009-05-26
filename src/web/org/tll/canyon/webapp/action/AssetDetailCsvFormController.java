@@ -90,50 +90,6 @@ public class AssetDetailCsvFormController extends MultiActionController {
 		// Now, retrieve employee information per asset detail.
 		// Add any issues per AssetDetail encountered. 
 		// But let's be smart: let's not display invalid Employee X '20' or '30' times. Just once. 
-		Map<String, Boolean> invalidEmpIds = new HashMap<String, Boolean>();
-		for (Iterator<AssetDetail> iterator = assetDetailList.iterator(); iterator.hasNext();) {
-			AssetDetail assetDetail = (AssetDetail) iterator.next();
-			
-			// Primary
-			EmployeeInfo pAemp = this.employeeInfoManager.getEmployeeInfo(assetDetail.getPrimaryAdminEmployeeId() );
-			assetDetail.setPrimaryAdminEmployeeInfo(pAemp);
-			if(pAemp==null || !pAemp.isActive()){
-				invalidEmpIds.put(assetDetail.getPrimaryAdminEmployeeId(), new Boolean(false));
-			}
-			
-			// Secondary
-			EmployeeInfo sAemp = this.employeeInfoManager.getEmployeeInfo(assetDetail.getSecondaryAdminEmployeeId() );
-			assetDetail.setSecondaryAdminEmployeeInfo(sAemp);
-			if(sAemp==null || !sAemp.isActive()){
-				invalidEmpIds.put(assetDetail.getSecondaryAdminEmployeeId(), new Boolean(false));				
-			}
-			
-			// Primary
-			EmployeeInfo pOemp = this.employeeInfoManager.getEmployeeInfo(assetDetail.getPrimaryOwnerEmployeeId() );
-			assetDetail.setPrimaryOwnerEmployeeInfo(pOemp);
-			if(pOemp==null || !pOemp.isActive()){
-				invalidEmpIds.put(assetDetail.getPrimaryOwnerEmployeeId(), new Boolean(false));				
-			}
-			
-			// Secondary
-			EmployeeInfo sOemp = this.employeeInfoManager.getEmployeeInfo(assetDetail.getSecondaryOwnerEmployeeId() );
-			assetDetail.setSecondaryOwnerEmployeeInfo(sOemp);
-			if(sOemp==null || !sOemp.isActive()){
-				invalidEmpIds.put(assetDetail.getSecondaryOwnerEmployeeId(), new Boolean(false));				
-			}
-		}
-		;
-		if(!invalidEmpIds.keySet().isEmpty()){
-			String invalidEmployeeText = getText("assetDetailImport.invalid_employee", request.getLocale());
-			for (Iterator iterator = invalidEmpIds.keySet().iterator(); iterator.hasNext();) {
-				invalidEmployeeText = invalidEmployeeText + " " + (String) iterator.next();
-				if(iterator.hasNext()){
-					invalidEmployeeText = invalidEmployeeText + ",";
-				}
-				
-			}			
-			MessageUtil.saveError(request, invalidEmployeeText);
-		}
 		
 		// ******************************************************
 		// ASSET DETAIL VERIFICATION - does it exist already??

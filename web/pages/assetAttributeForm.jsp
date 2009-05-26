@@ -33,9 +33,6 @@
     <c:when test="${assetAttribute.type == 'date'}">
     DATE
     </c:when>
-    <c:when test="${assetAttribute.type == 'boolean'}">
-    BOOLEAN
-    </c:when>
     <c:when test="${assetAttribute.type == 'radio'}">
     RADIO
     </c:when>
@@ -44,6 +41,9 @@
     </c:when>
     <c:when test="${assetAttribute.type == 'dropdown'}">
     DROPDOWN
+    </c:when>
+		 <c:when test="${assetAttribute.type == 'contact'}">
+    CONTACT
     </c:when>
     <c:otherwise>
     (Invalid entry)

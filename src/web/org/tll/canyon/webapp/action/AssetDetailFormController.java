@@ -164,67 +164,24 @@ public class AssetDetailFormController extends BaseFormController {
 				return mv;
 			}
 
-			// 4. We map each email address to a valid Employee ID. If invalid,
+			// 4. We map each CONTACT email address to a valid Employee ID. If invalid,
 			// then error
-			EmployeeInfo prmAdm = employeeInfoManager
-					.getEmployeeInfoByEmailAddress(assetDetail
-							.getFilterPrimaryAdminEmpEmail());
-			EmployeeInfo secAdm = employeeInfoManager
-					.getEmployeeInfoByEmailAddress(assetDetail
-							.getFilterSecondaryAdminEmpEmail());
-			EmployeeInfo prmOwn = employeeInfoManager
-					.getEmployeeInfoByEmailAddress(assetDetail
-							.getFilterPrimaryOwnerEmpEmail());
-			EmployeeInfo secOwn = employeeInfoManager
-					.getEmployeeInfoByEmailAddress(assetDetail
-							.getFilterSecondaryOwnerEmpEmail());
-
+			EmployeeInfo prmAdm = employeeInfoManager.getEmployeeInfoByEmailAddress("some email addres");
+			
 			boolean inactiveEmployees = false;
-			if (prmAdm == null
-					|| !EmployeeInfo.EMP_STATUS_ACTIVE.equalsIgnoreCase(prmAdm
-							.getEmployeeStatus())) {
-				errors.rejectValue("filterPrimaryAdminEmpEmail",
-						"filterPrimaryAdminEmpEmail");
-				inactiveEmployees = true;
-				prmAdm = new EmployeeInfo();
-			}
-			if (secAdm == null
-					|| !EmployeeInfo.EMP_STATUS_ACTIVE.equalsIgnoreCase(secAdm
-							.getEmployeeStatus())) {
-				errors.rejectValue("filterSecondaryAdminEmpEmail",
-						"filterSecondaryAdminEmpEmail");
-				inactiveEmployees = true;
-				secAdm = new EmployeeInfo();
-				
-			}
-			if (prmOwn == null
-					|| !EmployeeInfo.EMP_STATUS_ACTIVE.equalsIgnoreCase(prmOwn
-							.getEmployeeStatus())) {
-				errors.rejectValue("filterPrimaryOwnerEmpEmail",
-						"filterPrimaryOwnerEmpEmail");
-				inactiveEmployees = true;
-				prmOwn = new EmployeeInfo();
-			}
-			if (secOwn == null
-					|| !EmployeeInfo.EMP_STATUS_ACTIVE.equalsIgnoreCase(secOwn
-							.getEmployeeStatus())) {
-				errors.rejectValue("filterSecondaryOwnerEmpEmail",
-						"filterSecondaryOwnerEmpEmail");
-				inactiveEmployees = true;
-				secOwn = new EmployeeInfo();
-			}
-			assetDetail.setPrimaryAdminEmployeeId(prmAdm.getEmployeeUserId());
-			assetDetail.setSecondaryAdminEmployeeId(prmAdm.getEmployeeUserId());
-			assetDetail.setPrimaryOwnerEmployeeId(prmOwn.getEmployeeUserId());
-			assetDetail.setSecondaryOwnerEmployeeId(secOwn.getEmployeeUserId());
-
+//			if (prmAdm == null
+//					|| !EmployeeInfo.EMP_STATUS_ACTIVE.equalsIgnoreCase(prmAdm
+//							.getEmployeeStatus())) {
+//				errors.rejectValue("filterPrimaryAdminEmpEmail",
+//						"filterPrimaryAdminEmpEmail");
+//				inactiveEmployees = true;
+//				prmAdm = new EmployeeInfo();
+//			}
+			
 			if (inactiveEmployees) {
 				// One or more INVALID email addresses.
 				ModelAndView mv = new ModelAndView(this.getFormView());
-				assetDetail.setPrimaryAdminEmployeeInfo(prmAdm);
-				assetDetail.setSecondaryAdminEmployeeInfo(secAdm);
-				assetDetail.setPrimaryOwnerEmployeeInfo(prmOwn);
-				assetDetail.setSecondaryOwnerEmployeeInfo(secOwn);
+			
 				mv.addObject(Constants.ASSETDETAIL_KEY, assetDetail);
 				String msg = getText(
 						"assetDetail.invalidOrInactiveEmployeeInfo", locale);

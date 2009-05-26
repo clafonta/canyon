@@ -279,27 +279,27 @@ public class AssetAccessRequestStatusManagerImpl extends BaseManager implements 
         Long assetRoleId = assetAccessRequest.getAssetRoleId();
         AssetRole assetRole = this.assetRoleDao.getAssetRole(assetRoleId);
         AssetDetail assetDetail = assetRole.getAssetDetail();
-        String administrationEmail = assetDetail.getAssetAdminTeamEmail();
-        if (allApproved) {
-            try {
-
-                StringBuffer msg = new StringBuffer();
-                MessageSourceAccessor text = new MessageSourceAccessor(messageSource, locale);
-                String editLink = text.getMessage("assetAccessRequest.edit.link") + assetAccessRequestId;
-                msg.append(text.getMessage("assetAccessRequest.edit.blurb", new Object[] { editLink }));
-                mailMessage.setTo(administrationEmail);
-                String subject = text.getMessage("assetAccessRequest.email.subject");
-                mailMessage.setSubject(subject);
-                mailMessage.setText(msg.toString());
-                mailEngine.send(mailMessage);
-                log.debug("Notification to processor sent to '" + administrationEmail
-                        + "'. All status checks have been approved.");
-            } catch (Exception e) {
-                log.error("Unable to send email. Email: '" +administrationEmail +"'. assetAccessRequestId: " + assetAccessRequest.getId(),e );
-            }
-        } else {
-            log.debug("No notification sent to '" + administrationEmail + "'. Approval(s) is still needed.");
-        }
+//        String administrationEmail = assetDetail.getAssetAdminTeamEmail();
+//        if (allApproved) {
+//            try {
+//
+//                StringBuffer msg = new StringBuffer();
+//                MessageSourceAccessor text = new MessageSourceAccessor(messageSource, locale);
+//                String editLink = text.getMessage("assetAccessRequest.edit.link") + assetAccessRequestId;
+//                msg.append(text.getMessage("assetAccessRequest.edit.blurb", new Object[] { editLink }));
+//                mailMessage.setTo(administrationEmail);
+//                String subject = text.getMessage("assetAccessRequest.email.subject");
+//                mailMessage.setSubject(subject);
+//                mailMessage.setText(msg.toString());
+//                mailEngine.send(mailMessage);
+//                log.debug("Notification to processor sent to '" + administrationEmail
+//                        + "'. All status checks have been approved.");
+//            } catch (Exception e) {
+//                log.error("Unable to send email. Email: '" +administrationEmail +"'. assetAccessRequestId: " + assetAccessRequest.getId(),e );
+//            }
+//        } else {
+//            log.debug("No notification sent to '" + administrationEmail + "'. Approval(s) is still needed.");
+//        }
     }
 
     /**

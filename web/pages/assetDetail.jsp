@@ -44,37 +44,6 @@
 	<tbody>
    	  
 		<tr><th class="right" width="20%"><fmt:message key="assetDetail.assetName"/></th><td><c:out value="${assetDetail.assetName}"/></td></tr>
-		<tr><th class="right" width="20%"><fmt:message key="assetDetail.assetAdminTeamName"/></th><td><c:out value="${assetDetail.assetAdminTeamName}"/> (<c:out value="${assetDetail.assetAdminTeamEmail}"/>)</td></tr>
-		<tr>
-		  <th class="right" width="20%"><fmt:message key="assetDetail.primaryAdminEmployeeName"/></th>
-			<td>
-			    <canyon:focus text="${assetDetail.primaryAdminEmployeeInfo.employeeFullname} (${assetDetail.primaryAdminEmployeeInfo.employeeEmail})" 
-					     flag="${not assetDetail.primaryAdminEmployeeInfo.active}" textStyleClass="" flagMessage="Inactive/invalid user"/>
-			</td>
-		</tr>
-		<tr>
-		  <th class="right" width="20%"><fmt:message key="assetDetail.secondaryAdminEmployeeName"/></th>
-			<td>
-        <canyon:focus text="${assetDetail.secondaryAdminEmployeeInfo.employeeFullname} (${assetDetail.secondaryAdminEmployeeInfo.employeeEmail})" 
-				       flag="${not assetDetail.secondaryAdminEmployeeInfo.active}" textStyleClass="" flagMessage="Inactive/invalid user"/>
-			</td>
-		</tr>
-		<tr>
-		  <th class="right" width="20%"><fmt:message key="assetDetail.primaryOwnerEmployeeName"/></th>
-			<td>
-				<canyon:focus text="${assetDetail.primaryOwnerEmployeeInfo.employeeFullname} (${assetDetail.primaryOwnerEmployeeInfo.employeeEmail})" 
-				       flag="${not assetDetail.primaryOwnerEmployeeInfo.active}"  flagMessage="Inactive/invalid user"/>
-
-			</td>
-		</tr>
-		<tr>
-		  <th class="right" width="20%"><fmt:message key="assetDetail.secondaryOwnerEmployeeName"/></th>
-			<td>
-			  <canyon:focus text="${assetDetail.secondaryOwnerEmployeeInfo.employeeFullname} (${assetDetail.secondaryOwnerEmployeeInfo.employeeEmail})" 
-				       flag="${not assetDetail.secondaryOwnerEmployeeInfo.active}" flagMessage="Inactive/invalid user"/>
-
-			</td>
-		</tr>
 		<authz:authorize ifAnyGranted="admin, user">
       <tr><th></th><td align="right">
       				<form method="get" action="<c:url value="/editAssetDetail.html?from=list"/>">

@@ -16,12 +16,6 @@
     <thead><tr><th>Column</th><th>Length</th><th>Type</th></tr></thead>
 	<tbody>
 	<tr><td><fmt:message key="assetDetail.assetName"/></td><td>100</td><td>VARCHAR</td></tr>
-	<tr><td><fmt:message key="assetDetail.assetAdminTeamName"/></td><td>50</td><td>VARCHAR</td></tr>
-	<tr><td><fmt:message key="assetDetail.assetAdminTeamEmail"/></td><td>50</td><td>VARCHAR</td></tr>
-	<tr><td><fmt:message key="assetDetail.primaryAdminEmployeeId"/></td><td>50</td><td>VARCHAR</td></tr>
-	<tr><td><fmt:message key="assetDetail.secondaryAdminEmployeeId"/></td><td>50</td><td>VARCHAR</td></tr>
-	<tr><td><fmt:message key="assetDetail.primaryOwnerEmployeeId"/></td><td>50</td><td>VARCHAR</td></tr>
-	<tr><td><fmt:message key="assetDetail.secondaryOwnerEmployeeId"/></td><td>50</td><td>VARCHAR</td></tr>
 	</tbody>
 </table>
 <h3><a href="<c:url value="/sample.csv"/>"><fmt:message key="assetDetailImport.example"/><img src="<c:url value="/images/ico_file_csv.png"/>" alt=""></a></h3>

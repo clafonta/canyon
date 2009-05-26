@@ -74,25 +74,6 @@ public class AssetDetailDaoHibernate extends BaseDaoHibernate implements AssetDe
 	                if(assetDetail.getAssetName()!=null && assetDetail.getAssetName().trim().length()>0){
 	                	disjunction.add(Expression.ilike("assetName",assetDetail.getAssetName().trim(), MatchMode.ANYWHERE));
 	                }
-	                
-	                if(assetDetail.getAssetAdminTeamEmail()!=null && assetDetail.getAssetAdminTeamEmail().trim().length()>0){
-	                	disjunction.add(Expression.ilike("assetAdminTeamEmail",assetDetail.getAssetAdminTeamEmail().trim(), MatchMode.ANYWHERE));
-	                }
-	                if(assetDetail.getAssetAdminTeamName()!=null && assetDetail.getAssetAdminTeamName().trim().length()>0){
-	                	disjunction.add(Expression.ilike("assetAdminTeamName",assetDetail.getAssetAdminTeamName().trim(), MatchMode.ANYWHERE));
-	                }
-	                if(assetDetail.getPrimaryAdminEmployeeId()!=null && assetDetail.getPrimaryAdminEmployeeId().trim().length()>0){
-	                	disjunction.add(Expression.ilike("primaryAdminEmployeeId",assetDetail.getPrimaryAdminEmployeeId().trim(), MatchMode.ANYWHERE));
-	                }
-	                if(assetDetail.getSecondaryAdminEmployeeId()!=null && assetDetail.getSecondaryAdminEmployeeId().trim().length()>0){
-	                	disjunction.add(Expression.ilike("secondaryAdminEmployeeId",assetDetail.getSecondaryAdminEmployeeId().trim(), MatchMode.ANYWHERE));
-	                }
-	                if(assetDetail.getPrimaryOwnerEmployeeId()!=null && assetDetail.getPrimaryOwnerEmployeeId().trim().length()>0){
-	                	disjunction.add(Expression.ilike("primaryOwnerEmployeeId",assetDetail.getPrimaryOwnerEmployeeId().trim(), MatchMode.ANYWHERE));
-	                }
-	                if(assetDetail.getSecondaryOwnerEmployeeId()!=null && assetDetail.getSecondaryOwnerEmployeeId().trim().length()>0){
-	                	disjunction.add(Expression.ilike("secondaryOwnerEmployeeId",assetDetail.getSecondaryOwnerEmployeeId().trim(), MatchMode.ANYWHERE));
-	                }
 	                criteria.add(disjunction);
 	                log.debug("Retrieving Asset Details with query");
 	

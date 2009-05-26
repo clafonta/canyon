@@ -8,11 +8,6 @@
 				 <canyon:slug value="${assetDetail.assetName}" maxLength="25"/>
      <span>
 		 <strong><fmt:message key="assetDetail.assetName"/>:</strong> <c:out value="${assetDetail.assetName}"/><br/>
-		 <strong><fmt:message key="assetDetail.assetAdminTeamName"/>:</strong> <c:out value="${assetDetail.assetAdminTeamName}"/> (<c:out value="${assetDetail.assetAdminTeamEmail}"/>) <br/>
-		 <strong><fmt:message key="assetDetail.primaryAdminEmployeeName"/>:</strong> <c:out value="${assetDetail.primaryAdminEmployeeInfo.employeeFullname}"/><br/>
-		 <strong><fmt:message key="assetDetail.secondaryAdminEmployeeName"/>:</strong> <c:out value="${assetDetail.secondaryAdminEmployeeInfo.employeeFullname}"/><br/>
-		 <strong><fmt:message key="assetDetail.primaryOwnerEmployeeName"/>:</strong> <c:out value="${assetDetail.primaryOwnerEmployeeInfo.employeeFullname}"/><br/>
-		 <strong><fmt:message key="assetDetail.secondaryOwnerEmployeeName"/>:</strong> <c:out value="${assetDetail.secondaryOwnerEmployeeInfo.employeeFullname}"/><br/>		    
 		 </span></a> 
 		</display:column>
 		<display:column escapeXml="false" sortable="false" style="width:10px;">

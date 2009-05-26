@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class AssetDetail extends BaseObject {
                            																																																																																																																																									
-    private static final long serialVersionUID = -8922423430356003833L;
+    
     private Long id;
     private String assetName;
     private Long assetTypeId;
@@ -20,26 +20,8 @@ public class AssetDetail extends BaseObject {
     private List<AssetRole> assetRoles;
     private List<AssetAttributeValue> assetAttributeValueList;
     private Date createDate;
-    private String assetAdminTeamName;
-    private String assetAdminTeamEmail;
-    private String primaryAdminEmployeeId;
-    private String secondaryAdminEmployeeId;
-    private String primaryOwnerEmployeeId;
-    private String secondaryOwnerEmployeeId;
-    private EmployeeInfo primaryAdminEmployeeInfo;
-    private EmployeeInfo secondaryAdminEmployeeInfo;
-    private EmployeeInfo primaryOwnerEmployeeInfo;
-    private EmployeeInfo secondaryOwnerEmployeeInfo;
-    
-    // TRANSIENT HELPER ATTRIBUTES - Used for SEARCH and FORM SUBMISSIONS
-    // Concrete values found within respective EmployeeInfo objects
-    // **I don't want to create an entire view wrapper for just four fields!
-    private String filterPrimaryAdminEmpEmail;
-	private String filterSecondaryAdminEmpEmail;
-	private String filterPrimaryOwnerEmpEmail;
-	private String filterSecondaryOwnerEmpEmail;
-
-	// TRANSIENT
+       
+ 	// TRANSIENT
 	private List<Issue> issues = null;
 
 	/**
@@ -168,198 +150,25 @@ public class AssetDetail extends BaseObject {
         this.createDate = createDate;
     }
 
-    /**
-     * @hibernate.property column="admin_team_name" length="50"
-     */
-	public String getAssetAdminTeamName() {
-		return assetAdminTeamName;
-	}
-
-	public void setAssetAdminTeamName(String assetAdminTeamName) {
-		this.assetAdminTeamName = assetAdminTeamName;
-	}
-
-	/**
-     * @hibernate.property column="admin_team_email" length="50"
-     */
-	public String getAssetAdminTeamEmail() {
-		return assetAdminTeamEmail;
-	}
-
-	public void setAssetAdminTeamEmail(String assetAdminTeamEmail) {
-		this.assetAdminTeamEmail = assetAdminTeamEmail;
-	}
-
-	/**
-     * @hibernate.property column="primary_admin_emp_id" length="50"
-     */
-	public String getPrimaryAdminEmployeeId() {
-		return primaryAdminEmployeeId;
-	}
-	
-	public void setPrimaryAdminEmployeeId(String primaryAdminEmployeeId) {
-		this.primaryAdminEmployeeId = primaryAdminEmployeeId;
-	}
-
-	/**
-     * @hibernate.property column="secondary_admin_emp_id" length="50"
-     */
-	public String getSecondaryAdminEmployeeId() {
-		return secondaryAdminEmployeeId;
-	}
-
-	public void setSecondaryAdminEmployeeId(String secondaryAdminEmployeeId) {
-		this.secondaryAdminEmployeeId = secondaryAdminEmployeeId;
-	}
-
-	/**
-     * @hibernate.property column="primary_owner_emp_id" length="50"
-     */
-	public String getPrimaryOwnerEmployeeId() {
-		return primaryOwnerEmployeeId;
-	}
-
-	public void setPrimaryOwnerEmployeeId(String primaryOwnerEmployeeId) {
-		this.primaryOwnerEmployeeId = primaryOwnerEmployeeId;
-	}
-
-	/**
-     * @hibernate.property column="secondary_owner_emp_id" length="50"
-     */
-	public String getSecondaryOwnerEmployeeId() {
-		return secondaryOwnerEmployeeId;
-	}
-
-	public void setSecondaryOwnerEmployeeId(String secondaryOwnerEmployeeId) {
-		this.secondaryOwnerEmployeeId = secondaryOwnerEmployeeId;
-	}
-
-	/**
-     * @hibernate.many-to-one insert="false" update="false" cascade="none"
-     *  column="primary_admin_emp_id" outer-join="true"
-     */
-	public EmployeeInfo getPrimaryAdminEmployeeInfo() {
-		return primaryAdminEmployeeInfo;
-	}
-
-	public void setPrimaryAdminEmployeeInfo(EmployeeInfo primaryAdminEmployeeInfo) {
-		this.primaryAdminEmployeeInfo = primaryAdminEmployeeInfo;
-	}
-
-	/**
-     * @hibernate.many-to-one insert="false" update="false" cascade="none"
-     *  column="secondary_admin_emp_id" outer-join="true"
-     */
-	public EmployeeInfo getSecondaryAdminEmployeeInfo() {
-		return secondaryAdminEmployeeInfo;
-	}
-
-	public void setSecondaryAdminEmployeeInfo(
-			EmployeeInfo secondaryAdminEmployeeInfo) {
-		this.secondaryAdminEmployeeInfo = secondaryAdminEmployeeInfo;
-	}
-
-	/**
-     * @hibernate.many-to-one insert="false" update="false" cascade="none"
-     *  column="primary_owner_emp_id" outer-join="true"
-     */
-	public EmployeeInfo getPrimaryOwnerEmployeeInfo() {
-		return primaryOwnerEmployeeInfo;
-	}
-
-	public void setPrimaryOwnerEmployeeInfo(EmployeeInfo primaryOwnerEmployeeInfo) {
-		this.primaryOwnerEmployeeInfo = primaryOwnerEmployeeInfo;
-	}
-
-	/**
-     * @hibernate.many-to-one insert="false" update="false" cascade="none"
-     *  column="secondary_owner_emp_id" outer-join="true"
-     */
-	public EmployeeInfo getSecondaryOwnerEmployeeInfo() {
-		return secondaryOwnerEmployeeInfo;
-	}
-
-	public void setSecondaryOwnerEmployeeInfo(
-			EmployeeInfo secondaryOwnerEmployeeInfo) {
-		this.secondaryOwnerEmployeeInfo = secondaryOwnerEmployeeInfo;
-	}
-
-	
-	public String getFilterPrimaryAdminEmpEmail() {
-		if(this.filterPrimaryAdminEmpEmail== null && this.primaryAdminEmployeeInfo!=null){
-			return this.primaryAdminEmployeeInfo.getEmployeeEmail();
-		}
-		return filterPrimaryAdminEmpEmail;
-	}
-
-	/**
-     * @spring.validator type="required"
-     */
-	public void setFilterPrimaryAdminEmpEmail(String filterPrimaryAdminEmpEmail) {
-		this.filterPrimaryAdminEmpEmail = filterPrimaryAdminEmpEmail;
-	}
-
-	public String getFilterSecondaryAdminEmpEmail() {
-		if(this.filterSecondaryAdminEmpEmail==null && this.secondaryAdminEmployeeInfo!=null){
-			return this.secondaryAdminEmployeeInfo.getEmployeeEmail();
-		}
-		return filterSecondaryAdminEmpEmail;
-	}
-
-	/**
-     * @spring.validator type="required"
-     */
-	public void setFilterSecondaryAdminEmpEmail(String filterSecondaryAdminEmpEmail) {
-		this.filterSecondaryAdminEmpEmail = filterSecondaryAdminEmpEmail;
-	}
-	
-	
-	public String getFilterPrimaryOwnerEmpEmail() {
-		if(this.filterPrimaryOwnerEmpEmail== null && this.primaryOwnerEmployeeInfo!=null){
-			return this.primaryOwnerEmployeeInfo.getEmployeeEmail();
-		}
-		return filterPrimaryOwnerEmpEmail;
-	}
-
-	/**
-     * @spring.validator type="required"
-     */
-	public void setFilterPrimaryOwnerEmpEmail(String filterPrimaryOwnerEmpEmail) {
-		this.filterPrimaryOwnerEmpEmail = filterPrimaryOwnerEmpEmail;
-	}
-
-	public String getFilterSecondaryOwnerEmpEmail() {
-		if(this.filterSecondaryOwnerEmpEmail==null&& this.secondaryOwnerEmployeeInfo!=null){
-			return this.secondaryOwnerEmployeeInfo.getEmployeeEmail();
-		}
-		return filterSecondaryOwnerEmpEmail;
-	}
-
-	/**
-     * @spring.validator type="required"
-     */
-	public void setFilterSecondaryOwnerEmpEmail(String filterSecondaryOwnerEmpEmail) {
-		this.filterSecondaryOwnerEmpEmail = filterSecondaryOwnerEmpEmail;
-	}
-	
+    	
 	
 	public List<Issue> getIssues() {
 		
 		this.issues = new ArrayList<Issue>();
 		
-		if(this.primaryAdminEmployeeInfo!=null && !this.primaryAdminEmployeeInfo.isActive()){
-			this.issues.add(new Issue("Inactive primary admin", Issue.INACTIVE_USER));
-		}
-		if( this.secondaryAdminEmployeeInfo!=null && !this.secondaryAdminEmployeeInfo.isActive()){
-			this.issues.add(new Issue("Inactive secondary admin", Issue.INACTIVE_USER));
-		}
-		if(this.primaryOwnerEmployeeInfo!=null && !this.primaryOwnerEmployeeInfo.isActive()){
-			this.issues.add(new Issue("Inactive primary owner", Issue.INACTIVE_USER));
-		}
-		if(this.secondaryOwnerEmployeeInfo!=null && !this.secondaryOwnerEmployeeInfo.isActive()){
-			this.issues.add(new Issue("Inactive secondary owner", Issue.INACTIVE_USER));
-		}
-		
+//		if(this.primaryAdminEmployeeInfo!=null && !this.primaryAdminEmployeeInfo.isActive()){
+//			this.issues.add(new Issue("Inactive primary admin", Issue.INACTIVE_USER));
+//		}
+//		if( this.secondaryAdminEmployeeInfo!=null && !this.secondaryAdminEmployeeInfo.isActive()){
+//			this.issues.add(new Issue("Inactive secondary admin", Issue.INACTIVE_USER));
+//		}
+//		if(this.primaryOwnerEmployeeInfo!=null && !this.primaryOwnerEmployeeInfo.isActive()){
+//			this.issues.add(new Issue("Inactive primary owner", Issue.INACTIVE_USER));
+//		}
+//		if(this.secondaryOwnerEmployeeInfo!=null && !this.secondaryOwnerEmployeeInfo.isActive()){
+//			this.issues.add(new Issue("Inactive secondary owner", Issue.INACTIVE_USER));
+//		}
+//		
 		return issues;
 	}
 	

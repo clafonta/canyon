@@ -45,7 +45,9 @@
     </c:url>
 		<form>
 		<ul>
-		<li>			 			  <a href="<c:out value="${assetAttributeURL}"/>">Edit</a> | Delete
+		<li>			 			  
+											<hr />
+											<a href="<c:out value="${assetAttributeURL}"/>">Edit</a> | Delete
 											<label for="name" class="desc"><c:out value="${assetAttribute.name}"/></label>
 											<c:out value="${assetAttribute.description}"/> <br />
 		<c:choose>
@@ -56,6 +58,9 @@
 								  		<option><c:out value="${optionValue.value}"/></option>
 											</c:forEach>
 											</select>
+							</c:when>
+							<c:when test="${assetAttribute.type == 'textarea'}">
+							  			<textarea class="text large"></textarea>
 							</c:when>
 							<c:when test="${assetAttribute.type == 'String' or assetAttribute.type == 'string'}">
 											<input type="text" class="text large"/>
@@ -70,6 +75,9 @@
 											<input type="checkbox" name="group1" class="medium" value="<c:out value="${optionValue.value}"/>"/><c:out value="${optionValue.value}"/><br />
 											</c:forEach>
 							</c:when>
+							<c:when test="${assetAttribute.type == 'contact'}">
+											<input type="text" class="text large"/>
+							</c:when>
 							<c:otherwise>
 							AssetAttribute TYPE unknown: <c:out value="${assetAttribute.type}"/>
 							</c:otherwise>
@@ -83,13 +91,9 @@
      <form method="get" action="<c:url value="/editAssetAttribute.html"/>" >
       <input type="hidden" name="assetTypeId" value="<c:out value="${assetType.id}"/>"/>
       <select name="type">
-        <option value="string">string</option>
-        <option value="float">float</option>
-        <option value="date">date</option>
-        <option value="boolean">boolean</option>
-        <option value="radio">radio</option>
-        <option value="dropdown">dropdown</option>
-        <option value="checkboxes">checkboxes</option>
+			<c:forEach var="supportedType" items="${assetType.supportedTypes}">
+						<option value="<c:out value="${supportedType}" />"><c:out value="${supportedType}" /></option>
+			</c:forEach>
       </select>
        <input type="submit" name="add_attribute"  value="Add Attribute" />        
   
