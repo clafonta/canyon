@@ -70,7 +70,7 @@ public class OptionValueFormController extends BaseFormController {
 				+ optionValue.getAssetAttributeId();
 		
 		if (request.getParameter("delete") != null) {
-			this.optionValueManager.removeOptionValue(optionValue.getId().toString());
+			this.optionValueManager.removeOptionValue(optionValue.getId());
 			
 			MessageUtil.saveMessage(request, getText("optionValue.deleted",
 					locale));

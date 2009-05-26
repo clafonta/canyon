@@ -55,7 +55,7 @@ public class OptionValue extends BaseObject {
 	}
 	
 	/**
-     * @hibernate.property column="value" length="250" not-null="true" unique="true"
+     * @hibernate.property column="value" length="250" not-null="true"
      */
 	public String getValue() {
 		return value;

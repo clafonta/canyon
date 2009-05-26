@@ -65,28 +65,21 @@
             <canyon:label styleClass="desc" key="assetAttribute.description"/>
             <form:errors path="description" cssClass="fieldError"/>
             <form:textarea path="description" id="description" cssClass="text large"/>
-        </li>    
-    		<li>
+        </li>  
+        
+        <c:if test="${assetAttribute.type == 'dropdown' or assetAttribute.type == 'radio' or assetAttribute.type == 'checkboxes'}">
+            <li>
+                <label for="name" class="desc">Option Values</label>
+                 <textarea id="option_value" name="option_value" class="text large"><c:forEach var="optionValue" items="${assetAttribute.optionValueList}"><canyon:option value="${optionValue.value}"/></c:forEach>
+                 </textarea>
+            </li>  
+        </c:if>  
+    	<li>
             <fieldset>            
                 <form:checkbox path="required" id="required"/>
                 <label for="required" class="choice"><fmt:message key="assetAttribute.required"/></label>            
             </fieldset>
         </li>
-        <c:if test="${assetAttribute.type == 'dropdown' and !empty assetAttribute.id}">
-        list of dropdown values        
-          
-          <c:forEach var="optionValue" items="${assetAttribute.optionValueList}">
-            <c:url var="optionEditValueURL" value="/editOptionValue.html">
-              <c:param name="id" value="${optionValue.id}"/>   
-              <c:param name="assetAttributeId" value="${optionValue.assetAttribute.id}"/>            
-            </c:url>
-             <a href="<c:out value="${optionEditValueURL}" />"><c:out value="${optionValue.value}"/></a><br />
-          </c:forEach>
-          <c:url var="optionValueURL" value="/editOptionValue.html">
-            <c:param name="assetAttributeId" value="${assetAttribute.id}"/>            
-          </c:url>
-          <a href="<c:out value="${optionValueURL}" />">Add a dropdown value</a>
-        </c:if>
         <li class="buttonBar bottom">
             <input type="submit" class="button" name="save"  onclick="bCancel=false" value="<fmt:message key="button.save"/>" />        
     				<c:if test="${not empty assetAttribute.id}">				

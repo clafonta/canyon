@@ -29,6 +29,6 @@ public interface OptionValueManager extends Manager {
      * Removes a optionValue from the database by id
      * @param id the optionValue's id
      */
-    public void removeOptionValue(final String id);
+    public void removeOptionValue(final Long id);
 }
 

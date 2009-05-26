@@ -44,7 +44,7 @@ public class OptionValueManagerImpl extends BaseManager implements OptionValueMa
     /**
      * @see org.tll.canyon.service.OptionValueManager#removeOptionValue(String id)
      */
-    public void removeOptionValue(final String id) {
-        dao.removeOptionValue(new Long(id));
+    public void removeOptionValue(final Long id) {
+        dao.removeOptionValue(id);
     }
 }
